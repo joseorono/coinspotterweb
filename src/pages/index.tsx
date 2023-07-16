@@ -21,6 +21,8 @@ import ButtonLink from '~/components/links/ButtonLink';
 import UnderlineLink from '~/components/links/UnderlineLink';
 import UnstyledLink from '~/components/links/UnstyledLink';
 import Seo from '~/components/Seo';
+import Footer from "~/components/landing/Footer";
+
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -83,14 +85,8 @@ export default function Home() {
               */
             }
 
-
-            <footer className='absolute bottom-2 text-gray-700'>
-              © {new Date().getFullYear()} By{' '}
-              <UnderlineLink href='https://theodorusclarence.com?ref=tsnextstarter'>
-                Jose Miguel Oroño, Mauricio Garcia y Pedro Zavala
-              </UnderlineLink>
-            </footer>
           </div>
+          <Footer />
         </section>
       </main>
     </Layout>
