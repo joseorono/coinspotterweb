@@ -49,9 +49,9 @@ export default function Home() {
         <section className='bg-cream bg-white'>
           <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
             <h1 className='text-5xl'>
-              We are <b>Almost</b> there!
+              Ya <b>Casi</b> terminamos!
             </h1>
-            <p>Stay tuned for something amazing!!!</p>
+            <p>Pronto podrás vivir la experiencia CoinSpotter!</p>
 
             <div className='mb-5 mt-10'>
               <div className='mx-auto mt-2 w-full max-w-2xl rounded-full bg-white shadow'>
@@ -59,7 +59,7 @@ export default function Home() {
                   className='rounded-full bg-indigo-600 py-1 text-center text-xs leading-none text-white'
                   style={{ width: '165px' }}
                 >
-                  30%
+                  25%
                 </div>
               </div>
             </div>
@@ -106,17 +106,17 @@ function AuthShowcase() {
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <h1>
-        Login Test
+        Prueba del Login
       </h1>
       <p className="text-center text-2xl">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
+        {sessionData && <span>Identificado como {sessionData.user?.name}</span>}
         {secretMessage && <span> - {secretMessage}</span>}
       </p>
       <button
         className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
         onClick={sessionData ? () => void signOut() : () => void signIn()}
       >
-        {sessionData ? "Sign out" : "Sign in"}
+        {sessionData ? "Cerrar Sesión" : "Iniciar Sesión"}
       </button>
     </div>
   );
