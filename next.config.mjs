@@ -7,6 +7,12 @@ await import("./src/env.mjs");
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  // Fix Rainbow-kit error in nextjs - Can'f find module 'fs'
+  // Done as per the docs https://github.com/rainbow-me/rainbowkit/blob/main/examples/with-next/next.config.js
+  webpack: config => {
+    config.resolve.fallback = { fs: false, net: false, tls: false };
+    return config;
+  },
 
   /**
    * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
