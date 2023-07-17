@@ -70,3 +70,8 @@ model Producto {
   id    Int    @id @default(autoincrement())
   nombre String
 }
+
+model SearchQuery {
+  id    String @id @default(cuid())
+  query String
+}
