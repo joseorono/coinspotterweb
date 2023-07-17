@@ -10,6 +10,8 @@ import { useState } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 // Search Bar Imports 
+
+import SearchBar from '~/components/SearchInput';
 // import { searchProducts } from '~/lib/api';
 
 import Hero from '~/components/landing/Hero';
@@ -64,6 +66,7 @@ export default function Home() {
               </div>
             </div>
 
+
             <div className='mb-5'>
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
             </div>
@@ -73,7 +76,11 @@ export default function Home() {
             </div>
 
             <div className='mb-5'>
-              <AuthShowcase />
+              <AuthShowcase />              
+            </div>
+
+            <div>
+              <SearchBar />
             </div>
 
             {
