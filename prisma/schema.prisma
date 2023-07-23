@@ -98,6 +98,7 @@ model Places {
   latitude         Decimal?
   longitude        Decimal?
   google_places_id String?
+  on_google_maps   Boolean  @default(false)
 }
 
 model user_settings {
@@ -110,4 +111,25 @@ model system_settings {
   id    String  @id @unique @default(cuid())
   key   String
   value String?
+}
+
+model payment_methods {
+  id               String  @id @unique @default(cuid())
+  name             String?
+  symbol           String?
+  terms_policy_url String?
+}
+
+model currencies {
+  id               String    @id @unique @default(cuid())
+  paymethod_id     String
+  name             DateTime?
+  symbol           String?
+  contract_address String?
+}
+
+model payment_methods_accepted {
+  id           String @id @unique @default(cuid())
+  paymethod_id String
+  place_id     String
 }
