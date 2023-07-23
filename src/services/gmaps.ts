@@ -57,7 +57,7 @@ class gMapsService {
           input: address,
           inputtype: 'textquery',
           fields: 'place_id',
-          key: 'TU_API_KEY_DE_GOOGLE_MAPS',
+          key: process.env.CS_GMAPS_API_KEY,
         }
       );
 
