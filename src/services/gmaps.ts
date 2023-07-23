@@ -49,7 +49,7 @@ class gMapsService {
     }
   };
 
-  static async handleCreateOrUpdatePlace(address: string): Promise<string> {
+  static async handleFindPlace(address: string): Promise<string> {
       let placeId = '';
       const response: AxiosResponse<any> = await axios.post(
         'https://maps.googleapis.com/maps/api/place/findplacefromtext/json',
@@ -67,33 +67,6 @@ class gMapsService {
 
       return placeId;
 
-  };
-
-  static async handleAddPlace(address: string): Promise<void> {
-    try {
-      // Aquí puedes realizar la lógica para agregar un nuevo lugar utilizando la dirección y los datos relevantes
-      console.log('Agregar lugar:', address);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  static async handleModifyPlace(placeId: string): Promise<void> {
-    try {
-      // Aquí puedes realizar la lógica para modificar un lugar existente utilizando el placeId y los datos relevantes
-      console.log('Modificar lugar:', placeId);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  static async handleDeletePlace(placeId: string): Promise<void> {
-    try {
-      // Aquí puedes realizar la lógica para borrar un lugar utilizando el placeId
-      console.log('Borrar lugar:', placeId);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
 
