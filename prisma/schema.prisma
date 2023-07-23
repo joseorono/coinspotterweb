@@ -75,3 +75,39 @@ model SearchQuery {
   id    String @id @default(cuid())
   query String
 }
+
+model wallets {
+  id             String @id @unique @default(cuid())
+  user_id        String
+  wallet_address String
+}
+
+model transactions {
+  id           String   @id @unique @default(cuid())
+  user_id      String
+  place_id     String
+  paymethod_id String
+  amount       Decimal
+  datetime     DateTime @updatedAt
+}
+
+model Places {
+  id               String   @id @unique @default(cuid())
+  name             String   @unique
+  address          String   @unique
+  latitude         Decimal?
+  longitude        Decimal?
+  google_places_id String?
+}
+
+model user_settings {
+  id    String  @id @unique @default(cuid())
+  key   String
+  value String?
+}
+
+model system_settings {
+  id    String  @id @unique @default(cuid())
+  key   String
+  value String?
+}
