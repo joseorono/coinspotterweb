@@ -134,5 +134,20 @@ model payment_methods_accepted {
   id           String @id @unique @default(cuid())
   paymethod_id String
   place_id     String
+}
 
 model global_tokens {
+  id           String   @id @unique @default(cuid())
+  key          String
+  value        String
+  duration     Int?
+  is_permanent Boolean  @default(false)
+  last_updated DateTime @updatedAt
+}
+
+model favorite_places {
+  id       String @id @unique @default(cuid())
+  user_id  String
+  place_id String
+}
+
