@@ -94,6 +94,7 @@ model transactions {
 model Places {
   id               String   @id @unique @default(cuid())
   name             String   @unique
+  description      String?
   address          String   @unique
   latitude         Decimal?
   longitude        Decimal?
@@ -102,9 +103,10 @@ model Places {
 }
 
 model user_settings {
-  id    String  @id @unique @default(cuid())
-  key   String
-  value String?
+  id      String  @id @unique @default(cuid())
+  user_id String
+  key     String
+  value   String?
 }
 
 model system_settings {
@@ -132,4 +134,5 @@ model payment_methods_accepted {
   id           String @id @unique @default(cuid())
   paymethod_id String
   place_id     String
-}
+
+model global_tokens {
