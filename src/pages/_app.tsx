@@ -1,12 +1,13 @@
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
+//import { Html, Head, Main, NextScript } from 'next/document'
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 
 // From Original Repo...
 import { AppProps } from 'next/app';
-
+import { ThemeContextProvider } from "~/themes/themeContext";
 
 /**
  * !STARTERCONF info
@@ -106,7 +107,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
       <WagmiConfig config={wagmiConfig}>
         <RainbowKitProvider modalSize="compact" appInfo={csAppInfo} chains={chains}>
-          <Component {...pageProps} />
+          <ThemeContextProvider>
+            <Component {...pageProps} />
+          </ThemeContextProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     </SessionProvider>
