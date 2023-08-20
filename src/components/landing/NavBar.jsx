@@ -23,6 +23,7 @@ const NavBar = () => {
         settextColor('white');
       }
     };
+    
     window.addEventListener('scroll', changeColor);
   }, []);
 
@@ -73,7 +74,13 @@ const NavBar = () => {
               <Link href='/'>About Us</Link>
             </li>
             <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
-              <Link href='/'>Contact</Link>
+              <Link href='/'>Contact Us</Link>
+            </li>
+            <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
+              <small className="block text-center">
+                Dark Mode
+              </small>
+              <input type="checkbox" className="toggle toggle-lg" id="theme-toggle" />
             </li>
           </ul>
         </div>
