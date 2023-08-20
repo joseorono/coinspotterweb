@@ -176,4 +176,27 @@ export default {
     require('@tailwindcss/forms'),
     require("daisyui")
   ],
+  daisyui: {
+    themes: [{
+        coinSpotterDark: {
+          // Base Colors for the Theme
+          "primary": "#04BFAD",
+          "primary-focus": "#03A696",
+          "secondary": "#1A86D9",
+          "secondary-focus": "#1A86D9",
+          "accent": "#F2231D",
+          "accent-focus": "#A6100C",
+          "neutral": "#36363D",
+          "neutral-focus": "#3D3D40",
+          "base-100": "#F2F2F2",
+          "neutral-content ": "#F2F2F2",
+
+          // Custom Semantic Colors
+
+        },
+      },
+      "dark",
+      "cupcake",
+    ],
+  }
 } satisfies Config;
