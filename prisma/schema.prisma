@@ -100,7 +100,15 @@ model Places {
   longitude        Decimal?
   google_places_id String?
   on_google_maps   Boolean  @default(false)
+  profile_pic_url      String?  @default("")
 }
+
+model picture_places {
+  id       String @id @unique @default(cuid())
+  place_id  String
+  url String
+}
+
 
 model user_settings {
   id      String  @id @unique @default(cuid())
