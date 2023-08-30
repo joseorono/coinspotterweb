@@ -5,12 +5,18 @@ import {
   type NextAuthOptions,
   type DefaultSession,
 } from "next-auth";
+
+import NextAuth from 'next-auth'
+import CredentialsProvider from "next-auth/providers/credentials"
+// Implement magic email link later, using SendGrid with sends 100 free emails per day
+import EmailProvider from 'next-auth/providers/email'
+
 import DiscordProvider from "next-auth/providers/discord";
 import Auth0Provider from "next-auth/providers/auth0";
 
 import { env } from "~/env.mjs";
 import { prisma } from "~/server/db";
-
+const crypto = require('crypto');
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
  * object and keep type safety.
@@ -47,7 +53,26 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   },
+  // https://next-auth.js.org/configuration/options#secret
+
   adapter: PrismaAdapter(prisma),
+  session: {
+    // Choose how you want to save the user session.
+    // The default is `"jwt"`, an encrypted JWT (JWE) stored in the session cookie.
+    // If you use an `adapter` however, we default it to `"database"` instead.
+    // You can still force a JWT session by explicitly defining `"jwt"`.
+    // When using `"database"`, the session cookie will only contain a `sessionToken` value,
+    // which is used to look up the session in the database.
+    strategy: 'database',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
+    generateSessionToken: () => {
+      return crypto.randomUUID?.() ?? crypto.randomBytes(32).toString("hex")
+    },
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  
+
   providers: [
     /*
     DiscordProvider({
@@ -69,6 +94,52 @@ export const authOptions: NextAuthOptions = {
      *
      * @see https://next-auth.js.org/providers/github
      */
+    EmailProvider({
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: process.env.EMAIL_SERVER_PORT,
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD
+        }
+      },
+      from: process.env.EMAIL_FROM
+    }),
+    CredentialsProvider({
+      // The name to display on the sign in form (e.g. 'Sign in with...')
+      name: 'Credentials',
+      // The credentials is used to generate a suitable form on the sign in page.
+      // You can specify whatever fields you are expecting to be submitted.
+      // e.g. domain, username, password, 2FA token, etc.
+      // You can pass any HTML attribute to the <input> tag through the object.
+      credentials: {
+        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        password: { label: "Password", type: "password" }
+      },
+      
+      async authorize(credentials, req) {
+        // You need to provide your own logic here that takes the credentials
+        // submitted and returns either a object representing a user or value
+        // that is false/null if the credentials are invalid.
+        // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
+        // You can also use the `req` object to obtain additional parameters
+        // (i.e., the request IP address)
+        const res = await fetch("/your/endpoint", {
+          method: 'POST',
+          body: JSON.stringify(credentials),
+          headers: { "Content-Type": "application/json" }
+        })
+        const user = await res.json()
+  
+        // If no error and we have user data, return it
+        if (res.ok && user) {
+          return user
+        }
+        // Return null if user data could not be retrieved
+        return null
+      }
+
+    })
   ],
 };
 
