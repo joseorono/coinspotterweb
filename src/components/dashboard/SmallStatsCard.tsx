@@ -3,13 +3,6 @@
 
 import { FaUserAlt } from "react-icons/fa";
 
-interface ISmallStatsCardProps {
-    title: string,
-    icon: React.ReactNode,
-    value: string,
-    description: string,
-    colorIndex: number,
-}
 
 function SmallStatsCard({
     title,
