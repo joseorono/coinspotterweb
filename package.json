@@ -29,6 +29,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
+    "react-tabs": "^6.0.2",
     "superjson": "1.12.2",
     "swr": "^2.2.1",
     "tailwind-merge": "^1.12.0",
