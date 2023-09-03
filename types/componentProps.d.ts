@@ -17,3 +17,10 @@ interface IPageLayoutComponentProps extends ILayoutComponentProps {
     useHomePageHeader?: boolean,
 }
 
+interface GoogleMapEmbedProps {
+    width?: number;
+    height?: number;
+    locationQuery?: string;
+    latitude?: number;
+    longitude?: number;
+}
