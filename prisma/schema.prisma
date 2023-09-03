@@ -169,3 +169,26 @@ model Post {
   author    Account?   @relation(fields: [authorId], references: [id])
   authorId  String
 }
+
+// E-Commerce/Products Stuff
+
+model ProductCategories {
+  id            Int        @id @default(autoincrement())
+  name          String
+  products      Products[]
+  image         String?
+}
+
+
+model Products {
+  id               Int        @id
+  name             String
+  price            Float
+  image            String
+  brand            String
+  categories       ProductCategories[]
+  isLimited        Boolean    @default(true)
+  currentInventory Int
+  description      String
+}
+
