@@ -13,6 +13,15 @@ const config = {
     config.resolve.fallback = { fs: false, net: false, tls: false };
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: '/app',
+        destination: '/app/dashboard',
+        permanent: true,
+      },
+    ]
+  },
 
   /**
    * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
