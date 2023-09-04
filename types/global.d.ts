@@ -11,5 +11,12 @@ declare global {
     interface FaqQuestionsProps {
         questions: IFaqQuestion[];
     }
+    
+    interface lightBoxSlide {
+        src: string;
+        caption?: string;
+        alt?: string;
+    }
+
 }
 
