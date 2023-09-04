@@ -7,11 +7,13 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 interface SearchResult {
-  id: number; // Actualiza con el tipo real para tus IDs
-  nombre?: string; // Actualiza con las propiedades que desees mostrar
+  id: number;
+  nombre?: string;
   name?: string;
   address?: string;
-  // Agrega más propiedades según sea necesario para otros modelos
+  description?: string;
+  google_places_id?: string;
+  profile_pic_url?: string;
 }
 
 const fetchData = async (url: string) => {
@@ -47,6 +49,14 @@ const SearchPage = () => {
 
   const handleApplyPlaceFilter = () => {
     // Lógica de filtrado para Places
+    const filters = {
+      name: selectedPlaceFilter,
+      description: selectedPlaceFilter,
+      address: selectedPlaceFilter,
+      google_places_id: selectedPlaceFilter,
+      profile_pic_url: selectedPlaceFilter,
+    };
+    // Filtrar resultados aquí con los filtros seleccionados
   };
 
   const handleApplyAcceptedFilter = () => {
@@ -74,16 +84,19 @@ const SearchPage = () => {
   const {
     productos,
     places,
+    placesImagen,
     paymentMethodsAccepted,
     paymentMethods,
   }: {
     productos: SearchResult[];
     places: SearchResult[];
+    placesImagen: SearchResult[];
     paymentMethodsAccepted: SearchResult[];
     paymentMethods: SearchResult[];
   } = response.data as {
     productos: SearchResult[];
     places: SearchResult[];
+    placesImagen: SearchResult[];
     paymentMethodsAccepted: SearchResult[];
     paymentMethods: SearchResult[];
   };
@@ -103,10 +116,13 @@ const SearchPage = () => {
       </span>
       <Tabs>
         <TabList>
-          <Tab>Productos</Tab>
+          <Tab>All categories</Tab>
           <Tab>Places</Tab>
-          <Tab>Payment Methods Accepted</Tab>
-          <Tab>Payment Methods</Tab>
+          <Tab>Places imagen</Tab>
+          <Tab>Payment methods</Tab>
+          <Tab>Currencies</Tab>
+          <Tab>Payment methods accepted</Tab>
+          <Tab>Productos</Tab>
         </TabList>
 
         <TabPanel>
@@ -219,4 +235,3 @@ const SearchPage = () => {
 };
 
 export default SearchPage;
-

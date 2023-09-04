@@ -16,8 +16,8 @@ export default async function handler(
         throw new Error("Invalid request");
       }
 
-      const productos = await prisma.$queryRaw`
-        SELECT * FROM Producto
+      const producto = await prisma.$queryRaw`
+        SELECT * FROM producto
         WHERE LOWER(nombre) LIKE LOWER(CONCAT('%', ${query}, '%'))
       `;
 
@@ -27,21 +27,33 @@ export default async function handler(
           OR LOWER(address) LIKE LOWER(CONCAT('%', ${query}, '%'))
       `;
 
-      const paymentMethodsAccepted = await prisma.$queryRaw`
-        SELECT * FROM payment_methods_accepted
+      const picture_places = await prisma.$queryRaw`
+        SELECT * FROM picture_places
+        WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
+          OR LOWER(address) LIKE LOWER(CONCAT('%', ${query}, '%'))
+      `;
+
+      const payment_Methods_Accepted = await prisma.$queryRaw`
+        SELECT * FROM PaymentMethodsAccepted
         WHERE paymethod_id IN (
-          SELECT id FROM payment_methods
+          SELECT id FROM PaymentMethods
           WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
         )
       `;
 
-      const paymentMethods = await prisma.$queryRaw`
-        SELECT * FROM payment_methods
+      const currencies = await prisma.$queryRaw`
+        SELECT * FROM Currencies
         WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
           OR LOWER(symbol) LIKE LOWER(CONCAT('%', ${query}, '%'))
       `;
 
-      res.status(200).json({ productos, places, paymentMethodsAccepted, paymentMethods });
+      const payment_Methods = await prisma.$queryRaw`
+        SELECT * FROM PaymentMethods
+        WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
+          OR LOWER(symbol) LIKE LOWER(CONCAT('%', ${query}, '%'))
+      `;
+
+      res.status(200).json({ producto, places, picture_places, payment_Methods_Accepted, currencies, payment_Methods });
     } catch (error: any) {
       console.error(error);
       res.status(500).end();
