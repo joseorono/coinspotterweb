@@ -13,7 +13,7 @@ const GoogleMapEmbed: FC<GoogleMapEmbedProps> = ({
         throw new Error("You must provide either 'locationQuery' or both 'latitude' and 'longitude', but not both.");
     }
 
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    const apiKey = process.env.CS_GMAPS_API_KEY;
     let src = "";
     if (locationQuery) {
         src = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(
