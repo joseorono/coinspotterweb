@@ -7,7 +7,7 @@ interface GenericHeroProps {
 
 const GenericHero: FC<GenericHeroProps> = ({ PageTitle, bgImg }) => {
     const containerStyle: React.CSSProperties = {
-        background: bgImg ? `url(${bgImg})` : '#D3DADA',
+        background: bgImg ? `url(${bgImg})` : `hsl(var(--b1))`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
