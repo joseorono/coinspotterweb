@@ -34,7 +34,7 @@ export default function Home() {
 
 
   return (
-    <PageLayout pageTitle="CoinSpotter">
+    <PageLayout pageTitle="CoinSpotter" useHomePageHeader={true}>
       <main>
       <PayMethods />
         <section className='bg-cream bg-white'>
