@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 // import "~/components/favorites/favorites.css";
 // import Modal from "./Modal";
-import Card from "./Card";
+import Card from "../../components/favorites/Card";
 
 // Datos de ejemplo de las cards favoritas
 const favoriteCards = [
@@ -64,20 +64,34 @@ const favoriteCards = [
     image: "imagen_card_8.jpg",
     isFavorite: false,
   },
+  {
+    id: 9,
+    title: "Card 9",
+    description: "Descripción de la Card 98",
+    image: "imagen_card_8.jpg",
+    isFavorite: false,
+  },
+  {
+    id: 10,
+    title: "Card 10",
+    description: "Descripción de la Card 10",
+    image: "imagen_card_8.jpg",
+    isFavorite: false,
+  },
 ];
 
-const Favorites = () => {
+const FavoritesPage = () => {
   const [items, setItems] = useState(favoriteCards);
   const [selectedCard, setSelectedCard] = useState(null);
   const [modal, setModal] = useState(false);
 
-  const handleOpenModal = (card) => {
+  const handleOpenModal = (card:any) => {
     console.log(card);
     setSelectedCard(card);
     setModal(!modal);
   };
   // const handleCloseModal = () => setModal(!modal);
-  const handleToggleFavorite = (id, isFavorite) => {
+  const handleToggleFavorite = (id:any, isFavorite:boolean) => {
     console.log(id);
     setItems((items) =>
       items.map((item) =>
@@ -86,7 +100,7 @@ const Favorites = () => {
     );
   };
 
-  const handleRemoveFavorite = (res) => {
+  const handleRemoveFavorite = (res:any) => {
     console.log(res);
   };
 
@@ -94,20 +108,23 @@ const Favorites = () => {
     <div>
       <h2>Mis Favoritos</h2>
       <div className="card-container">
-        {items.map((card) => (
-          <Card
-            key={card.id}
-            card={card}
-            modal={modal}
-            cardSelected={selectedCard}
-            handleOpenModal={handleOpenModal}
-            handleAddFavorite={handleToggleFavorite}
-          />
-        ))}
+        {
+        items.map((card) => (
+            <Card
+              key={card.id}
+              card={card}
+              modal={modal}
+              cardSelected={selectedCard}
+              handleOpenModal={handleOpenModal}
+              handleAddFavorite={handleToggleFavorite}
+            />
+          )
+        )
+        }
       </div>
       {/* {modal && <Modal closeModal={handleModal} cardData={items} />} */}
     </div>
   );
 };
 
-export default Favorites;
+export default FavoritesPage;
