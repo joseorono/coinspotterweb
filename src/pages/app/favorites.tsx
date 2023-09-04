@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 // import "~/components/favorites/favorites.css";
 // import Modal from "./Modal";
-import Card from "../../components/favorites/Card";
+import FavPlaceCard from "../../components/favorites/FavPlaceCard";
 
 // Datos de ejemplo de las cards favoritas
 const favoriteCards = [
@@ -110,7 +110,7 @@ const FavoritesPage = () => {
       <div className="card-container">
         {
         items.map((card) => (
-            <Card
+            <FavPlaceCard
               key={card.id}
               card={card}
               modal={modal}

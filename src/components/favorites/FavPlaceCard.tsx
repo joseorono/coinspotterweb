@@ -1,13 +1,15 @@
 import React from "react";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
-const Card = ({
-  handleOpenModal,
-  card,
-  cardSelected,
-  handleAddFavorite,
-  modal,
-}) => {
+const FavPlaceCard = (
+  {
+    handleOpenModal,
+    card,
+    cardSelected,
+    handleAddFavorite,
+    modal,
+  }: any
+) => {
   return (
     <>
       {modal && (
@@ -70,4 +72,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default FavPlaceCard;
