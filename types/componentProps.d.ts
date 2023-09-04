@@ -14,6 +14,7 @@ interface ILayoutComponentProps {
 }
 
 interface IPageLayoutComponentProps extends ILayoutComponentProps {
+    includeHero?: boolean,
     useHomePageHeader?: boolean,
 }
 
