@@ -14,16 +14,15 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 // import { searchProducts } from '~/lib/api';
 
-import Hero from '~/components/landing/Hero';
-import NavBar from '~/components/landing/NavBar';
+
 import PayMethods from '~/components/landing/PayMethods';
-import Layout from '~/components/layout/Layout';
+import PageLayout from '~/components/layout/PageLayout';
 import ArrowLink from '~/components/links/ArrowLink';
 import ButtonLink from '~/components/links/ButtonLink';
 import UnderlineLink from '~/components/links/UnderlineLink';
 import UnstyledLink from '~/components/links/UnstyledLink';
-import Seo from '~/components/Seo';
-import Footer from "~/components/landing/Footer";
+
+
 
 
 export default function Home() {
@@ -35,19 +34,9 @@ export default function Home() {
 
 
   return (
-    <Layout>
-      <Seo />
-
-      <div>
-        <NavBar />
-        <Hero
-          heading='CoinSpotter'
-          message='The best place to find all crypto spots'
-        />
-        <PayMethods />
-      </div>
-
+    <PageLayout pageTitle="CoinSpotter">
       <main>
+      <PayMethods />
         <section className='bg-cream bg-white'>
           <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
             <h1 className='text-5xl'>
@@ -89,10 +78,10 @@ export default function Home() {
             }
 
           </div>
-          <Footer />
+          
         </section>
       </main>
-    </Layout>
+    </PageLayout>
   );
 }
 
