@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import useSWR from "swr";
-import Spinner from "./spinner";
-import Link from "next/link";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { useTRPC } from '~/server/api/trpc';
+import { searchRouter } from '~/server/api/routers/search';
+import Spinner from "./spinner";
 
 interface SearchResult {
   id: number;
@@ -16,23 +16,11 @@ interface SearchResult {
   profile_pic_url?: string;
 }
 
-const fetchData = async (url: string) => {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return response.json();
-};
-
 const SearchPage = () => {
   const router = useRouter();
   const searchQuery = router.query.q as string;
 
-  const encodedSearchQuery = encodeURI(searchQuery || "");
-
-  const response = useSWR(`/api/search?query=${encodedSearchQuery}`, fetchData);
+  const { data: searchResult, isLoading } = useTRPC(searchRouter.getAll);
 
   const handleBack = () => {
     router.push("/").catch(console.error);
@@ -67,39 +55,10 @@ const SearchPage = () => {
     // Lógica de filtrado para Payment Methods
   };
 
-  if (!encodedSearchQuery) {
-    void router.push("/").catch(console.error);
+  if (!searchQuery) {
+    router.push("/").catch(console.error);
     return null;
   }
-
-  if (response.error) {
-    console.error(response.error);
-    return null;
-  }
-
-  if (!response.data) {
-    return <Spinner />;
-  }
-
-  const {
-    productos,
-    places,
-    placesImagen,
-    paymentMethodsAccepted,
-    paymentMethods,
-  }: {
-    productos: SearchResult[];
-    places: SearchResult[];
-    placesImagen: SearchResult[];
-    paymentMethodsAccepted: SearchResult[];
-    paymentMethods: SearchResult[];
-  } = response.data as {
-    productos: SearchResult[];
-    places: SearchResult[];
-    placesImagen: SearchResult[];
-    paymentMethodsAccepted: SearchResult[];
-    paymentMethods: SearchResult[];
-  };
 
   return (
     <>
@@ -118,11 +77,7 @@ const SearchPage = () => {
         <TabList>
           <Tab>All categories</Tab>
           <Tab>Places</Tab>
-          <Tab>Places imagen</Tab>
-          <Tab>Payment methods</Tab>
-          <Tab>Currencies</Tab>
-          <Tab>Payment methods accepted</Tab>
-          <Tab>Productos</Tab>
+          {/* Agregar más pestañas según sea necesario */}
         </TabList>
 
         <TabPanel>
@@ -143,12 +98,16 @@ const SearchPage = () => {
               Apply Filter
             </button>
           </div>
-          {productos.length === 0 ? (
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : searchResult && searchResult.productos.length === 0 ? (
             <p>No products found.</p>
           ) : (
-            productos.map((producto: SearchResult) => (
-              <div key={producto.id}>{producto.nombre}</div>
-            ))
+            <ul>
+              {searchResult?.productos.map((producto: SearchResult) => (
+                <li key={producto.id}>{producto.nombre}</li>
+              ))}
+            </ul>
           )}
         </TabPanel>
         <TabPanel>
@@ -169,12 +128,16 @@ const SearchPage = () => {
               Apply Filter
             </button>
           </div>
-          {places.length === 0 ? (
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : searchResult && searchResult.places.length === 0 ? (
             <p>No places found.</p>
           ) : (
-            places.map((place: SearchResult) => (
-              <div key={place.id}>{place.name}</div>
-            ))
+            <ul>
+              {searchResult?.places.map((place: SearchResult) => (
+                <li key={place.id}>{place.name}</li>
+              ))}
+            </ul>
           )}
         </TabPanel>
         <TabPanel>
@@ -195,12 +158,16 @@ const SearchPage = () => {
               Apply Filter
             </button>
           </div>
-          {paymentMethodsAccepted.length === 0 ? (
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : searchResult && searchResult.paymentMethodsAccepted.length === 0 ? (
             <p>No payment methods accepted found.</p>
           ) : (
-            paymentMethodsAccepted.map((method: SearchResult) => (
-              <div key={method.id}>{method.name}</div>
-            ))
+            <ul>
+              {searchResult?.paymentMethodsAccepted.map((method: SearchResult) => (
+                <li key={method.id}>{method.name}</li>
+              ))}
+            </ul>
           )}
         </TabPanel>
         <TabPanel>
@@ -221,12 +188,16 @@ const SearchPage = () => {
               Apply Filter
             </button>
           </div>
-          {paymentMethods.length === 0 ? (
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : searchResult && searchResult.paymentMethods.length === 0 ? (
             <p>No payment methods found.</p>
           ) : (
-            paymentMethods.map((method: SearchResult) => (
-              <div key={method.id}>{method.name}</div>
-            ))
+            <ul>
+              {searchResult?.paymentMethods.map((method: SearchResult) => (
+                <li key={method.id}>{method.name}</li>
+              ))}
+            </ul>
           )}
         </TabPanel>
       </Tabs>
