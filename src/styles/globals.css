@@ -295,3 +295,11 @@ Responsive Google Maps Embeds
   width: 100% !important;
   height: 100% !important;
 }
+
+hr.largeHeaderHr {
+  margin: 3rem auto 3rem auto;
+  min-width: 60px;
+  width: 70%;
+  background-color: #04BFAD;
+  height: 2px;
+}

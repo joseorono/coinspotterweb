@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import Link from "next/link";
 
-const FavPlaceCard = (
-  {
-    handleOpenModal,
-    card,
-    cardSelected,
-    handleAddFavorite,
-    modal,
-  }: any
-) => {
+const FavPlaceCard = ({
+  handleOpenModal,
+  card,
+  cardSelected,
+  handleAddFavorite,
+  modal,
+}: any) => {
   return (
     <>
       {modal && (
@@ -63,9 +62,12 @@ const FavPlaceCard = (
               alt=""
             />
           </div>
-          <button onClick={() => handleOpenModal(card, card.isFavorite)}>
+          <Link href={`places/${card.id}`}>
+            <button className="btn btn-secondary">Ver Detalles</button>
+          </Link>
+          {/* <button onClick={() => handleOpenModal(card, card.isFavorite)}>
             Ver Detalles
-          </button>
+          </button> */}
         </div>
       </div>
     </>

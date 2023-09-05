@@ -3,7 +3,7 @@ import {
   createTRPCRouter,
   publicProcedure,
 } from "~/server/api/trpc";
-import { PrismaClient } from "../../../../prisma/generated/prisma-client-js";
+// import { PrismaClient } from "../../../../prisma/generated/prisma-client-js";
 
 const prisma = new PrismaClient();
 
