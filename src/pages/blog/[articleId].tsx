@@ -1,20 +1,38 @@
+import React from 'react';
 import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next'; // Import GetServerSideProps
+import type { BlogPost } from '@prisma/client'
 
-function Article() {
+// This function will be executed on the server side
+export async function getServerSideProps(context: any): Promise<  GetServerSideProps<any> > {
+    // Fetch the article data from your data source using the context.params.articleId
+    const articleId = context.params.articleId as string; // Explicitly specify the type
+
+    // Currently using hardcoded articleData, but you should fetch it from your database or API.
+    // Replace this placeholder content with your actual article data
+
+    const articleData = {
+        title: 'The Best Activewear from the Nordstrom Anniversary Sale',
+        author: 'Leroy Jenkins',
+        content: 'Insert the actual text content here...',
+        date: 'August 2, 2021',
+    };
+
+    // Pass the articleData as props
+    return {
+        props: {
+            articleData,
+        },
+    };
+}
+
+function Article({ articleData }: any) {
   const router = useRouter();
   const { articleId } = router.query;
 
   // Fetch the article content based on the `articleId` here
 
 
-  // Replace this placeholder content with your actual article data
-    const articleData = {
-        title: 'The Best Activewear from the Nordstrom Anniversary Sale',
-        author: 'Leroy Jenkins',
-        content:
-        'Insert the actual text content here...',
-        date: 'August 2, 2021',
-    };
 
   return (
     <>
