@@ -43,11 +43,20 @@ const NavBar = () => {
           <li className='cursor-pointer p-4'>
             <Link href='/'>Home</Link>
           </li>
+          {
+          /*
+            <li className='cursor-pointer p-4'>
+              <Link href='/'>About Us</Link>
+            </li>
+          */
+          }
           <li className='cursor-pointer p-4'>
-            <Link href='/'>About Us</Link>
+            <Link href='/support'>Support</Link>
           </li>
           <li className='cursor-pointer p-4'>
-            <Link href='/'>Contact</Link>
+            <Link href='/app'>
+              <button className="btn btn-secondary btn-outline btn-sm px-6 rounded-[2rem]">Go to App</button>
+            </Link>
           </li>
         </ul>
 
