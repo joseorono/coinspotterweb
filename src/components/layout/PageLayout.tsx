@@ -4,6 +4,7 @@ import Footer from "~/components/landing/Footer";
 import Hero from '~/components/landing/Hero';
 import NavBar from '~/components/landing/NavBar';
 import GenericHero from '~/components/generic/GenericHero';
+import ScrollToTopButton from '~/components/generic/ScrollToTopButton';
 
 const PageLayout:React.FC<IPageLayoutComponentProps> = 
 ({
@@ -18,7 +19,7 @@ const PageLayout:React.FC<IPageLayoutComponentProps> =
   <Seo />
   
   <div>
-    
+    <ScrollToTopButton />
     <NavBar />
     {
       includeHero && ( // Run this only if includeHero is true
