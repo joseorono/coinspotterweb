@@ -7,7 +7,7 @@ interface ITitleCardProps {
     TopSideButtons?: React.ReactNode | React.ReactNode[] | null;
 }
 
-function TitleCard({title, children, topMargin, TopSideButtons}: ITitleCardProps) {
+function TitleCard({title, children, topMargin = "", TopSideButtons = null}: ITitleCardProps) {
     const titleClasses: string = "text-xl font-semibold mb-1" + (TopSideButtons ? "inline-block" : "");
     return(
         <div className={"card w-full p-6 bg-base-100 shadow-xl " + (topMargin || "mt-6")}>
