@@ -269,8 +269,7 @@ input:-webkit-autofill:focus {
 
 .map-btn img {
   width: 60px; 
-  height: 60px;
-  margin-left: 20px; 
+  height: 60px; 
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid #04BFAD;
@@ -287,7 +286,7 @@ Responsive Google Maps Embeds
 .google-maps-embed {
   position: relative;
   padding-bottom: 75%; /* This is the aspect ratio */
-  height: 0;
+  height: 100%;
   overflow: hidden;
 }
 .google-maps-embed iframe {

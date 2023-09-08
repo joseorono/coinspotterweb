@@ -13,42 +13,45 @@ const PlaceDetail = () => {
   console.log(router.query);
   //   console.log(place.id);
   return (
-    <AppLayout pageTitle={ "CoinSpotter - Place " + place_id}>
-      <div>
-        <div className="max-w-[992px] mx-auto w-full">
+    <AppLayout pageTitle={"CoinSpotter - Place " + place_id}>
+      <div className="p-4 shadow-md shadow-primary-focus">
+        <div className="mx-auto w-full max-w-[992px]">
           {/* Contenido del contenedor */}
-          <div className="b-radius flex flex-row items-center justify-center align-middle">
+          <div className="b-radius flex flex-col content-center items-center justify-center gap-4 text-center md:flex-row">
             <div className="map-btn">
               <img
-                className="roundElement-button"
+                className="roundElement"
                 src="https://cdn.pixabay.com/photo/2013/07/13/14/05/location-162102_960_720.png"
                 alt=""
               />
             </div>
-            <h1 className="w-1/3 p-10">Nombre del Place </h1>
+            <h1 className="w-1/3">Nombre del Place </h1>
           </div>
           <hr className="largeHeaderHr" />
           <ImageGalleries />
 
           <hr className="largeHeaderHr" />
 
-          <div className="max-w-[992px] mx-auto my-16 flex w-full flex-col rounded-3xl shadow-sm shadow-neutral md:w-[80%] md:flex-row">
-            <div className="text-light neutral-focus content-middle flex flex-row items-center justify-center p-6 md:w-[40%] md:flex-col md:justify-center">
-              <div className="flex flex-col justify-center rounded-e-3xl px-10">
-                <div className="map-btn flex justify-center py-4">
-                  <img
-                    className="roundElement-button"
-                    src="https://cdn.pixabay.com/photo/2013/07/13/14/05/location-162102_960_720.png"
-                    alt=""
-                  />
-                </div>
-                <h1 className="mb-4 text-3xl font-bold">Place ID: {place_id}</h1>
-                <p className="mb-4 text-lg">Descripción del lugar...</p>
-                {/* <h3 className="mb-2 text-xl font-bold">Address: .........</h3> */}
+          <div className="mx-auto my-16 flex h-auto w-full max-w-[992px] flex-col rounded-3xl shadow-sm shadow-neutral md:w-full md:flex-row">
+            <div className="text-light neutral-focus flex flex-col justify-center p-4 md:w-[40%]">
+              <div className="map-btn flex justify-center py-4">
+                <img
+                  className="roundElement-button"
+                  src="https://cdn.pixabay.com/photo/2013/07/13/14/05/location-162102_960_720.png"
+                  alt=""
+                />
               </div>
+              <h1 className="mb-4 font-bold md:text-xl">
+                Place ID: {place_id}
+              </h1>
+              <p className="text-md mb-4 max-h-screen grow-[999] basis-0">
+                Lorem Ipsum es simplemente el texto de relleno de las imprentas
+                y archivos de texto.
+              </p>
+              {/* <h3 className="mb-2 text-xl font-bold">Address: .........</h3> */}
             </div>
             <div className="w-full">
-              <GMaps latitude={3} longitude={4} />
+              <GMaps latitude={33} longitude={4} />
             </div>
           </div>
         </div>
