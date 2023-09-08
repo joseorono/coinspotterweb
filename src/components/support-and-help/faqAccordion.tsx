@@ -5,19 +5,24 @@ const FaqAccordion = (props: FaqQuestionsProps) => {
     <>
       <div className="accordion">
         {props.questions.map((entry, index: number) => (
-        <div className="collapse collapse-plus bg-base-200" key={"faq_item_" + index}>
-            <input type="radio" name="faq_accordion_radio" defaultChecked={index===0} />
+          <div
+            className="collapse-plus collapse mb-4 bg-base-200"
+            key={"faq_item_" + index}
+          >
+            <input
+              type="radio"
+              name="faq_accordion_radio"
+              defaultChecked={index === 0}
+            />
             <div className="collapse-title text-xl font-medium">
-                {entry.question}
+              {entry.question}
             </div>
             <div className="collapse-content">
               <p>{entry.answer}</p>
             </div>
-        </div>
-        
+          </div>
         ))}
       </div>
-      
     </>
   );
 };

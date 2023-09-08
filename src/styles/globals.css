@@ -354,3 +354,8 @@ Responsive Google Maps Embeds
     transform: translateY(0px);
   }
 }
+
+.faqWrapper {
+  background-image: url("~/src/assets/contactImg.jpg");
+  background-size: cover;
+}
