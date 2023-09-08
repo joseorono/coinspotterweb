@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
+import SearchBar from '~/components/SearchInput';
+import Image from 'next/image';
+import csLogo from '@/logos/cs_logo.png';
 
 // import { logo } from '../assets';
 
@@ -14,6 +17,7 @@ const AppNavBar = () => {
   };
 
   useEffect(() => {
+    /*
     const changeColor = () => {
       if (window.scrollY >= 90) {
         setColor('#fff');
@@ -25,44 +29,54 @@ const AppNavBar = () => {
     };
     
     window.addEventListener('scroll', changeColor);
+    */
   }, []);
-
+  // mb-16 is the exact minimum margin-bottom to avoid the navbar overlapping with the content
+  // So I used mb-20 for exactly 1rem extra margin-bottom
   return (
-    <div className="navbar bg-base-100">
+    <header className="header-area mb-20">
+      {/* Navbar */}
+      <div className="navbar bg-base-100 fixed top-0 left-0 right-0 z-50 shadow-lg border-none">
         <div className="navbar-start">
-        <div className="dropdown">
+          <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
-            </svg>
+              </svg>
             </label>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a>Homepage</a></li>
-            <li><a>Portfolio</a></li>
-            <li><a>About</a></li>
+            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-5 p-2 shadow-lg bg-base-100 rounded-box w-52">
+              <li><a>Homepage</a></li>
+              <li><a>Portfolio</a></li>
+              <li><a>About</a></li>
             </ul>
-        </div>
+          </div>
         </div>
         <div className="navbar-center">
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <a className="btn btn-ghost normal-case text-xl">
+            <Image src={csLogo} width={48} height={48} alt='CoinSpotter' />
+          </a>
         </div>
         <div className="navbar-end">
-        <button className="btn btn-ghost btn-circle">
+          <label htmlFor="my-modal-3" className="btn btn-ghost btn-circle">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-        </button>
-        <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
-            <span className="badge badge-xs badge-primary indicator-item"></span>
-            </div>
-        </button>
+          </label>
         </div>
-    </div>
+      </div>
+      {/* End-Navbar */}
   
+      {/* Search Modal */}
+      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative">
+          <label htmlFor="my-modal-3" className="btn btn-sm btn-circle border-none bg-base-100 text-black font-bold absolute right-2 top-2">✕</label>
+          <div className="form-control pr-6 py-4">
+            <SearchBar />
+          </div>
+        </div>
+      </div>
+    </header>  
   );
 };
 
