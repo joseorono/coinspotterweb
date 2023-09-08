@@ -38,9 +38,11 @@ const SupportPage = () => {
           </div>
         </div>
 
-        <div className="w-50 mt-20 max-w-md px-10">
-          <h1>Contact Us</h1>
-          <ContactForm />
+        <div className="contactUsWrapper m-10 flex flex-col rounded-md bg-cover p-0 shadow-md shadow-primary-focus lg:grid lg:grid-cols-5">
+          <div className="col-span-2 flex flex-col rounded-md bg-white p-8">
+            <h1 className="mb-6 text-primary-focus">Contact Us</h1>
+            <ContactForm />
+          </div>
         </div>
       </main>
     </PageLayout>

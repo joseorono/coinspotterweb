@@ -24,11 +24,14 @@ function ContactForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <form className="w-full max-w-md" onSubmit={handleSubmit}>
         <div className="mb-4 flex justify-between">
-          <div className="w-1/2 mr-2">
-            <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+          <div className="mr-2 w-1/2">
+            <label
+              htmlFor="name"
+              className="mb-2 block font-bold text-gray-700"
+            >
               Name
             </label>
             <input
@@ -42,8 +45,11 @@ function ContactForm() {
               required
             />
           </div>
-          <div className="w-1/2 ml-2">
-            <label htmlFor="phoneNumber" className="block text-gray-700 font-bold mb-2">
+          <div className="ml-2 w-1/2">
+            <label
+              htmlFor="phoneNumber"
+              className="mb-2 block font-bold text-gray-700"
+            >
               Phone Number
             </label>
             <input
@@ -59,7 +65,7 @@ function ContactForm() {
           </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+          <label htmlFor="email" className="mb-2 block font-bold text-gray-700">
             Email
           </label>
           <input
@@ -74,7 +80,10 @@ function ContactForm() {
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="message" className="block text-gray-700 font-bold mb-2">
+          <label
+            htmlFor="message"
+            className="mb-2 block font-bold text-gray-700"
+          >
             Message
           </label>
           <textarea
@@ -82,7 +91,7 @@ function ContactForm() {
             name="message"
             value={formData.message}
             onChange={handleChange}
-            className="input input-bordered w-full h-32"
+            className="input input-bordered h-32 w-full"
             placeholder="Your Message"
             required
           />
@@ -90,7 +99,7 @@ function ContactForm() {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="btn btn-primary btn-wide hover:bg-primary-dark"
+            className="hover:bg-primary-dark btn btn-primary btn-wide"
           >
             Send
           </button>

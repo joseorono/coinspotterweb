@@ -355,7 +355,7 @@ Responsive Google Maps Embeds
   }
 }
 
-.faqWrapper {
-  background-image: url("~/src/assets/contactImg.jpg");
+.contactUsWrapper {
+  background-image: url("~/src/assets/contactUs.jpg");
   background-size: cover;
 }
