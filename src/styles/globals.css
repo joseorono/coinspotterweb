@@ -355,7 +355,7 @@ Responsive Google Maps Embeds
   }
 }
 
-.contactUsWrapper {
+.contact-col-left {
   background-image: url("~/src/assets/contactUs.jpg");
   background-size: cover;
 }
