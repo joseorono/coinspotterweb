@@ -3,9 +3,6 @@ import React from 'react';
 const FaqAccordion = (props: FaqQuestionsProps) => {
   return (
     <>
-      <div>
-        <button className="btn btn-primary">Daisy Button</button>
-      </div>
       <div className="accordion">
         {props.questions.map((entry, index: number) => (
         <div className="collapse collapse-plus bg-base-200" key={"faq_item_" + index}>
