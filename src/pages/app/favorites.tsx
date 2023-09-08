@@ -2,125 +2,112 @@ import React, { useState, useRef } from "react";
 // import "~/components/favorites/favorites.css";
 // import Modal from "./Modal";
 import FavPlaceCard from "../../components/favorites/FavPlaceCard";
+import { boolean, object } from "zod";
 
 // Datos de ejemplo de las cards favoritas
 const favoriteCards = [
   {
-    id: 1,
-    title: "Card 1",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    image: "usdtLogo.png",
-    isFavorite: false,
+    name: "name 1",
+    description: "description 1",
+    address: "address 1",
+    latitude: 59,
+    longitude: 55,
+    google_places_id: "google_places_id 1",
+    on_google_maps: false,
+    profile_pic_url: "profile_pic_url 1",
+    is_favorite: false,
+    id: "1",
   },
   {
-    id: 2,
-    title: "Card 2",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    image: "imagen_card_2.jpg",
-    isFavorite: true,
+    name: "name 2",
+    description: "description 2",
+    address: "address 2",
+    latitude: 6,
+    longitude: 95,
+    google_places_id: "google_places_id 2",
+    on_google_maps: false,
+    profile_pic_url: "profile_pic_url 2",
+    is_favorite: false,
+    id: "2",
   },
   {
-    id: 3,
-    title: "Card 3",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    image: "imagen_card_3.jpg",
-    isFavorite: false,
+    name: "name 3",
+    description: "description 3",
+    address: "address 3",
+    latitude: 8,
+    longitude: 84,
+    google_places_id: "google_places_id 3",
+    on_google_maps: false,
+    profile_pic_url: "profile_pic_url 3",
+    is_favorite: false,
+    id: "3",
   },
   {
-    id: 4,
-    title: "Card 4",
-    description: "Descripción de la Card 4",
-    image: "imagen_card_4.jpg",
-    isFavorite: true,
+    name: "name 4",
+    description: "description 4",
+    address: "address 4",
+    latitude: 93,
+    longitude: 74,
+    google_places_id: "google_places_id 4",
+    on_google_maps: false,
+    profile_pic_url: "profile_pic_url 4",
+    is_favorite: false,
+    id: "4",
   },
   {
-    id: 5,
-    title: "Card 5",
-    description: "Descripción de la Card 5",
-    image: "imagen_card_5.jpg",
-    isFavorite: false,
-  },
-  {
-    id: 6,
-    title: "Card 6",
-    description: "Descripción de la Card 6",
-    image: "imagen_card_6.jpg",
-    isFavorite: false,
-  },
-  {
-    id: 7,
-    title: "Card 7",
-    description: "Descripción de la Card 7",
-    image: "imagen_card_7.jpg",
-    isFavorite: false,
-  },
-  {
-    id: 8,
-    title: "Card 8",
-    description: "Descripción de la Card 8",
-    image: "imagen_card_8.jpg",
-    isFavorite: false,
-  },
-  {
-    id: 9,
-    title: "Card 9",
-    description: "Descripción de la Card 98",
-    image: "imagen_card_8.jpg",
-    isFavorite: false,
-  },
-  {
-    id: 10,
-    title: "Card 10",
-    description: "Descripción de la Card 10",
-    image: "imagen_card_8.jpg",
-    isFavorite: false,
+    name: "name 5",
+    description: "description 5",
+    address: "address 5",
+    latitude: 85,
+    longitude: 25,
+    google_places_id: "google_places_id 5",
+    on_google_maps: false,
+    profile_pic_url: "profile_pic_url 5",
+    is_favorite: false,
+    id: "5",
   },
 ];
 
 const FavoritesPage = () => {
   const [items, setItems] = useState(favoriteCards);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [modal, setModal] = useState(false);
+  const modalOpen = useRef(false);
 
-  const handleOpenModal = (card:any) => {
+  const handleOpenModal = (card: any) => {
     console.log(card);
     setSelectedCard(card);
-    setModal(!modal);
+    modalOpen.current = !modalOpen.current;
   };
   // const handleCloseModal = () => setModal(!modal);
-  const handleToggleFavorite = (id:any, isFavorite:boolean) => {
+  const handleToggleFavorite = (id: any) => {
     console.log(id);
     setItems((items) =>
       items.map((item) =>
-        item.id === id ? { ...item, isFavorite: !item.isFavorite } : item
+        item.id === id ? { ...item, is_favorite: !item.is_favorite } : item
       )
     );
   };
 
-  const handleRemoveFavorite = (res:any) => {
+  const handleRemoveFavorite = (res: any) => {
     console.log(res);
   };
 
   return (
     <div>
-      <h2>Mis Favoritos</h2>
+      <div className="my-16">
+        <h2>Mis Favoritos</h2>
+      </div>
       <div className="card-container">
-        {
-        items.map((card) => (
-            <FavPlaceCard
-              key={card.id}
-              card={card}
-              modal={modal}
-              cardSelected={selectedCard}
-              handleOpenModal={handleOpenModal}
-              handleAddFavorite={handleToggleFavorite}
-            />
-          )
-        )
-        }
+        {items.map((card) => (
+          <FavPlaceCard
+            key={card.id}
+            card={card}
+            modal={modalOpen.current}
+            cardSelected={selectedCard}
+            handleOpenModal={handleOpenModal}
+            handleAddFavorite={handleToggleFavorite}
+          />
+        ))}
       </div>
       {/* {modal && <Modal closeModal={handleModal} cardData={items} />} */}
     </div>

@@ -17,8 +17,11 @@ const FavPlaceCard = ({
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <div className="modal-content">
               <div className="modal-card">
-                <img src={cardSelected.image} alt="Imagen de la Card" />
-                <h3>{cardSelected.title}</h3>
+                <img
+                  src={cardSelected.profile_pic_url}
+                  alt="Imagen de la Card"
+                />
+                <h3>{cardSelected.name}</h3>
                 <p>{cardSelected.description}</p>
               </div>
               <button
@@ -35,7 +38,7 @@ const FavPlaceCard = ({
       )}
       <div className="card relative" key={card.id}>
         <div className="starElement" onClick={() => handleAddFavorite(card.id)}>
-          {card.isFavorite ? (
+          {card.is_favorite ? (
             <AiFillStar size={40} color="gold" />
           ) : (
             <AiOutlineStar size={40} />
@@ -45,13 +48,14 @@ const FavPlaceCard = ({
           <img
             src="https://cdn.pixabay.com/photo/2013/07/13/14/05/location-162102_960_720.png"
             alt="Imagen de la Card"
-            className="bg-[#F2F2F2]"
+            className="neutral"
           />
         </div>
         <div className="roundElement">
           <img src="https://i.pravatar.cc/300" alt="" />
         </div>
         <div className="card-content">
+          <h2>{card.name}</h2>
           <p>{card.description}</p>
         </div>
         <div className="card-button">
