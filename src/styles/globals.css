@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
   /* #region  /**=========== Primary Color =========== */
   /* !STARTERCONF Customize these variable, copy and paste from /styles/colors.css for list of colors */
@@ -302,4 +304,54 @@ hr.largeHeaderHr {
   width: 75%;
   background-color: #04BFAD;
   height: 2px;
+}
+
+/*
+========================================
+Responsive Google Maps Embeds
+========================================
+*/
+
+.top-to-btm{
+  position: relative;
+}
+.icon-position{
+  position: fixed;
+  bottom: 40px;
+  right: 25px;
+  z-index: 20;
+}
+.icon-style{
+  background-color: hsl(var(--p));
+  border: 2px solid hsl(var(--bc));
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  color: hsl(var(--bc));
+  cursor: pointer;
+  transition: all .5s ease-in-out;
+}
+.icon-style:hover{
+  animation: none;
+  background: hsl(var(--pf));
+  color: hsl(var(--bc));
+  border: 2px solid hsl(var(--pf));
+  animation: movebtn 3s ease-in-out infinite;
+}
+@keyframes movebtn {
+  0%{
+    transform: translateY(0px);
+  }
+  25%{
+    transform: translateY(20px);
+  }
+  50%{
+    transform: translateY(0px);
+  }
+  75%{
+    transform: translateY(-20px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
 }
