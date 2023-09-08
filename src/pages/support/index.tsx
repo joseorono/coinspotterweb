@@ -2,6 +2,8 @@ import React from 'react';
 import PageLayout from '~/components/layout/PageLayout';
 import ContactForm from '~/components/support-and-help/ContactForm';
 import FaqAccordion from '~/components/support-and-help/faqAccordion';
+import Image from "next/image";
+import FaQImage from "src/assets/contactImg.jpg";
 
 const questions = [
   {
@@ -22,7 +24,14 @@ const SupportPage = () => {
     <PageLayout pageTitle="CoinSpotter">
       <main>
         <div className="m-10 flex flex-col shadow-md shadow-primary-focus lg:grid lg:grid-cols-5">
-          <div className="faqWrapper col-span-2 h-full w-full lg:rounded-l-lg"></div>
+          {/* <div className="faqWrapper col-span-2 h-full w-full lg:rounded-l-lg"></div> */}
+          <Image
+            src={FaQImage}
+            width="32px"
+            height="32px"
+            alt="/"
+            className="col-span-2 hidden h-full w-full lg:block lg:rounded-l-lg"
+          />
           <div className="col-span-3 flex w-full flex-col justify-items-end gap-4 rounded-md bg-white p-16 lg:rounded-r-lg">
             <h1 className="text-primary-focus">Frequently Asked Questions</h1>
             <FaqAccordion questions={questions} />
