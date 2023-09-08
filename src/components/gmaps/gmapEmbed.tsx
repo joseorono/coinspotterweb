@@ -2,11 +2,12 @@ import React, { FC } from 'react';
 
 
 const GoogleMapEmbed: FC<GoogleMapEmbedProps> = ({
-  width = 600,
-  height = 450,
+  width = "100%",
+  height = "100%",
   locationQuery,
   latitude,
   longitude,
+  className = "",
 }) => {
 
     if ((!locationQuery && (!latitude || !longitude)) || (locationQuery && (latitude || longitude))) {
@@ -26,7 +27,7 @@ const GoogleMapEmbed: FC<GoogleMapEmbedProps> = ({
     }
 
     return (
-        <div className="google-maps-embed">
+        <div className={"google-maps-embed " + className}>
             <iframe
                 width={width}
                 height={height}

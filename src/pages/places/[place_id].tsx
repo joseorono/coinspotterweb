@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import ImageGalleries from "../../components/imageGalleries/placeDetailsGallery";
-import GMaps from "../../components/gmaps/gmapEmbed";
+import GoogleMapEmbed from "../../components/gmaps/gmapEmbed";
 import { api } from "~/utils/api";
 import AppLayout from "~/components/layout/AppLayout";
 
@@ -51,7 +51,7 @@ const PlaceDetail = () => {
               {/* <h3 className="mb-2 text-xl font-bold">Address: .........</h3> */}
             </div>
             <div className="w-full">
-              <GMaps latitude={33} longitude={4} />
+              <GoogleMapEmbed latitude={33} longitude={4} />
             </div>
           </div>
         </div>
