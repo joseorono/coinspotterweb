@@ -22,6 +22,7 @@ interface GoogleMapEmbedProps {
     width?: number;
     height?: number;
     locationQuery?: string;
-    latitude?: number;
-    longitude?: number;
+    latitude?: number | string;
+    longitude?: number | string;
+    className?: string;
 }
