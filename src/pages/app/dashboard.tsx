@@ -4,35 +4,51 @@ import { useSession } from "next-auth/react";
 import TitleCard from "~/components/dashboard/TitleCard";
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 import SmallStatsCard from "~/components/dashboard/SmallStatsCard";
-
-
+import { BsFillBagFill } from "react-icons/bs";
 
 export const getServerSideProps: GetServerSideProps<{
-    statsData: ISmallStatsCardProps
+    statsData: ISmallStatsCardProps[]
   }> = async () => {
-    /*
-    const res = await fetch('https://api.github.com/repos/vercel/next.js')
-    const repo = await res.json()
-    */
-    const repo = {name: 'test'}
-    return { props: { repo } }
+
+    const statsData: ISmallStatsCardProps[] = [
+        {
+            title: 'Next.js',
+            value: "1.9k",
+            description: "Number of Users",
+            colorIndex: 0,
+        },
+        {
+            title: 'Year',
+            value: "2023",
+            description: "Number of Users",
+            colorIndex: 0,
+        },
+
+    ];
+    return { props: { statsData } }
 }
 
 
-export default function Dashboard() {
+
+export default function Dashboard(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+//export default function Dashboard(props:any) {
     //const { data: session } = useSession();
     const { data: session, status } = useSession();
-
+    console.log("props", props);
+    const { statsData } = props;
+   
     return (
         <>
-
         <div className="grid lg:grid-cols-4 mt-2 md:grid-cols-2 grid-cols-1 gap-6">
+        <BsFillBagFill />
         {
+            
             statsData.map((d, k) => {
                 return (
                     <SmallStatsCard key={k} {...d} colorIndex={k}/>
                 )
             })
+            
         }
         </div>
 
