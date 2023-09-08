@@ -1,7 +1,7 @@
 
 interface ISmallStatsCardProps {
     title: string,
-    icon: React.ReactNode,
+    icon?: React.ReactNode,
     value: string,
     description: string,
     colorIndex: number,
