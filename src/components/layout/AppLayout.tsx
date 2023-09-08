@@ -19,13 +19,14 @@ const AppLayout:React.FC<ILayoutComponentProps> =
 
   <ScrollToTopButton />
 
-  <main id='app-main-wrapper'>
+  <main id='app-main-wrapper' className="container mx-auto px-4">
     {children}
   </main>
 
   <AppFooter />
   </>;
 }
+
 
 export default AppLayout;
 
