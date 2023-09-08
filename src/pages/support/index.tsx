@@ -38,11 +38,28 @@ const SupportPage = () => {
           </div>
         </div>
 
-        <div className="contactUsWrapper m-10 flex flex-col rounded-md bg-cover p-0 shadow-md shadow-primary-focus lg:grid lg:grid-cols-5">
-          <div className="col-span-2 flex flex-col rounded-md bg-white p-8">
+        <div className="mx-auto m-6 flex shadow-md shadow-onyx-200 lg:max-w-4xl rounded-md">
+          {/* Panel 1
+           old container classes:
+           lg:grid lg:grid-cols-5
+
+
+            min-h-[960px]
+            */}
+          <div className="hidden md:flex contact-col-left flex-col p-4 max-w-[320px] justify-end rounded-tl-md rounded-bl-md">
+            <div>
+              <h4 className="text-center mb-6 text-secondary">CoinSpotter</h4>
+              <small>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque labore provident vel perspiciatis at. 
+              </small>
+            </div>
+          </div>
+          {/* Panel 2 */}
+          <div className="flex flex-[1] flex-col bg-white p-8 rounded-tr-md rounded-br-md">
             <h1 className="mb-6 text-primary-focus">Contact Us</h1>
             <ContactForm />
           </div>
+
         </div>
       </main>
     </PageLayout>

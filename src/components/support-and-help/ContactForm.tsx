@@ -96,7 +96,7 @@ function ContactForm() {
             required
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="text-center">
           <button
             type="submit"
             className="hover:bg-primary-dark btn btn-primary btn-wide"
