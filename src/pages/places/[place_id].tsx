@@ -45,8 +45,10 @@ const PlaceDetail = () => {
                 Place ID: {place_id}
               </h1>
               <p className="text-md mb-4 max-h-screen grow-[999] basis-0">
-                Lorem Ipsum es simplemente el texto de relleno de las imprentas
-                y archivos de texto.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit dolores obcaecati minima officiis saepe qui tempore nam laborum exercitationem illo pariatur facilis minus iure deserunt, at eos! Et, sed. Minima?
+                <br />
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit dolores obcaecati minima officiis saepe qui tempore nam laborum exercitationem illo pariatur facilis minus iure deserunt, at eos! Et, sed. Minima?
+               
               </p>
               {/* <h3 className="mb-2 text-xl font-bold">Address: .........</h3> */}
             </div>
