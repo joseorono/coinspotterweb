@@ -10,6 +10,13 @@ const PlaceDetail = () => {
   const { place_id } = router.query;
   //   const { place }: { place: number } = api.places.place.useQuery({ place_id });
 
+  const gallerySlides:lightBoxSlide[] = [
+    { src: "https://source.unsplash.com/random/640x480" },
+    { src: "https://source.unsplash.com/random/640x480" },
+    { src: "https://source.unsplash.com/random/640x480" },
+  ];
+
+
   console.log(router.query);
   //   console.log(place.id);
   return (
@@ -28,7 +35,7 @@ const PlaceDetail = () => {
             <h1 className="w-1/3">Nombre del Place </h1>
           </div>
           <hr className="largeHeaderHr" />
-          <ImageGalleries />
+          <ImageGalleries slides={gallerySlides} />
 
           <hr className="largeHeaderHr" />
 
