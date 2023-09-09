@@ -5,6 +5,7 @@ import "react-tabs/style/react-tabs.css";
 import { useTRPC } from '~/server/api/trpc';
 import { searchRouter } from '~/server/api/routers/search';
 import Spinner from "./spinner";
+import AppLayout from "~/components/layout/AppLayout";
 
 interface SearchResult {
   id: number;
@@ -64,6 +65,8 @@ const SearchPage = () => {
 
   return (
     <>
+    <AppLayout pageTitle="Search">
+    
       <div className="mb-4">
         <button
           onClick={handleBack}
@@ -205,6 +208,7 @@ const SearchPage = () => {
         )}
       </TabPanel>
       </Tabs>
+      </AppLayout>
     </>
   );
 };
