@@ -4,6 +4,7 @@ import ContactForm from '~/components/support-and-help/ContactForm';
 import FaqAccordion from '~/components/support-and-help/faqAccordion';
 import Image from "next/image";
 import FaQImage from "src/assets/contactImg.jpg";
+import GoogleMapWideEmbed from "../../components/gmaps/gmapWideEmbed";
 
 const questions = [
   {
@@ -23,19 +24,27 @@ const SupportPage = () => {
   return (
     <PageLayout pageTitle="CoinSpotter">
       <main>
-        <div className="m-10 flex flex-col shadow-md shadow-primary-focus lg:grid lg:grid-cols-5">
-          {/* <div className="faqWrapper col-span-2 h-full w-full lg:rounded-l-lg"></div> */}
-          <Image
-            src={FaQImage}
-            width="32px"
-            height="32px"
-            alt="/"
-            className="col-span-2 hidden h-full w-full lg:block lg:rounded-l-lg"
-          />
-          <div className="col-span-3 flex w-full flex-col justify-items-end gap-4 rounded-md bg-white p-16 lg:rounded-r-lg">
-            <h1 className="text-primary-focus">Frequently Asked Questions</h1>
-            <FaqAccordion questions={questions} />
+        <div className='max-w-screen-xl mx-auto rounded-md bg-white p-16 lg:rounded-r-lg shadow-md shadow-primary-focus'>
+
+        <h1 className="text-primary-focus">Frequently Asked Questions</h1>
+
+          <div className="flex flex-col lg:grid lg:grid-cols-5 ">
+            
+            <div className="col-span-3 flex w-full flex-col justify-items-end mt-4 lg:mt-20">
+              
+              <FaqAccordion questions={questions} />
+            </div>
+
+            <div  className="col-span-2 hidden lg:flex">
+              <Image
+                src={FaQImage}
+                alt="/"
+                className="w-full h-auto lg:rounded-l-lg"
+              />
+            </div>
+
           </div>
+
         </div>
 
         <div className="mx-auto m-6 flex shadow-md shadow-onyx-200 lg:max-w-4xl rounded-md">
@@ -56,12 +65,15 @@ const SupportPage = () => {
           </div>
           {/* Panel 2 */}
           <div className="flex flex-[1] flex-col bg-white p-8 rounded-tr-md rounded-br-md">
-            <h1 className="mb-6 text-primary-focus">Contact Us</h1>
+            <h1 className="mb-6 text-primary-focus text-center">Contact Us</h1>
             <ContactForm />
           </div>
 
         </div>
       </main>
+      <div>
+        <GoogleMapWideEmbed latitude={33} longitude={4} />
+      </div>
     </PageLayout>
   );
 };
