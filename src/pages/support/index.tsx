@@ -8,21 +8,46 @@ import GoogleMapWideEmbed from "../../components/gmaps/gmapWideEmbed";
 
 const questions = [
   {
-    question: "What is Next.js?",
+    question: "What is CoinSpotter?",
     answer:
-      "Next.js is a React framework for building server-side rendered and static websites.",
+      "CoinSpotter is a web application designed to help users locate businesses and entities that accept cryptocurrency payments, such as USDT, USDC, and others, along with popular methods like PayPal and Payoneer. It's initially launching in Venezuela and expanding to other countries in the region.",
   },
   {
-    question: "What is DaisyUI?",
+    question: "How does CoinSpotter work?",
     answer:
-      "DaisyUI is a UI library for Tailwind CSS that provides ready-to-use components and styles.",
+      "CoinSpotter allows users to search for businesses by name, business type, accepted payment methods, and utilize geolocation to find nearby establishments. It provides location details and contact information for these businesses, including the specific cryptocurrencies they accept and their respective payment methods.",
   },
-  // Add more questions here
+  {
+    question: " Is CoinSpotter a payment processor?",
+    answer:
+      "No, CoinSpotter is not a payment processor. It's a platform that helps users find businesses and entities that accept various payment methods, including cryptocurrencies. We do not process payments; we simply provide information and location-based search capabilities.",
+  },
+  {
+    question: "Which countries does CoinSpotter cover?",
+    answer:
+      "CoinSpotter initially launches in Venezuela and plans to expand to other countries in the region. The goal is to make it easier for users to discover cryptocurrency-accepting businesses wherever they are.",
+  },
+  {
+    question: "How can I filter my search on CoinSpotter?",
+    answer:
+      "You can filter your search on CoinSpotter by various criteria, including business name, business type, accepted payment methods, and location. This makes it simple to find the exact businesses that meet your preferences.",
+  },
+  {
+    question: "Is CoinSpotter affiliated with any cryptocurrency providers?",
+    answer:
+      "No, CoinSpotter is an independent platform and is not affiliated with any specific cryptocurrency providers. We aim to provide unbiased information about businesses that accept various payment methods.",
+  },
+  {
+    question: "Is CoinSpotter available as a mobile app?",
+    answer:
+      "CoinSpotter is currently a web application accessible through your web browser. However, we may consider developing a mobile app in the future to enhance the user experience.",
+  },
+  
 ] satisfies IFaqQuestion[];
 
 const SupportPage = () => {
   return (
-    <PageLayout pageTitle="CoinSpotter">
+    <PageLayout pageTitle="Help Center">
       <main>
         <div className='max-w-screen-xl mx-auto rounded-md bg-white p-16 lg:rounded-r-lg shadow-md shadow-primary-focus'>
 
