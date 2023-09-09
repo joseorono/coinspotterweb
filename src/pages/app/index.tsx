@@ -1,23 +1,30 @@
+/*
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
 import { redirect } from 'next/navigation'
+*/
+
+import AppLayout from "~/components/layout/AppLayout"
 
 // This index page is used to redirect to the Dashboard page
 // https://nextjs.org/docs/messages/middleware-relative-urls
 // The recommended way is to clone NextURL and mutate it:
 
-export default async function IndexApp() {
+export default function IndexApp() {
     // This is an App Router-only feature. I'll created a config-level redirect instead
     //redirect('/app/dashboard'); // The second argument is 'replace' by default
     return (
-        <div>
-            <h1>Redirecting....</h1>
-            <p>
-                This page redirects to the Dashboard page.
-            </p>
-        </div>
-
+        <>
+        <AppLayout pageTitle="Redirecting">
+            <div className="text-center">
+                <h1>Redirecting....</h1>
+                <p>
+                    This page redirects to the Dashboard page.
+                </p>
+            </div>
+        </AppLayout>
+        </>
     )
 }
 
