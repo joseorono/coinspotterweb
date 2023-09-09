@@ -54,7 +54,10 @@ const NavBar = () => {
             <Link href='/support'>Support</Link>
           </li>
           <li className='cursor-pointer p-4'>
-            <Link href='/app'>
+            <Link href='/blog'>Blog</Link>
+          </li>
+          <li className='cursor-pointer p-4'>
+            <Link href='/app/dashboard'>
               <button className="btn btn-secondary btn-outline btn-sm px-6 rounded-[2rem]">Go to App</button>
             </Link>
           </li>
@@ -80,10 +83,13 @@ const NavBar = () => {
               <Link href='/'>Home</Link>
             </li>
             <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
-              <Link href='/'>About Us</Link>
+              <Link href='/support'>Support</Link>
             </li>
             <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
-              <Link href='/'>Contact Us</Link>
+              <Link href='/blog'>Blog</Link>
+            </li>
+            <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
+              <Link href='/app/dashboard'>Go to App</Link>
             </li>
             <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
               <small className="block text-center">
