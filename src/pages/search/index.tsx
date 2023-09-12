@@ -1,21 +1,31 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import useSWR from "swr";
+import Spinner from "./spinner";
+import Link from "next/link";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { useTRPC } from '~/server/api/trpc';
-import { searchRouter } from '~/server/api/routers/search';
-import Spinner from "./spinner";
-import AppLayout from "~/components/layout/AppLayout";
 
 interface SearchResult {
-  id: number;
-  nombre?: string;
+  id: number; // Actualiza con el tipo real para tus IDs
+  nombre?: string; // Actualiza con las propiedades que desees mostrar
   name?: string;
   address?: string;
   description?: string;
   google_places_id?: string;
   profile_pic_url?: string;
+  // Agrega más propiedades según sea necesario para otros modelos
 }
+
+const fetchData = async (url: string) => {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return response.json();
+};
 
 const SearchPage = () => {
   const router = useRouter();
@@ -23,7 +33,7 @@ const SearchPage = () => {
 
   const encodedSearchQuery = encodeURI(searchQuery || "");
 
-  const { data: searchResult, isLoading } = useTRPC(searchRouter.search, { query: encodedSearchQuery });
+  const response = useSWR(`/api/search?query=${encodedSearchQuery}`, fetchData);
 
   const handleBack = () => {
     router.push("/").catch(console.error);
@@ -35,7 +45,7 @@ const SearchPage = () => {
   const [selectedMethodFilter, setSelectedMethodFilter] = useState("");
 
   const handleApplyProductFilter = () => {
-    // Lógica de filtrado para Productos
+    // Lógica de filtrado para producto
   };
 
   const handleApplyPlaceFilter = () => {
@@ -47,6 +57,7 @@ const SearchPage = () => {
       google_places_id: selectedPlaceFilter,
       profile_pic_url: selectedPlaceFilter,
     };
+
     // Filtrar resultados aquí con los filtros seleccionados
   };
 
@@ -59,14 +70,38 @@ const SearchPage = () => {
   };
 
   if (!encodedSearchQuery) {
-    router.push("/").catch(console.error);
+    void router.push("/").catch(console.error);
     return null;
   }
 
+  if (response.error) {
+    console.error(response.error);
+    return null;
+  }
+
+  if (!response.data) {
+    return <Spinner />;
+  }
+
+  const {
+    producto = [],
+    places = [],
+    paymentMethodsAccepted = [],
+    paymentMethods = [],
+  }: {
+    producto: SearchResult[];
+    places: SearchResult[];
+    paymentMethodsAccepted: SearchResult[];
+    paymentMethods: SearchResult[];
+  } = response.data as {
+    producto: SearchResult[];
+    places: SearchResult[];
+    paymentMethodsAccepted: SearchResult[];
+    paymentMethods: SearchResult[];
+  };
+
   return (
     <>
-    <AppLayout pageTitle="Search">
-    
       <div className="mb-4">
         <button
           onClick={handleBack}
@@ -80,10 +115,10 @@ const SearchPage = () => {
       </span>
       <Tabs>
         <TabList>
-          <Tab>All categories</Tab>
+          <Tab>Producto</Tab>
           <Tab>Places</Tab>
           <Tab>Payment Methods Accepted</Tab>
-          <Tab>Payment Methods</Tab>          
+          <Tab>Payment Methods</Tab>
         </TabList>
 
         <TabPanel>
@@ -104,18 +139,15 @@ const SearchPage = () => {
               Apply Filter
             </button>
           </div>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : searchResult && searchResult.productos.length === 0 ? (
+          {producto.length === 0 ? (
             <p>No products found.</p>
           ) : (
-            <ul>
-              {searchResult?.productos.map((producto: SearchResult) => (
-                <li key={producto.id}>{producto.nombre}</li>
-              ))}
-            </ul>
+            producto.map((producto: SearchResult) => (
+              <div key={producto.id}>{producto.nombre}</div>
+            ))
           )}
         </TabPanel>
+
         <TabPanel>
           <div className="mb-4">
             <select
@@ -134,81 +166,70 @@ const SearchPage = () => {
               Apply Filter
             </button>
           </div>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : searchResult && searchResult.places.length === 0 ? (
+          {places.length === 0 ? (
             <p>No places found.</p>
           ) : (
-            <ul>
-              {searchResult?.places.map((place: SearchResult) => (
-                <li key={place.id}>{place.name}</li>
-              ))}
-            </ul>
+            places.map((place: SearchResult) => (
+              <div key={place.id}>{place.name}</div>
+            ))
           )}
         </TabPanel>
-        <TabPanel>
-        <div className="mb-4">
-          <select
-            value={selectedAcceptedFilter}
-            onChange={(e) => setSelectedAcceptedFilter(e.target.value)}
-          >
-            <option value="">All Payment Methods Accepted</option>
-            <option value="method1">Method 1</option>
-            <option value="method2">Method 2</option>
-            {/* Agregar más opciones de filtro según sea necesario */}
-          </select>
-          <button
-            onClick={handleApplyAcceptedFilter}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2"
-          >
-            Apply Filter
-          </button>
-        </div>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : searchResult && searchResult.paymentMethodsAccepted.length === 0 ? (
-          <p>No payment methods accepted found.</p>
-        ) : (
-          <ul>
-            {searchResult?.paymentMethodsAccepted.map((method: SearchResult) => (
-              <li key={method.id}>{method.name}</li>
-            ))}
-          </ul>
-        )}
-      </TabPanel>
 
-      <TabPanel>
-        <div className="mb-4">
-          <select
-            value={selectedMethodFilter}
-            onChange={(e) => setSelectedMethodFilter(e.target.value)}
-          >
-            <option value="">All Payment Methods</option>
-            <option value="method1">Method 1</option>
-            <option value="method2">Method 2</option>
-            {/* Agregar más opciones de filtro según sea necesario */}
-          </select>
-          <button
-            onClick={handleApplyMethodFilter}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2"
-          >
-            Apply Filter
-          </button>
-        </div>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : searchResult && searchResult.paymentMethods.length === 0 ? (
-          <p>No payment methods found.</p>
-        ) : (
-          <ul>
-            {searchResult?.paymentMethods.map((method: SearchResult) => (
-              <li key={method.id}>{method.name}</li>
-            ))}
-          </ul>
-        )}
-      </TabPanel>
+        <TabPanel>
+          <div className="mb-4">
+            <select
+              value={selectedAcceptedFilter}
+              onChange={(e) => setSelectedAcceptedFilter(e.target.value)}
+            >
+              <option value="">All Payment Methods Accepted</option>
+              <option value="method1">Method 1</option>
+              <option value="method2">Method 2</option>
+              {/* Agregar más opciones de filtro según sea necesario */}
+            </select>
+            <button
+              onClick={handleApplyAcceptedFilter}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2"
+            >
+              Apply Filter
+            </button>
+          </div>
+          {paymentMethodsAccepted.length === 0 ? (
+            <p>No payment methods accepted found.</p>
+          ) : (
+            paymentMethodsAccepted.map((method: SearchResult) => (
+              <div key={method.id}>{method.name}</div>
+            ))
+          )}
+        </TabPanel>
+
+        <TabPanel>
+          <div className="mb-4">
+            <select
+              value={selectedMethodFilter}
+              onChange={(e) => setSelectedMethodFilter(e.target.value)}
+            >
+              <option value="">All Payment Methods</option>
+              <option value="method1">Method 1</option>
+              <option value="method2">Method 2</option>
+              {/* Agregar más opciones de filtro según sea necesario */}
+            </select>
+            <button
+              onClick={handleApplyMethodFilter}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2"
+            >
+              Apply Filter
+            </button>
+          </div>
+          {paymentMethods.length === 0 ? (
+            <p>No payment methods found.</p>
+          ) : (
+            paymentMethods.map((method: SearchResult) => (
+              <div key={method.id}>{method.name}</div>
+            ))
+          )}
+        </TabPanel>
+
       </Tabs>
-      </AppLayout>
     </>
   );
 };

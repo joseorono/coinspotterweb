@@ -29,15 +29,15 @@ export default async function handler(
 
       const picture_places = await prisma.$queryRaw`
         SELECT * FROM picture_places
-        WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
-          OR LOWER(address) LIKE LOWER(CONCAT('%', ${query}, '%'))
+        WHERE LOWER(place_id) LIKE LOWER(CONCAT('%', ${query}, '%'))
+          OR LOWER(url) LIKE LOWER(CONCAT('%', ${query}, '%'))
       `;
 
       const payment_Methods_Accepted = await prisma.$queryRaw`
-        SELECT * FROM PaymentMethodsAccepted
+        SELECT * FROM payment_methods_accepted
         WHERE paymethod_id IN (
-          SELECT id FROM PaymentMethods
-          WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
+          SELECT id FROM payment_methods
+          WHERE LOWER(paymethod_id) LIKE LOWER(CONCAT('%', ${query}, '%'))
         )
       `;
 
@@ -48,7 +48,7 @@ export default async function handler(
       `;
 
       const payment_Methods = await prisma.$queryRaw`
-        SELECT * FROM PaymentMethods
+        SELECT * FROM payment_methods
         WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
           OR LOWER(symbol) LIKE LOWER(CONCAT('%', ${query}, '%'))
       `;
