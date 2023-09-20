@@ -4,8 +4,8 @@ import {
   createTRPCRouter,
   publicProcedure,
 } from "~/server/api/trpc";
-import { PrismaClient } from "../../../../prisma/generated/prisma-client-js";
-
+//import { PrismaClient } from "../../../../prisma/generated/prisma-client-js";
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const searchRouter = createTRPCRouter({
