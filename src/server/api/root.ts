@@ -1,7 +1,7 @@
 import { exampleRouter } from "~/server/api/routers/example";
 import { searchRouter } from "~/server/api/routers/search";
 import { createTRPCRouter } from "~/server/api/trpc";
-import { favoritePlacesRouter } from "./routers/favoritePlaces";
+import { placesRouter } from "./routers/places";
 
 /**
  * This is the primary router for your server.
@@ -11,7 +11,7 @@ import { favoritePlacesRouter } from "./routers/favoritePlaces";
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
   search: searchRouter, // coinspotter.com/api/auth
-  favplaces: favoritePlacesRouter, // coinspotter.com/api/auth
+  placesRouter: placesRouter,
 });
 
 // export type definition of API
