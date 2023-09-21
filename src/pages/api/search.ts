@@ -1,7 +1,8 @@
 //import { Post, User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "../../../prisma/generated/prisma-client-js";
+//import { PrismaClient } from "../../../prisma/generated/prisma-client-js";
 
+import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient();
 
 export default async function handler(
