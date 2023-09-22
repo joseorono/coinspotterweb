@@ -11,7 +11,7 @@ import { placesRouter } from "./routers/places";
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
   search: searchRouter, // coinspotter.com/api/auth
-  placesRouter: placesRouter,
+  places: placesRouter,
 });
 
 // export type definition of API
