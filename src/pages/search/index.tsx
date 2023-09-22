@@ -101,7 +101,7 @@ const SearchPage = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="mb-4">
         <button
           onClick={handleBack}
@@ -110,22 +110,23 @@ const SearchPage = () => {
           Back to Main Page
         </button>
       </div>
-      <span className="text-xl">
+      <span className="text-xl mb-4">
         Showing results for: <span className="font-semibold">{searchQuery}</span>
       </span>
       <Tabs>
-        <TabList>
-          <Tab>Producto</Tab>
-          <Tab>Places</Tab>
-          <Tab>Payment Methods Accepted</Tab>
-          <Tab>Payment Methods</Tab>
+        <TabList className="flex space-x-4">
+          <Tab className="bg-blue-500 p-2 rounded-lg">Producto</Tab>
+          <Tab className="bg-blue-500 p-2 rounded-lg">Places</Tab>
+          <Tab className="bg-blue-500 p-2 rounded-lg">Payment Methods Accepted</Tab>
+          <Tab className="bg-blue-500 p-2 rounded-lg">Payment Methods</Tab>
         </TabList>
-
+        <div className="mt-4"></div>
         <TabPanel>
           <div className="mb-4">
             <select
               value={selectedProductFilter}
               onChange={(e) => setSelectedProductFilter(e.target.value)}
+              className="border rounded p-2"
             >
               <option value="">All Products</option>
               <option value="category1">Category 1</option>
@@ -147,7 +148,7 @@ const SearchPage = () => {
             ))
           )}
         </TabPanel>
-
+        
         <TabPanel>
           <div className="mb-4">
             <select
@@ -228,9 +229,9 @@ const SearchPage = () => {
             ))
           )}
         </TabPanel>
-
+        
       </Tabs>
-    </>
+    </div>
   );
 };
 
