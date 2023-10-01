@@ -6,7 +6,7 @@ import USDT from 'src/assets/usdtLogo.png';
 
 const Skills = () => {
   return (
-    <div id='skills' className='w-full p-2 lg:h-screen'>
+    <div id='skills' className='w-full px-2 py-10'>
       <div className='mx-auto flex h-full max-w-[1240px] flex-col justify-center'>
         <p className='text-bold text-xl uppercase tracking-widest text-[#50af95]'>
           Our Pay Methods
