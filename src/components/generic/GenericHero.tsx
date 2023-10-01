@@ -8,6 +8,7 @@ interface GenericHeroProps {
 
 const GenericHero: FC<GenericHeroProps> = ({ PageTitle, bgImg, bgOpacity }) => {
     const opacity = bgOpacity ? bgOpacity : 0.3;
+
     const containerStyle: React.CSSProperties = {
         background: bgImg ? `url(${bgImg})` : `hsl(var(--b1))`,
         backgroundSize: 'cover',
@@ -20,9 +21,9 @@ const GenericHero: FC<GenericHeroProps> = ({ PageTitle, bgImg, bgOpacity }) => {
     };
 
   return (
-    <div style={containerStyle} className="relative max-h-[400px] h-screen bg-cover bg-center bg-no-repeat bg-image">
+    <div style={containerStyle} className="box-content relative h-80 pt-24 h-screen bg-cover bg-center bg-no-repeat bg-image">
       <div style={backdropStyle} className='absolute inset-0 flex flex-col items-center justify-center text-white'>
-        <h1 className='text-6xl text-center text-secondary-focus'>
+        <h1 className='text-6xl text-center text-secondary-focus mx-auto max-w-screen-lg'>
           {PageTitle}
         </h1>
       </div>
