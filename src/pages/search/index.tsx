@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import Spinner from "../../components/suspense/spinner";
+import Spinner from "~/components/suspense/spinner";
 import Link from "next/link";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";

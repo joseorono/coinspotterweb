@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 // import "~/components/favorites/favorites.css";
 // import Modal from "./Modal";
-import FavPlaceCard from "../../components/favorites/FavPlaceCard";
+import FavPlaceCard from "~/components/favorites/FavPlaceCard";
 import { boolean, object } from "zod";
 
 // Datos de ejemplo de las cards favoritas

@@ -16,7 +16,7 @@ const Skills = () => {
           <div className='rounded-xl p-6 shadow-xl duration-300 ease-in hover:scale-105'>
             <div className='grid grid-cols-2 items-center justify-center gap-4'>
               <div className='m-auto'>
-                <Image src={BUSD} width='64px' height='64px' alt='/' />
+                <Image src={BUSD} width={64} height={64} alt='/' />
               </div>
               <div className='flex flex-col items-center justify-center'>
                 <h3>BUSD</h3>
@@ -26,7 +26,7 @@ const Skills = () => {
           <div className='rounded-xl p-6 shadow-xl duration-300 ease-in hover:scale-105'>
             <div className='grid grid-cols-2 items-center justify-center gap-4'>
               <div className='m-auto'>
-                <Image src={RESERVE} width='64px' height='64px' alt='/' />
+                <Image src={RESERVE} width={64} height={64} alt='/' />
               </div>
               <div className='flex flex-col items-center justify-center'>
                 <h3>RESERVE</h3>
@@ -36,7 +36,7 @@ const Skills = () => {
           <div className='rounded-xl p-6 shadow-xl duration-300 ease-in hover:scale-105'>
             <div className='grid grid-cols-2 items-center justify-center gap-4'>
               <div className='m-auto'>
-                <Image src={USDT} width='64px' height='64px' alt='/' />
+                <Image src={USDT} width={64} height={64} alt='/' />
               </div>
               <div className='flex flex-col items-center justify-center'>
                 <h3>USDT</h3>

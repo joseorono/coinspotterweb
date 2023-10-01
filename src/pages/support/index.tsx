@@ -4,7 +4,7 @@ import ContactForm from '~/components/support-and-help/ContactForm';
 import FaqAccordion from '~/components/support-and-help/faqAccordion';
 import Image from "next/image";
 import FaQImage from "src/assets/contactImg.jpg";
-import GoogleMapWideEmbed from "../../components/gmaps/gmapWideEmbed";
+import GoogleMapWideEmbed from "~/components/gmaps/gmapWideEmbed";
 
 const questions = [
   {

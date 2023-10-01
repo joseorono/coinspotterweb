@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
-import ImageGalleries from "../../components/imageGalleries/placeDetailsGallery";
-import GoogleMapEmbed from "../../components/gmaps/gmapEmbed";
+import ImageGalleries from "~/components/imageGalleries/placeDetailsGallery";
+import GoogleMapEmbed from "~/components/gmaps/gmapEmbed";
 import { api } from "~/utils/api";
 import AppLayout from "~/components/layout/AppLayout";
 
