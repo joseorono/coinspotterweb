@@ -59,7 +59,7 @@ const AppNavBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href={`/places/${getRandomInt(1,3)}`}>     
+                <Link href={`/app/places/${getRandomInt(1,3)}`}>     
                     Random Place
                 </Link>
               </li>
