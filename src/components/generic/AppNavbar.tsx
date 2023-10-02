@@ -64,7 +64,7 @@ const AppNavBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href={`/app/favorites`}>     
+                <Link href={`/app/places/favorites`}>     
                     Favorites
                 </Link>
               </li>
