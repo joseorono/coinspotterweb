@@ -36,7 +36,7 @@ const FavPlaceCard = ({
           </div>
         </>
       )}
-      <div className="card relative w-[25%]" key={card.id}>
+      <div className="card relative" key={card.id}>
         <div className="starElement" onClick={() => handleAddFavorite(card.id)}>
           {card.is_favorite ? (
             <AiFillStar size={40} color="gold" />

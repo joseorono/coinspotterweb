@@ -3,6 +3,8 @@ import React, { useState, useRef } from "react";
 // import Modal from "./Modal";
 import FavPlaceCard from "~/components/favorites/FavPlaceCard";
 import { boolean, object } from "zod";
+import AppLayout from "~/components/layout/AppLayout";
+import BsCenteredContainer from "~/components/layout/BsCenteredContainer";
 
 // Datos de ejemplo de las cards favoritas
 const favoriteCards = [
@@ -93,11 +95,13 @@ const FavoritesPage = () => {
   };
 
   return (
-    <div>
+    <AppLayout pageTitle="CoinSpotter">
+    
+    <BsCenteredContainer>
       <div className="my-16">
         <h2>Mis Favoritos</h2>
       </div>
-      <div className="card-container">
+      <div className="card-container grid gap-4 md:gap-16 lg:gap-8 p-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((card) => (
           <FavPlaceCard
             key={card.id}
@@ -110,7 +114,9 @@ const FavoritesPage = () => {
         ))}
       </div>
       {/* {modal && <Modal closeModal={handleModal} cardData={items} />} */}
-    </div>
+    </BsCenteredContainer>
+
+    </AppLayout>
   );
 };
 
