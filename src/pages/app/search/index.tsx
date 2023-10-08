@@ -70,10 +70,12 @@ const SearchPage = () => {
     // Lógica de filtrado para Payment Methods
   };
 
+  /*
   if (!encodedSearchQuery) {
     void router.push("/").catch(console.error);
     return null;
   }
+  */
 
   if (response.error) {
     console.error(response.error);
