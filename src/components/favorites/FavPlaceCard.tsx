@@ -66,7 +66,7 @@ const FavPlaceCard = ({
               alt=""
             />
           </div>
-          <Link href={`places/${card.id}`}>
+          <Link href={`/app/places/${card.id}`}>
             <button className="btn btn-secondary">Ver Detalles</button>
           </Link>
           {/* <button onClick={() => handleOpenModal(card, card.isFavorite)}>
