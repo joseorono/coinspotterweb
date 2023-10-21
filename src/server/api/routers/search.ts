@@ -20,8 +20,8 @@ export const searchRouter = createTRPCRouter({
         }
 
         const producto = await prisma.$queryRaw`
-        SELECT * FROM producto
-        WHERE LOWER(nombre) LIKE LOWER(CONCAT('%', ${query}, '%'))
+        SELECT * FROM products
+        WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
       `;
 
         const places = await prisma.$queryRaw`
