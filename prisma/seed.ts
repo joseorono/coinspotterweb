@@ -14,6 +14,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   await seedBlogPostTable(8, true);
+  await seedPaymentMethodsAcceptedTable(8, true);
   // await seedAccountTable(8, true);
   await seedPlacesTable(true);
   await seedUsersTable(true);
@@ -380,6 +381,32 @@ async function seedPlacesTable(shouldCleanFirst: boolean = false) {
 }
 
 // payment_methods_accepted - Luego de hacer el modelo de payment_methods y tables
+
+async function seedPaymentMethodsAcceptedTable(
+  rowCount: number = 8,
+  shouldCleanFirst: boolean = false
+) {
+  // First, delete the existing blog posts
+  if (shouldCleanFirst) {
+    await prisma.payment_methods_accepted.deleteMany({});
+  }
+
+  //let blogPostCounter = 0;
+
+  for (let i = 0; i < rowCount; i++) {
+    const payment_methods_accepted =
+      await prisma.payment_methods_accepted.upsert({
+        where: {
+          id: (i + 1).toString(),
+        },
+        update: {},
+        create: {
+          paymethod_id: (i + 1).toString(),
+          place_id: (i + 1).toString(),
+        },
+      });
+  }
+}
 
 // De ultimo
 
