@@ -1,15 +1,24 @@
-import { Prisma, Places, PrismaClient } from '@prisma/client';
-
-
 import {
-    faker
-} from "@faker-js/faker";
+  Prisma,
+  Places,
+  PrismaClient,
+  User,
+  payment_methods,
+  currencies,
+} from "@prisma/client";
+
+import { faker } from "@faker-js/faker";
+import { id } from "ethers";
 
 const prisma = new PrismaClient();
 
 async function main() {
   await seedBlogPostTable(8, true);
+  // await seedAccountTable(8, true);
   await seedPlacesTable(true);
+  await seedUsersTable(true);
+  await seedPaymentMethodsTable(true);
+  await seedCurrenciesTable(true);
 }
 
 // Make it all run
@@ -54,12 +63,234 @@ async function seedBlogPostTable(
 
 // Account
 
+// async function seedAccountTable(
+//   rowCount: number = 8,
+//   shouldCleanFirst: boolean = false
+// ) {
+//   // First, delete the existing account
+//   if (shouldCleanFirst) {
+//     await prisma.account.deleteMany({});
+//   }
+
+//   //let accountCounter = 0;
+
+//   for (let i = 0; i < rowCount; i++) {
+//     const account = await prisma.account.upsert({
+//       where: {
+//         id: (i + 1).toString(),
+//       },
+//       update: {},
+//       create: {
+//         type: faker.lorem.paragraphs(5),
+//         userId: ,
+//         provider: faker.lorem.paragraphs(5),
+//         providerAccountId: faker.lorem.paragraphs(5),
+//       },
+//     });
+//   }
+// }
+
 // User
+
+async function seedUsersTable(shouldCleanFirst: boolean = false) {
+  // First, delete the existing blog posts
+  if (shouldCleanFirst) {
+    await prisma.user.deleteMany({});
+  }
+
+  //let blogPostCounter = 0;
+
+  const userArr: User[] = [];
+  let newUser: User;
+
+  // Mauricio Garcia
+  newUser = {
+    id: "1",
+    name: "Mauricio Garcia",
+    email: "maggnoone@gmail.com",
+    emailVerified: faker.date.anytime(),
+    image: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  userArr.push(newUser);
+
+  // Pedro Zavala
+  newUser = {
+    id: "2",
+    name: "Pedro Zavala",
+    email: "pedrozav@gmail.com",
+    emailVerified: faker.date.anytime(),
+    image: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  userArr.push(newUser);
+
+  // Jose Oroño
+  newUser = {
+    id: "3",
+    name: "Jose Oroño",
+    email: "joseomaker@gmail.com",
+    emailVerified: faker.date.anytime(),
+    image: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  userArr.push(newUser);
+
+  // Copia lo anterior y quita este comando
+
+  // Hacer insert en la tabla de todo los datos...
+  const addUsers = async () => await prisma.user.createMany({ data: userArr });
+  await addUsers();
+}
 
 //  wallets - Later
 
 // payment_methods - Binance, Reserve, PayPal, etc
+
+async function seedPaymentMethodsTable(shouldCleanFirst: boolean = false) {
+  // First, delete the existing blog posts
+  if (shouldCleanFirst) {
+    await prisma.payment_methods.deleteMany({});
+  }
+
+  //let blogPostCounter = 0;
+
+  const paymentMethodArr: payment_methods[] = [];
+  let newPaymentMethod: payment_methods;
+
+  // Binance
+  newPaymentMethod = {
+    id: "1",
+    name: "Binance",
+    symbol: faker.phone.imei(),
+    terms_policy_url: faker.lorem.paragraphs(5),
+  };
+
+  paymentMethodArr.push(newPaymentMethod);
+
+  // Reserve
+  newPaymentMethod = {
+    id: "2",
+    name: "Reserve",
+    symbol: faker.phone.imei(),
+    terms_policy_url: faker.lorem.paragraphs(5),
+  };
+
+  paymentMethodArr.push(newPaymentMethod);
+
+  // Paypal
+  newPaymentMethod = {
+    id: "3",
+    name: "Paypal",
+    symbol: faker.phone.imei(),
+    terms_policy_url: faker.lorem.paragraphs(5),
+  };
+
+  paymentMethodArr.push(newPaymentMethod);
+
+  // Payoneer
+  newPaymentMethod = {
+    id: "4",
+    name: "Payoneer",
+    symbol: faker.phone.imei(),
+    terms_policy_url: faker.lorem.paragraphs(5),
+  };
+
+  paymentMethodArr.push(newPaymentMethod);
+
+  // Zelle
+  newPaymentMethod = {
+    id: "5",
+    name: "Zelle",
+    symbol: faker.phone.imei(),
+    terms_policy_url: faker.lorem.paragraphs(5),
+  };
+
+  paymentMethodArr.push(newPaymentMethod);
+
+  // Copia lo anterior y quita este comando
+
+  // Hacer insert en la tabla de todo los datos...
+  const addPaymentMethods = async () =>
+    await prisma.payment_methods.createMany({ data: paymentMethodArr });
+  await addPaymentMethods();
+}
+
 // currencies - Pertenece a payment_methods, puede de BTC, ETH, USDT, etc
+
+async function seedCurrenciesTable(shouldCleanFirst: boolean = false) {
+  // First, delete the existing blog posts
+  if (shouldCleanFirst) {
+    await prisma.currencies.deleteMany({});
+  }
+
+  //let blogPostCounter = 0;
+
+  const currencyArr: currencies[] = [];
+  let newCurrency: currencies;
+
+  // Binance
+  newCurrency = {
+    id: "1",
+    paymethod_id: "1",
+    name: "BTC",
+    symbol: faker.phone.imei(),
+    contract_address: faker.lorem.paragraphs(5),
+  };
+
+  currencyArr.push(newCurrency);
+
+  // Reserve
+  newCurrency = {
+    id: "2",
+    name: "ETH",
+    paymethod_id: "2",
+    symbol: faker.phone.imei(),
+    contract_address: faker.lorem.paragraphs(5),
+  };
+
+  currencyArr.push(newCurrency);
+
+  // Paypal
+  newCurrency = {
+    id: "3",
+    name: "USDT",
+    paymethod_id: "3",
+    symbol: faker.phone.imei(),
+    contract_address: faker.lorem.paragraphs(5),
+  };
+
+  currencyArr.push(newCurrency);
+
+  // Payoneer
+  newCurrency = {
+    id: "4",
+    name: "RESERVE USD",
+    paymethod_id: "4",
+    symbol: faker.phone.imei(),
+    contract_address: faker.lorem.paragraphs(5),
+  };
+
+  currencyArr.push(newCurrency);
+
+  // Zelle
+  newCurrency = {
+    id: "5",
+    name: "ZELLE USD",
+    paymethod_id: "5",
+    symbol: faker.phone.imei(),
+    contract_address: faker.lorem.paragraphs(5),
+  };
+
+  currencyArr.push(newCurrency);
+
+  // Copia lo anterior y quita este comando
+
+  // Hacer insert en la tabla de todo los datos...
+  const addCurrencies = async () =>
+    await prisma.currencies.createMany({ data: currencyArr });
+  await addCurrencies();
+}
 
 // transactions
 
@@ -149,8 +380,6 @@ async function seedPlacesTable(shouldCleanFirst: boolean = false) {
 }
 
 // payment_methods_accepted - Luego de hacer el modelo de payment_methods y tables
-
-
 
 // De ultimo
 
