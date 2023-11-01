@@ -142,7 +142,7 @@ model payment_methods {
 model currencies {
   id               String          @id @unique @default(cuid())
   paymethod_id     String
-  name             DateTime?
+  name             String?
   symbol           String?
   contract_address String?
   payment_methods  payment_methods @relation(fields: [paymethod_id], references: [id], onDelete: Cascade)
