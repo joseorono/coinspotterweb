@@ -15,6 +15,7 @@ const prisma = new PrismaClient();
 async function main() {
   await seedBlogPostTable(8, true);
   await seedPaymentMethodsAcceptedTable(8, true);
+  // await seedTransactionsTable(8, true);
   // await seedAccountTable(8, true);
   await seedPlacesTable(true);
   await seedUsersTable(true);
@@ -62,7 +63,7 @@ async function seedBlogPostTable(
   }
 }
 
-// Account
+/*/ Account
 
 // async function seedAccountTable(
 //   rowCount: number = 8,
@@ -90,6 +91,8 @@ async function seedBlogPostTable(
 //     });
 //   }
 // }
+*/
+
 
 // User
 
@@ -293,7 +296,40 @@ async function seedCurrenciesTable(shouldCleanFirst: boolean = false) {
   await addCurrencies();
 }
 
-// transactions
+/*/ transactions
+
+// async function seedTransactionsTable(
+//   rowCount: number = 8,
+//   shouldCleanFirst: boolean = false
+// ) {
+//   // First, delete the existing blog posts
+//   if (shouldCleanFirst) {
+//     await prisma.transactions.deleteMany({});
+//   }
+
+//   //let blogPostCounter = 0;
+
+//   for (let i = 0; i < rowCount; i++) {
+//     const transactions = await prisma.transactions.upsert({
+//       where: {
+//         id: (i + 1).toString(),
+//       },
+//       update: {},
+//       create: {
+//         user_id: (i + 1).toString(),
+//         place_id: (i + 1).toString(),
+//         paymethod_id: (i + 1).toString(),
+//         amount: parseInt(
+//           faker.finance.amount({ min: 5, max: 100, dec: 2, symbol: "$" })
+//         ),
+//         user: {
+//           connect: { id: rand(1, 3) },
+//         },
+//       },
+//     });
+//   }
+// }
+*/
 
 // Places
 
