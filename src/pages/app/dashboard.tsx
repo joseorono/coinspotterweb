@@ -41,10 +41,10 @@ export default function Dashboard(
       <div className="grid">
         <div className="m-4 rounded-3xl bg-slate-100">
           <ul className="m-6 flex flex-row justify-between text-center align-middle text-black md:justify-evenly">
-            <li className="cursor-pointer">Users</li>
-            <li className="cursor-pointer">Places</li>
-            <li className="cursor-pointer">Stats</li>
-            <li className="cursor-pointer">Favorites</li>
+            <li className="cursor-pointer">Usuarios</li>
+            <li className="cursor-pointer">Lugares</li>
+            <li className="cursor-pointer">Estadísticas</li>
+            <li className="cursor-pointer">Favoritos</li>
           </ul>
         </div>
         <div className="dashboardContent">
@@ -59,21 +59,21 @@ export default function Dashboard(
             <div className="col-span-1 mt-6">
               <TitleCard title="Welcome" topMargin="mt-4">
                 <div className="text-lg font-semibold">
-                  Hello, {session?.user?.name || "Guest"}!
+                  Hola, {session?.user?.name || "Guest"}!
                 </div>
               </TitleCard>
             </div>
             <div className="col-span-1 mt-10">
               <TitleCard title="Number of Users">
                 <div className="text-lg font-semibold">
-                  Number of Users: {100}
+                  Número de Usuarios: {100}
                 </div>
               </TitleCard>
             </div>
             <div className="col-span-1 mt-10">
               <TitleCard title="Favorite Places">
                 <div className="text-lg font-semibold">
-                  Favorite Places: {5}
+                  Lugares Favoritos: {5}
                 </div>
               </TitleCard>
             </div>

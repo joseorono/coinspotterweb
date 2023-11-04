@@ -18,9 +18,9 @@ export default function IndexApp() {
         <>
         <AppLayout pageTitle="Redirecting">
             <div className="text-center">
-                <h1>Redirecting....</h1>
+                <h1>Redireccionando....</h1>
                 <p>
-                    This page redirects to the Dashboard page.
+                    Esta página redirije al Dashboard.
                 </p>
             </div>
         </AppLayout>

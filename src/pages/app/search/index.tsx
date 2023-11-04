@@ -121,9 +121,9 @@ const SearchPage = () => {
         <Tabs>
           <TabList className="flex space-x-4">
             <Tab className="bg-blue-500 p-2 rounded-lg">Producto</Tab>
-            <Tab className="bg-blue-500 p-2 rounded-lg">Places</Tab>
-            <Tab className="bg-blue-500 p-2 rounded-lg">Payment Methods Accepted</Tab>
-            <Tab className="bg-blue-500 p-2 rounded-lg">Payment Methods</Tab>
+            <Tab className="bg-blue-500 p-2 rounded-lg">Lugares</Tab>
+            <Tab className="bg-blue-500 p-2 rounded-lg">Métodos de Pago Aceptados</Tab>
+            <Tab className="bg-blue-500 p-2 rounded-lg">Métodos de Pago</Tab>
           </TabList>
           <div className="mt-4"></div>
           <TabPanel>
@@ -134,19 +134,19 @@ const SearchPage = () => {
                 className="border rounded p-2"
               >
                 <option value="">All Products</option>
-                <option value="category1">Category 1</option>
-                <option value="category2">Category 2</option>
+                <option value="category1">Categoría 1</option>
+                <option value="category2">Categoría 2</option>
                 {/* Agregar más opciones de filtro según sea necesario */}
               </select>
               <button
                 onClick={handleApplyProductFilter}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2"
               >
-                Apply Filter
+                Filtrar
               </button>
             </div>
             {producto.length === 0 ? (
-              <p>No products found.</p>
+              <p>Ningún Producto encontrado.</p>
             ) : (
               producto.map((producto: SearchResult) => (
                 <div key={producto.id}>{producto.nombre}</div>

@@ -10,19 +10,19 @@ import BsCenteredContainer from '~/components/layout/BsCenteredContainer';
 const blogPosts = [
   {
     id: 1,
-    title: 'First Blog Post',
-    slug: 'first-blog-post',
+    title: 'Primer Artículo del Blog',
+    slug: 'primer-articulo-del-blog',
     date: '2023-08-01',
-    excerpt: 'This is the first blog post on our website.',
+    excerpt: 'Este es el primer artículo del blog en nuestro sitio web.',
   },
   {
     id: 2,
-    title: 'Second Blog Post',
-    slug: 'second-blog-post',
+    title: 'Segundo Artículo del Blog',
+    slug: 'segundo-articulo-del-blog',
     date: '2023-08-05',
-    excerpt: 'Here is our second blog post with some interesting content.',
+    excerpt: 'Aquí tienes nuestro segundo artículo del blog con contenido interesante.',
   },
-  // Add more blog posts as needed
+  // Agrega más artículos del blog según sea necesario
 ];
 
 function Blog() {

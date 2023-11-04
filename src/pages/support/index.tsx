@@ -8,41 +8,40 @@ import GoogleMapWideEmbed from "~/components/gmaps/gmapWideEmbed";
 
 const questions = [
   {
-    question: "What is CoinSpotter?",
+    question: "¿Qué es CoinSpotter?",
     answer:
-      "CoinSpotter is a web application designed to help users locate businesses and entities that accept cryptocurrency payments, such as USDT, USDC, and others, along with popular methods like PayPal and Payoneer. It's initially launching in Venezuela and expanding to other countries in the region.",
+      "CoinSpotter es una aplicación web diseñada para ayudar a los usuarios a localizar empresas y entidades que aceptan pagos con criptomonedas, como USDT, USDC y otros, junto con métodos populares como PayPal y Payoneer. Inicialmente se lanzará en Venezuela y se expandirá a otros países de la región.",
   },
   {
-    question: "How does CoinSpotter work?",
+    question: "¿Cómo funciona CoinSpotter?",
     answer:
-      "CoinSpotter allows users to search for businesses by name, business type, accepted payment methods, and utilize geolocation to find nearby establishments. It provides location details and contact information for these businesses, including the specific cryptocurrencies they accept and their respective payment methods.",
+      "CoinSpotter permite a los usuarios buscar empresas por nombre, tipo de negocio, métodos de pago aceptados y utilizar la geolocalización para encontrar establecimientos cercanos. Proporciona detalles de ubicación e información de contacto de estas empresas, incluyendo las criptomonedas específicas que aceptan y sus respectivos métodos de pago.",
   },
   {
-    question: " Is CoinSpotter a payment processor?",
+    question: "¿Es CoinSpotter un procesador de pagos?",
     answer:
-      "No, CoinSpotter is not a payment processor. It's a platform that helps users find businesses and entities that accept various payment methods, including cryptocurrencies. We do not process payments; we simply provide information and location-based search capabilities.",
+      "No, CoinSpotter no es un procesador de pagos. Es una plataforma que ayuda a los usuarios a encontrar empresas y entidades que aceptan diversos métodos de pago, incluyendo criptomonedas. No procesamos pagos; simplemente proporcionamos información y capacidades de búsqueda basadas en la ubicación.",
   },
   {
-    question: "Which countries does CoinSpotter cover?",
+    question: "¿En qué países opera CoinSpotter?",
     answer:
-      "CoinSpotter initially launches in Venezuela and plans to expand to other countries in the region. The goal is to make it easier for users to discover cryptocurrency-accepting businesses wherever they are.",
+      "CoinSpotter se lanza inicialmente en Venezuela y tiene planes de expandirse a otros países de la región. El objetivo es facilitar a los usuarios la búsqueda de empresas que acepten criptomonedas, sin importar dónde se encuentren.",
   },
   {
-    question: "How can I filter my search on CoinSpotter?",
+    question: "¿Cómo puedo filtrar mi búsqueda en CoinSpotter?",
     answer:
-      "You can filter your search on CoinSpotter by various criteria, including business name, business type, accepted payment methods, and location. This makes it simple to find the exact businesses that meet your preferences.",
+      "Puede filtrar su búsqueda en CoinSpotter según diversos criterios, incluyendo el nombre de la empresa, el tipo de negocio, los métodos de pago aceptados y la ubicación. Esto facilita encontrar las empresas exactas que se ajusten a sus preferencias.",
   },
   {
-    question: "Is CoinSpotter affiliated with any cryptocurrency providers?",
+    question: "¿CoinSpotter está afiliado a proveedores de criptomonedas?",
     answer:
-      "No, CoinSpotter is an independent platform and is not affiliated with any specific cryptocurrency providers. We aim to provide unbiased information about businesses that accept various payment methods.",
+      "No, CoinSpotter es una plataforma independiente y no está afiliada a ningún proveedor de criptomonedas específico. Nuestro objetivo es proporcionar información imparcial sobre empresas que aceptan diversos métodos de pago.",
   },
   {
-    question: "Is CoinSpotter available as a mobile app?",
+    question: "¿Está disponible CoinSpotter como una aplicación móvil?",
     answer:
-      "CoinSpotter is currently a web application accessible through your web browser. However, we may consider developing a mobile app in the future to enhance the user experience.",
+      "CoinSpotter es actualmente una aplicación web accesible a través de su navegador web. Sin embargo, podríamos considerar desarrollar una aplicación móvil en el futuro para mejorar la experiencia del usuario.",
   },
-  
 ] satisfies IFaqQuestion[];
 
 const SupportPage = () => {
@@ -90,7 +89,7 @@ const SupportPage = () => {
           </div>
           {/* Panel 2 */}
           <div className="flex flex-[1] flex-col bg-white p-8 rounded-tr-md rounded-br-md">
-            <h1 className="mb-6 text-primary-focus text-center">Contact Us</h1>
+            <h1 className="mb-6 text-primary-focus text-center">Contáctanos</h1>
             <ContactForm />
           </div>
 

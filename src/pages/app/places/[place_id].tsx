@@ -32,7 +32,7 @@ const PlaceDetail = () => {
                 alt=""
               />
             </div>
-            <h1 className="w-1/3">Nombre del Place </h1>
+            <h1 className="w-1/3">Nombre del Lugar</h1>
           </div>
           <hr className="largeHeaderHr" />
           <ImageGalleries slides={gallerySlides} />

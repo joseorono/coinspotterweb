@@ -12,7 +12,7 @@ export default function PlacesIndex() {
   
     return (
       <div>
-        <h1>Página de lugares</h1>
+        <h1>Página de Lugares</h1>
         <input
           type="text"
           value={searchQuery}

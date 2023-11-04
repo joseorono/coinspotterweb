@@ -14,10 +14,10 @@ export async function getServerSideProps(context: any): Promise<  GetServerSideP
     // Replace this placeholder content with your actual article data
 
     const articleData = {
-        title: 'The Best Activewear from the Nordstrom Anniversary Sale',
+        title: 'La Mejor Ropa Deportiva de la Venta Anual de Nordstrom',
         author: 'Leroy Jenkins',
-        content: 'Insert the actual text content here...',
-        date: 'August 2, 2021',
+        content: 'Inserta aquí el contenido de texto real...',
+        date: '2 de agosto de 2021',
     };
 
     // Pass the articleData as props

@@ -11,7 +11,7 @@ export const dashboardRouter = createTRPCRouter({
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
       return {
-        greeting: `Hello ${input.text}`,
+        greeting: `Hola ${input.text}`,
       };
     }),
 
@@ -31,6 +31,6 @@ export const dashboardRouter = createTRPCRouter({
   }),
 
   getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
+    return "Ahora puedes ver este mensaje secreto";
   }),
 });
