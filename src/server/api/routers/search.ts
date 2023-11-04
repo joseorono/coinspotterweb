@@ -8,6 +8,13 @@ import {
 
 const prisma = new PrismaClient();
 
+const propsHome: IPageLayoutComponentProps = {
+  pageTitle: "Home",
+  pageDescription: "Home page description",
+  includeHero: true,
+  useHomePageHeader: true,
+};
+
 export const searchRouter = createTRPCRouter({
   search: publicProcedure
     .input(z.object({ query: z.string() }))
