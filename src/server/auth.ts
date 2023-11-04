@@ -13,10 +13,11 @@ import EmailProvider from 'next-auth/providers/email'
 
 import DiscordProvider from "next-auth/providers/discord";
 import Auth0Provider from "next-auth/providers/auth0";
+import GithubProvider from "next-auth/providers/github";
 
 import { env } from "~/env.mjs";
 import { prisma } from "~/server/db";
-const crypto = require('crypto');
+const crypto = require("crypto");
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
  * object and keep type safety.
@@ -63,17 +64,20 @@ export const authOptions: NextAuthOptions = {
     // You can still force a JWT session by explicitly defining `"jwt"`.
     // When using `"database"`, the session cookie will only contain a `sessionToken` value,
     // which is used to look up the session in the database.
-    strategy: 'database',
+    strategy: "database",
     maxAge: 30 * 24 * 60 * 60, // 30 days
     updateAge: 24 * 60 * 60, // 24 hours
     generateSessionToken: () => {
-      return crypto.randomUUID?.() ?? crypto.randomBytes(32).toString("hex")
+      return crypto.randomUUID?.() ?? crypto.randomBytes(32).toString("hex");
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
-  
-
+  debug: true,
   providers: [
+    GithubProvider({
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
+    }),
     /*
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
@@ -83,7 +87,7 @@ export const authOptions: NextAuthOptions = {
     Auth0Provider({
       clientId: process.env.CS_AUTH0_CLIENT_ID as string,
       clientSecret: process.env.CS_AUTH0_CLIENT_SECRET as string,
-      issuer: process.env.CS_AUTH0_ISSUER as string
+      issuer: process.env.CS_AUTH0_ISSUER as string,
     }),
     /**
      * ...add more providers here.
@@ -96,28 +100,28 @@ export const authOptions: NextAuthOptions = {
      */
     EmailProvider({
       server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: parseInt(process.env.EMAIL_SERVER_PORT || '587'),
+        host: process.env.EMAIL_SERVER_HOST as string,
+        port: parseInt(process.env.EMAIL_SERVER_PORT || "587"),
         secure: true,
         auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD
-        }
+          user: process.env.EMAIL_SERVER_USER as string,
+          pass: process.env.EMAIL_SERVER_PASSWORD as string,
+        },
       },
-      from: process.env.EMAIL_FROM
+      from: process.env.EMAIL_SERVER_USER as string,
     }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: 'Credentials',
+      name: "Credentials",
       // The credentials is used to generate a suitable form on the sign in page.
       // You can specify whatever fields you are expecting to be submitted.
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
         username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
-      
+
       async authorize(credentials, req) {
         // You need to provide your own logic here that takes the credentials
         // submitted and returns either a object representing a user or value
@@ -126,21 +130,20 @@ export const authOptions: NextAuthOptions = {
         // You can also use the `req` object to obtain additional parameters
         // (i.e., the request IP address)
         const res = await fetch("/your/endpoint", {
-          method: 'POST',
+          method: "POST",
           body: JSON.stringify(credentials),
-          headers: { "Content-Type": "application/json" }
-        })
-        const user = await res.json()
-  
+          headers: { "Content-Type": "application/json" },
+        });
+        const user = await res.json();
+
         // If no error and we have user data, return it
         if (res.ok && user) {
-          return user
+          return user;
         }
         // Return null if user data could not be retrieved
-        return null
-      }
-
-    })
+        return null;
+      },
+    }),
   ],
 };
 
