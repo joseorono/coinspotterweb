@@ -23,9 +23,11 @@ export default async function handler(
 
       const places = await prisma.$queryRaw`
       SELECT * FROM places
-      WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
-        OR LOWER(address) LIKE LOWER(CONCAT('%', ${query}, '%'))
-      `;
+        WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
+          OR LOWER(address) LIKE LOWER(CONCAT('%', ${query}, '%'))
+          OR LOWER(latitude) LIKE LOWER(CONCAT('%', ${query}, '%'))
+          OR LOWER(longitude) LIKE LOWER(CONCAT('%', ${query}, '%'))
+        `;
 
       const picture_places = await prisma.$queryRaw`
         SELECT * FROM picture_places
