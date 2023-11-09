@@ -28,7 +28,7 @@ const SearchInput = () => {
     }
 
     const encodedSearchQuery = encodeURI(searchQuery);
-    router.push(`/search?q=${encodedSearchQuery}&category=${selectedCategory}`);
+    router.push(`/app/search?q=${encodedSearchQuery}&category=${selectedCategory}`);
   };
 
   return (
