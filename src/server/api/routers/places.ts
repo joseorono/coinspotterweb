@@ -26,10 +26,12 @@ export const placesRouter = createTRPCRouter({
 
 
       const places = await prisma.$queryRaw`
-      SELECT * FROM places
-      WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
-        OR LOWER(address) LIKE LOWER(CONCAT('%', ${query}, '%'))
-      `;
+        SELECT * FROM places
+        WHERE LOWER(name) LIKE LOWER(CONCAT('%', ${query}, '%'))
+          OR LOWER(address) LIKE LOWER(CONCAT('%', ${query}, '%'))
+          OR LOWER(latitude) LIKE LOWER(CONCAT('%', ${query}, '%'))
+          OR LOWER(longitude) LIKE LOWER(CONCAT('%', ${query}, '%'))
+        `;
 
       return {
         places
