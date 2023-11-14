@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { api } from "~/utils/api";
 import GoogleMapWideEmbed from '../../../components/gmaps/gmapWideEmbed';
+import Link from 'next/link';
 
 type Place = {
   id: number;
@@ -32,8 +33,8 @@ export default function PlacesIndex() {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={{ flex: 1 }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ flex: 1, maxWidth: '600px' }}>
         <h1>Página de lugares</h1>
         <input
           type="text"
@@ -55,6 +56,16 @@ export default function PlacesIndex() {
                   <li key={place.id} onClick={() => handlePlaceSelect(place)}>
                     <strong>Nombre:</strong> {place.name},{' '}
                     <strong>Dirección:</strong> {place.address}
+                    <div>
+                      <Link href={`/app/places/${place.id}`}>
+                        <a>
+                          <button style={{ margin: '5px' }}>Ver más detalle</button>
+                        </a>
+                      </Link>
+                      <button style={{ margin: '5px' }} onClick={() => setSelectedPlace(place)}>
+                        Ver mapa
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>
