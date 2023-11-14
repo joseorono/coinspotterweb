@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchBar from "~/components/SearchInput";
-import GitHubLoginButton from "../buttons/GithHubLoginButton";
+
 
 const Hero = ({ heading, message }: ILandingHeroProps) => {
   return (
@@ -14,9 +14,7 @@ const Hero = ({ heading, message }: ILandingHeroProps) => {
         <div>
           <SearchBar />
         </div>
-        <div className="mx-auto flex justify-center">
-          <GitHubLoginButton />
-        </div>
+        
       </div>
     </div>
   );
