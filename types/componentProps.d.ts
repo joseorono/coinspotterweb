@@ -18,6 +18,11 @@ interface IPageLayoutComponentProps extends ILayoutComponentProps {
     useHomePageHeader?: boolean,
 }
 
+interface ILandingHeroProps {
+    heading: string,
+    message: string
+} 
+
 interface GoogleMapEmbedProps {
     width?: number;
     height?: number;
