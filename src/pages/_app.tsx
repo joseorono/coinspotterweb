@@ -66,10 +66,9 @@ const { wallets } = getDefaultWallets({
 
 const ConnectWalletDisclaimer: DisclaimerComponent = ({ Text, Link }) => (
   <Text>
-    By connecting your wallet, you agree to the{' '}
-    <Link href="https://coinspotter.com/terms-of-service">Terms of Service</Link> and
-    acknowledge you have read and understand the protocol{' '}
-    <Link href="https://coinspotter.com/disclaimer">Disclaimer</Link>
+    Conectando tu wallet, estás de acuerdo con los{' '}
+    <Link href="https://coinspotter.com/terms-of-service">Términos de Servicio</Link> y
+    reconoces que has leído y aceptado toda responsabilidad por tus acciones con tus fondos.
   </Text>
 );
 
@@ -106,7 +105,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider modalSize="compact" appInfo={csAppInfo} chains={chains}>
+        {/* @ts-ignore */}
+        <RainbowKitProvider locale="es" modalSize="compact" appInfo={csAppInfo} chains={chains}>
           <ThemeContextProvider>
             <Component {...pageProps} />
           </ThemeContextProvider>
