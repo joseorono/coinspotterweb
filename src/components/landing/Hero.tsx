@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import SearchBar from "~/components/SearchInput";
 import GitHubLoginButton from "../buttons/GithHubLoginButton";
-import { api } from "~/utils/api";
-import { Places } from "@prisma/client";
 
 const Hero = ({ heading, message }: ILandingHeroProps) => {
-  const { data } = api.example.getAll.useQuery();
-
   return (
     <div className="custom_img flex h-screen items-center justify-center bg-cover bg-fixed bg-center">
       {/* Overlay*/}
@@ -20,11 +16,6 @@ const Hero = ({ heading, message }: ILandingHeroProps) => {
         </div>
         <div className="mx-auto flex justify-center">
           <GitHubLoginButton />
-        </div>
-        <div>
-          {data?.map((place) => (
-            <li key={place.id}>{place.name}</li>
-          ))}
         </div>
       </div>
     </div>
