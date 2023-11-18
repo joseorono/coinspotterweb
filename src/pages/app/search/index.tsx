@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+// import { useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import Spinner from "~/components/suspense/spinner";
 import Link from "next/link";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
+// import "react-tabs/style/react-tabs.css";
 import AppLayout from "~/components/layout/AppLayout";
 
 interface SearchResult {
@@ -44,6 +45,8 @@ const SearchPage = () => {
   const [selectedPlaceFilter, setSelectedPlaceFilter] = useState("");
   const [selectedAcceptedFilter, setSelectedAcceptedFilter] = useState("");
   const [selectedMethodFilter, setSelectedMethodFilter] = useState("");
+  const [activeTab, setActiveTab] = useState(1);
+  // const [searchParams, setSearchParams] = useSearchParams();
 
   const handleApplyProductFilter = () => {
     // Lógica de filtrado para producto
@@ -103,35 +106,71 @@ const SearchPage = () => {
     paymentMethods: SearchResult[];
   };
 
+  const handleClick = (tabId) => {
+    setActiveTab(tabId);
+  };
+
+  const getTabClassName = (tabId) => {
+    return `tab tab-lifted ${activeTab === tabId ? "tab-active" : ""}`;
+  };
+
+  // const setCleanUrl = (id: string, name: string): void => {
+  //   setParams({ id: id, name: name });
+  // };
+
+  // const id = params.get("id");
+  // const name = params.get("name");
+
   return (
     <AppLayout pageTitle="CoinSpotter - Advanced Search">
-
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex min-h-screen flex-col items-center justify-center">
         <div className="mb-4">
           <button
             onClick={handleBack}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600"
           >
             Back to Main Page
           </button>
         </div>
-        <span className="text-xl mb-4">
-          Showing results for: <span className="font-semibold">{searchQuery}</span>
+        <span className="mb-4 text-xl">
+          Showing results for:{" "}
+          <span className="font-semibold">{searchQuery}</span>
         </span>
         <Tabs>
           <TabList className="flex space-x-4">
-            <Tab className="bg-blue-500 p-2 rounded-lg">Producto</Tab>
-            <Tab className="bg-blue-500 p-2 rounded-lg">Lugares</Tab>
-            <Tab className="bg-blue-500 p-2 rounded-lg">Métodos de Pago Aceptados</Tab>
-            <Tab className="bg-blue-500 p-2 rounded-lg">Métodos de Pago</Tab>
+            <div className="tabs">
+              <Tab
+                className={getTabClassName(1)}
+                onClick={() => handleClick(1)}
+              >
+                Producto
+              </Tab>
+              <Tab
+                className={getTabClassName(2)}
+                onClick={() => handleClick(2)}
+              >
+                Lugares
+              </Tab>
+              <Tab
+                className={getTabClassName(3)}
+                onClick={() => handleClick(3)}
+              >
+                Métodos de Pago Aceptados
+              </Tab>
+            </div>
+            <Tab className={getTabClassName(4)} onClick={() => handleClick(4)}>
+              Métodos de Pago
+            </Tab>
           </TabList>
+
           <div className="mt-4"></div>
+
           <TabPanel>
-            <div className="mb-4">
+            <div className="mb-4 text-black">
               <select
                 value={selectedProductFilter}
                 onChange={(e) => setSelectedProductFilter(e.target.value)}
-                className="border rounded p-2"
+                className="rounded border p-2 text-black"
               >
                 <option value="">All Products</option>
                 <option value="category1">Categoría 1</option>
@@ -140,7 +179,7 @@ const SearchPage = () => {
               </select>
               <button
                 onClick={handleApplyProductFilter}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2"
+                className="ml-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600"
               >
                 Filtrar
               </button>
@@ -153,12 +192,13 @@ const SearchPage = () => {
               ))
             )}
           </TabPanel>
-          
+
           <TabPanel>
             <div className="mb-4">
               <select
                 value={selectedPlaceFilter}
                 onChange={(e) => setSelectedPlaceFilter(e.target.value)}
+                className="rounded border p-2 text-black"
               >
                 <option value="">All Places</option>
                 <option value="place1">Place 1</option>
@@ -167,7 +207,7 @@ const SearchPage = () => {
               </select>
               <button
                 onClick={handleApplyPlaceFilter}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2"
+                className="ml-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600"
               >
                 Apply Filter
               </button>
@@ -176,7 +216,23 @@ const SearchPage = () => {
               <p>No places found.</p>
             ) : (
               places.map((place: SearchResult) => (
-                <div key={place.id}>{place.name}</div>
+                <Link
+                  key={place.id}
+                  href={{
+                    pathname: `/app/places/${place.id}`,
+                    query: {
+                      id: place.id,
+                      name: place.name,
+                      description: place.description,
+                    },
+                  }}
+                >
+                  <button
+                    className="btn btn-secondary mx-2"
+                  >
+                    {place.name}
+                  </button>
+                </Link>
               ))
             )}
           </TabPanel>
@@ -186,6 +242,7 @@ const SearchPage = () => {
               <select
                 value={selectedAcceptedFilter}
                 onChange={(e) => setSelectedAcceptedFilter(e.target.value)}
+                className="rounded border p-2 text-black"
               >
                 <option value="">All Payment Methods Accepted</option>
                 <option value="method1">Method 1</option>
@@ -194,7 +251,7 @@ const SearchPage = () => {
               </select>
               <button
                 onClick={handleApplyAcceptedFilter}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2"
+                className="ml-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600"
               >
                 Apply Filter
               </button>
@@ -213,6 +270,7 @@ const SearchPage = () => {
               <select
                 value={selectedMethodFilter}
                 onChange={(e) => setSelectedMethodFilter(e.target.value)}
+                className="rounded border p-2 text-black"
               >
                 <option value="">All Payment Methods</option>
                 <option value="method1">Method 1</option>
@@ -221,7 +279,7 @@ const SearchPage = () => {
               </select>
               <button
                 onClick={handleApplyMethodFilter}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2"
+                className="ml-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600"
               >
                 Apply Filter
               </button>
@@ -234,7 +292,6 @@ const SearchPage = () => {
               ))
             )}
           </TabPanel>
-          
         </Tabs>
       </div>
     </AppLayout>
