@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="flex flex-col justify-around md:flex-row">
         <div className="flex flex-col items-center gap-4 pb-4 md:flex-row">
           <Image src={LOGO} width={150} height={150} alt="/" />
-          <h2>Coin Spotter</h2>
+          <h2>CoinSpotter</h2>
         </div>
         <div className="my-4 flex flex-row items-center justify-center gap-6 md:justify-around">
           <AiFillFacebook size={30} />
@@ -28,12 +28,12 @@ const Footer = () => {
         <ul className="my-2 flex-row text-center md:flex md:justify-evenly">
           <Link href="/">
             <li className="list-none py-4 pr-6 text-center text-sm font-bold uppercase text-white">
-              Home
+              Inicio
             </li>
           </Link>
           <Link href="/">
             <li className="list-none py-4 pr-6 text-center text-sm font-bold uppercase text-white">
-              Support
+              Soporte
             </li>
           </Link>
           <Link href="/">
@@ -43,12 +43,12 @@ const Footer = () => {
           </Link>
           <Link href="/">
             <li className="py-4 pr-6 text-center text-sm font-bold uppercase text-white">
-              Terms of Use
+              Términos y condiciones
             </li>
           </Link>
         </ul>
         <p className="my-2 p-2 text-center text-xs uppercase text-white">
-          © {new Date().getFullYear()} By{" "}
+          © {new Date().getFullYear()} por {" "}
           <UnderlineLink href="/">
             Jose Miguel Oroño, Mauricio Garcia y Pedro Zavala
           </UnderlineLink>

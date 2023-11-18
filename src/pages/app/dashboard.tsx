@@ -12,15 +12,15 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async () => {
   const statsData: ISmallStatsCardProps[] = [
     {
-      title: "Next.js",
+      title: "Numero de Usuarios",
       value: "1.9k",
-      description: "Number of Users",
+      description: "Usuarios Registrados",
       colorIndex: 0,
     },
     {
-      title: "Year",
+      title: "Año",
       value: "2023",
-      description: "Number of Users",
+      description: "Año Actual",
       colorIndex: 0,
     },
   ];
@@ -59,7 +59,7 @@ export default function Dashboard(
             <div className="col-span-1 mt-6">
               <TitleCard title="Welcome" topMargin="mt-4">
                 <div className="text-lg font-semibold">
-                  Hola, {session?.user?.name || "Guest"}!
+                  Hola, {session?.user?.name || "Invitado"}!
                 </div>
               </TitleCard>
             </div>
@@ -71,7 +71,7 @@ export default function Dashboard(
               </TitleCard>
             </div>
             <div className="col-span-1 mt-10">
-              <TitleCard title="Favorite Places">
+              <TitleCard title="Lugares Favoritos">
                 <div className="text-lg font-semibold">
                   Lugares Favoritos: {5}
                 </div>
