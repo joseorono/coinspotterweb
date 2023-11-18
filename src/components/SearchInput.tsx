@@ -8,15 +8,14 @@ const SearchInput = () => {
   const [searchQuery, setSearchQuery] = useState<string | null>(
     router.query.q ? router.query.q.toString() : ""
   );
-  const [selectedCategory, setSelectedCategory] = useState("All categories");
+  const [selectedCategory, setSelectedCategory] = useState("Todas las categorías");
 
   const categories = [
-    "All categories",
-    "Places",
-    "Places imagen",
-    "Payment methods",
-    "Currencies",
-    "Payment methods accepted",
+    "Todas las categorías",
+    "Lugares",
+    "Métodos de Pago",
+    "Monedas",
+    "Métodos de Pago aceptados",
     "Productos", 
   ];
 

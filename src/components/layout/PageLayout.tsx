@@ -26,7 +26,7 @@ const PageLayout:React.FC<IPageLayoutComponentProps> =
         useHomePageHeader ?
           <Hero
             heading={pageTitle}
-            message='The best place to find all crypto spots'
+            message='El Mejor Lugar para encontrar los lugares que aceptan monedas digitales en tu ciudad.'
           />
           :
           <GenericHero PageTitle={pageTitle} />

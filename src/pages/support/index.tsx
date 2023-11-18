@@ -50,7 +50,7 @@ const SupportPage = () => {
       <main>
         <div className='max-w-screen-xl mx-auto rounded-md bg-white p-16 lg:rounded-r-lg shadow-md shadow-primary-focus'>
 
-        <h1 className="text-primary-focus">Frequently Asked Questions</h1>
+        <h1 className="text-primary-focus">Preguntas Frecuentes</h1>
 
           <div className="flex flex-col lg:grid lg:grid-cols-5 ">
             
@@ -83,7 +83,7 @@ const SupportPage = () => {
             <div>
               <h4 className="text-center mb-6 text-secondary">CoinSpotter</h4>
               <small>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque labore provident vel perspiciatis at. 
+                No garantizamos respuesta inmediata. Te responderemos tan pronto podamos. 
               </small>
             </div>
           </div>

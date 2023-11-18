@@ -31,7 +31,7 @@ function Blog() {
 
     
     <BsCenteredContainer extraClasses='mt-8'>
-      <h1 className="block text-5xl font-semibold uppercase">Latest Posts</h1>
+      <h1 className="block text-5xl font-semibold uppercase">Últimos artículos</h1>
       <div className="">
         {blogPosts.map((post) => (
           // <li key={post.id}>
