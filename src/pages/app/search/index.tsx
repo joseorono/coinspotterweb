@@ -5,7 +5,7 @@ import useSWR from "swr";
 import Spinner from "~/components/suspense/spinner";
 import Link from "next/link";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-// import "react-tabs/style/react-tabs.css";
+import "react-tabs/style/react-tabs.css";
 import AppLayout from "~/components/layout/AppLayout";
 
 interface SearchResult {
@@ -16,6 +16,7 @@ interface SearchResult {
   description?: string;
   google_places_id?: string;
   profile_pic_url?: string;
+  terms_policy_url?: string;
   // Agrega más propiedades según sea necesario para otros modelos
 }
 
@@ -92,19 +93,21 @@ const SearchPage = () => {
   const {
     producto = [],
     places = [],
-    paymentMethodsAccepted = [],
-    paymentMethods = [],
+    payment_Methods_Accepted = [],
+    payment_Methods = [],
   }: {
     producto: SearchResult[];
     places: SearchResult[];
-    paymentMethodsAccepted: SearchResult[];
-    paymentMethods: SearchResult[];
+    payment_Methods_Accepted: SearchResult[];
+    payment_Methods: SearchResult[];
   } = response.data as {
     producto: SearchResult[];
     places: SearchResult[];
-    paymentMethodsAccepted: SearchResult[];
-    paymentMethods: SearchResult[];
+    payment_Methods_Accepted: SearchResult[];
+    payment_Methods: SearchResult[];
   };
+
+  console.log(places, payment_Methods);
 
   const handleClick = (tabId) => {
     setActiveTab(tabId);
@@ -157,10 +160,13 @@ const SearchPage = () => {
               >
                 Métodos de Pago Aceptados
               </Tab>
+              <Tab
+                className={getTabClassName(4)}
+                onClick={() => handleClick(4)}
+              >
+                Métodos de Pago
+              </Tab>
             </div>
-            <Tab className={getTabClassName(4)} onClick={() => handleClick(4)}>
-              Métodos de Pago
-            </Tab>
           </TabList>
 
           <div className="mt-4"></div>
@@ -185,10 +191,32 @@ const SearchPage = () => {
               </button>
             </div>
             {producto.length === 0 ? (
-              <p>Ningún Producto encontrado.</p>
+              <div>Ningún Producto encontrado.</div>
             ) : (
               producto.map((producto: SearchResult) => (
-                <div key={producto.id}>{producto.nombre}</div>
+                <tbody key={producto.id}>
+                  {/* row 1 */}
+                  <tr className="hover">
+                    <th>{producto.id}</th>
+                    <td>{producto.name}</td>
+                    <td>
+                      <Link
+                        key={producto.id}
+                        href={{
+                          pathname: `/app/products/${producto.id}`,
+                          query: {
+                            id: producto.id,
+                            name: producto.name,
+                          },
+                        }}
+                      >
+                        <button className="btn btn-secondary mx-2">
+                          Ver Detalles
+                        </button>
+                      </Link>
+                    </td>
+                  </tr>
+                </tbody>
               ))
             )}
           </TabPanel>
@@ -200,41 +228,61 @@ const SearchPage = () => {
                 onChange={(e) => setSelectedPlaceFilter(e.target.value)}
                 className="rounded border p-2 text-black"
               >
-                <option value="">All Places</option>
-                <option value="place1">Place 1</option>
-                <option value="place2">Place 2</option>
+                <option value="">Todos</option>
+                <option value="place1">Lugar 1</option>
+                <option value="place2">Lugar 2</option>
                 {/* Agregar más opciones de filtro según sea necesario */}
               </select>
               <button
                 onClick={handleApplyPlaceFilter}
                 className="ml-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600"
               >
-                Apply Filter
+                Filtrar
               </button>
             </div>
-            {places.length === 0 ? (
-              <p>No places found.</p>
-            ) : (
-              places.map((place: SearchResult) => (
-                <Link
-                  key={place.id}
-                  href={{
-                    pathname: `/app/places/${place.id}`,
-                    query: {
-                      id: place.id,
-                      name: place.name,
-                      description: place.description,
-                    },
-                  }}
-                >
-                  <button
-                    className="btn btn-secondary mx-2"
-                  >
-                    {place.name}
-                  </button>
-                </Link>
-              ))
-            )}
+            <div className="overflow-x-auto">
+              <table className="table text-center">
+                <thead className="text-lg">
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Ubicación</th>
+                    <th>Descripción</th>
+                  </tr>
+                </thead>
+                {places.length === 0 ? (
+                  <p>No places found.</p>
+                ) : (
+                  places.map((place: SearchResult) => (
+                    <tbody key={place.id}>
+                      {/* row 1 */}
+                      <tr className="hover">
+                        <th>{place.id}</th>
+                        <td>{place.name}</td>
+                        <td>{place.address}</td>
+                        <td>
+                          <Link
+                            key={place.id}
+                            href={{
+                              pathname: `/app/places/${place.id}`,
+                              query: {
+                                id: place.id,
+                                name: place.name,
+                                description: place.description,
+                              },
+                            }}
+                          >
+                            <button className="btn btn-secondary mx-2">
+                              Ver Detalles
+                            </button>
+                          </Link>
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))
+                )}
+              </table>
+            </div>
           </TabPanel>
 
           <TabPanel>
@@ -244,7 +292,7 @@ const SearchPage = () => {
                 onChange={(e) => setSelectedAcceptedFilter(e.target.value)}
                 className="rounded border p-2 text-black"
               >
-                <option value="">All Payment Methods Accepted</option>
+                <option value="">Métodos de Pago Aceptados</option>
                 <option value="method1">Method 1</option>
                 <option value="method2">Method 2</option>
                 {/* Agregar más opciones de filtro según sea necesario */}
@@ -256,13 +304,45 @@ const SearchPage = () => {
                 Apply Filter
               </button>
             </div>
-            {paymentMethodsAccepted.length === 0 ? (
-              <p>No payment methods accepted found.</p>
-            ) : (
-              paymentMethodsAccepted.map((method: SearchResult) => (
-                <div key={method.id}>{method.name}</div>
-              ))
-            )}
+            <div className="overflow-x-auto">
+              <table className="table text-center">
+                <thead className="text-lg">
+                  <tr>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                {payment_Methods_Accepted.length === 0 ? (
+                  <p>No se encontraron métodos de pago.</p>
+                ) : (
+                  payment_Methods_Accepted.map(
+                    (methodAccepted: SearchResult) => (
+                      <tbody key={methodAccepted.id}>
+                        {/* row 1 */}
+                        <tr className="hover">
+                          <th>{methodAccepted.id}</th>
+                          <td>
+                            <Link
+                              key={methodAccepted.id}
+                              href={{
+                                pathname: `/app/methodAccepted/${methodAccepted.id}`,
+                                query: {
+                                  id: methodAccepted.id,
+                                  name: methodAccepted.name,
+                                },
+                              }}
+                            >
+                              <button className="btn btn-secondary mx-2">
+                                Ver Detalles
+                              </button>
+                            </Link>
+                          </td>
+                        </tr>
+                      </tbody>
+                    )
+                  )
+                )}
+              </table>
+            </div>
           </TabPanel>
 
           <TabPanel>
@@ -284,13 +364,45 @@ const SearchPage = () => {
                 Apply Filter
               </button>
             </div>
-            {paymentMethods.length === 0 ? (
-              <p>No payment methods found.</p>
-            ) : (
-              paymentMethods.map((method: SearchResult) => (
-                <div key={method.id}>{method.name}</div>
-              ))
-            )}
+            <div className="overflow-x-auto">
+              <table className="table text-center">
+                <thead className="text-lg">
+                  <tr>
+                    <th>#</th>
+                    <th>Método de Pago</th>
+                  </tr>
+                </thead>
+                {payment_Methods.length === 0 ? (
+                  <p>No payment methods found.</p>
+                ) : (
+                  payment_Methods.map((method: SearchResult) => (
+                    <tbody key={method.id}>
+                      {/* row 1 */}
+                      <tr className="hover">
+                        <th>{method.id}</th>
+                        <td>{method.name}</td>
+                        {/* <td>
+                          <Link
+                            key={method.id}
+                            href={{
+                              pathname: `/app/method/${method.id}`,
+                              query: {
+                                id: method.id,
+                                name: method.name,
+                              },
+                            }}
+                          >
+                            <button className="btn btn-secondary mx-2">
+                              Ver Detalles
+                            </button>
+                          </Link>
+                        </td> */}
+                      </tr>
+                    </tbody>
+                  ))
+                )}
+              </table>
+            </div>
           </TabPanel>
         </Tabs>
       </div>
