@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from 'next/link';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import SearchBar from '~/components/SearchInput';
 import Image from 'next/image';
 import csLogo from '@/logos/cs_white_outline.png';
 import placeholderPfp from '@/placeholder/karamaloran.jpg';
+import { api } from "~/utils/api";
 
 
 // import { logo } from '../assets';
@@ -38,6 +40,50 @@ const AppNavBar = () => {
     window.addEventListener('scroll', changeColor);
     */
   }, []);
+  
+  const { data: sessionData } = useSession();
+  const LoginShowcase = () => {
+    
+    const handleSignButtonClick = () => {
+      if (sessionData){
+        signOut();
+      }else{
+        signIn();
+      }
+    
+    };
+  
+    // function LoginShowcase() {
+    //   console.log("LoginShowcase")
+    //   const { data: sessionData } = useSession();
+    
+    //   const { data: getLoggedUser } = api.example.getLoggedUser.useQuery(
+    //     undefined, // no input
+    //     { enabled: sessionData?.user !== undefined }
+    //   );
+    
+      return (
+        <div className="flex flex-col items-center justify-center gap-4">
+          {/* <p className="text-center text-2xl">
+            {sessionData && <span>{sessionData.user?.name}</span>}
+            {getLoggedUser && <span> - {getLoggedUser}</span>}
+          </p> */}
+
+          
+          <button
+            className="bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+            onClick={handleSignButtonClick}
+          >
+            {sessionData ? "Cerrar Sesión" : "Iniciar Sesión"}
+          </button>
+        </div>
+      );
+    }
+
+
+
+
+  
   // mb-16 is the exact minimum margin-bottom to avoid the navbar overlapping with the content
   // So I used mb-20 for exactly 1rem extra margin-bottom
   return (
@@ -77,6 +123,16 @@ const AppNavBar = () => {
           </div>
         </div>
         <div className="navbar-center">
+
+        {sessionData ?(
+            <p className="text-center text-2xl">
+              Bienvenido, {sessionData.user?.name}!
+            </p>
+          ): ( <p className="text-center text-2xl">
+              Iniciar Sesión
+            </p>)}
+            
+          {/* <LoginShowcase /> */}
           <a className="btn btn-ghost normal-case text-xl">
             <Image src={csLogo} width={48} height={48} alt='CoinSpotter' />
           </a>
@@ -88,6 +144,7 @@ const AppNavBar = () => {
             </svg>
           </label>
         </div>
+        
 
         {/* User Button */}
         <div className="dropdown dropdown-end">
@@ -110,7 +167,15 @@ const AppNavBar = () => {
               </a>
             </li>
             <li>
-              <Link href='/'>Logout</Link>
+              <Link href='/'>
+                {/* <button
+          className="bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+          onClick={handleSignButtonClick}
+         >
+          {sessionData ? "Cerrar Sesión" : "Iniciar Sesión"}
+        </button> */}
+        <LoginShowcase /> 
+        </Link>
             </li>
           </ul>
         </div>

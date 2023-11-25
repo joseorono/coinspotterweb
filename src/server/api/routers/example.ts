@@ -21,4 +21,8 @@ export const exampleRouter = createTRPCRouter({
   getSecretMessage: protectedProcedure.query(() => {
     return "Ahora puedes ver este mensaje secreto!";
   }),
+
+  getLoggedUser: protectedProcedure.query(() => {
+    return "Ha iniciado sesión!";
+  }),
 });
