@@ -6,8 +6,6 @@ import NavBar from '~/components/landing/NavBar';
 import GenericHero from '~/components/generic/GenericHero';
 import ScrollToTopButton from '~/components/generic/ScrollToTopButton';
 
-import PreFooterAction from '~/components/generic/PreFooterAction';
-
 const PageLayout:React.FC<IPageLayoutComponentProps> = 
 ({
   pageTitle = "CoinSpotter",
@@ -38,7 +36,7 @@ const PageLayout:React.FC<IPageLayoutComponentProps> =
   </div>
 
   {children}
-  <PreFooterAction />
+
   <Footer />
   </>;
 }

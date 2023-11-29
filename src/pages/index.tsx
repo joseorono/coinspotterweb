@@ -9,10 +9,8 @@ import { useState } from 'react';
 // Crypto Imports
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-// Search Bar Imports 
-
-
 // import { searchProducts } from '~/lib/api';
+import Image from 'next/image';
 
 
 import PayMethods from '~/components/landing/PayMethods';
@@ -23,50 +21,53 @@ import UnderlineLink from '~/components/links/UnderlineLink';
 import UnstyledLink from '~/components/links/UnstyledLink';
 
 
+import homePageFeatures from "~/components/generic/homePageFeatures";
+import PreFooterAction from "~/components/generic/PreFooterAction";
+import HomePageFeatures from "~/components/generic/homePageFeatures";
 
+import metamaskFox from '@/misc/MetaMaskFox.svg';
 
 export default function Home() {
   const [query, setQuery] = useState('');
   const [productos, setProductos] = useState([]);
 
   // Api request example
-  const hello = api.example.hello.useQuery({ text: "from our API" });
-
+  const hello = api.example.hello.useQuery({ text: "desde nuestra la Web 3." });
 
   return (
     <PageLayout pageTitle="CoinSpotter" useHomePageHeader={true}>
       <main>
       <PayMethods />
-        <section className='bg-cream bg-white'>
-          <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-            <h1 className='text-5xl'>
-              Ya <b>Casi</b> terminamos!
+        <section className='bg-content text-center pt-6 pb-16'>
+
+            <h1 className="py-4 text-white uppercase">
+              Conéctate con tu wallet favorita
             </h1>
-            <p>Pronto podrás vivir la experiencia CoinSpotter!</p>
 
-            <div className='mb-5 mt-10'>
-              <div className='mx-auto mt-2 w-full max-w-2xl rounded-full bg-white shadow'>
-                <div
-                  className='rounded-full bg-indigo-600 py-1 text-center text-xs leading-none text-white'
-                  style={{ width: '165px' }}
-                >
-                  25%
-                </div>
-              </div>
-            </div>
-
-
-            <div className='mb-5'>
+            <div className='mb-5 text-center'>
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
             </div>
 
-            <div className='mb-5'>
-              <ConnectButton />
-            </div>
+            <Image 
+              src={metamaskFox}
+              alt="Metamask Logo"
+              width={200}
+              height={200}
+              className="m-auto"
+            />
 
+            <span className="inline-block m-auto">
+              <ConnectButton label="Conectar Wallet" />
+            </span>
+
+          {
+            /*
             <div className='mb-5'>
               <AuthShowcase />              
             </div>
+            */
+
+          }
 
             {
               /*
@@ -77,9 +78,11 @@ export default function Home() {
               */
             }
 
-          </div>
+
           
         </section>
+        <HomePageFeatures />
+        <PreFooterAction />
       </main>
     </PageLayout>
   );

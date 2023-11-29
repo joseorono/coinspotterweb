@@ -8,12 +8,6 @@ const PreFooterAction = (): JSX.Element => {
 
     return (
         <>
-            <div className="bg-primary p-8 p-md-20 flex justify-center">
-                <BsCenteredContainer>
-                    <p>hello!</p>
-                </BsCenteredContainer>
-
-            </div>
             <svg className="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g transform="translate(-1.000000, -14.000000)" fill-rule="nonzero">
@@ -37,16 +31,16 @@ const PreFooterAction = (): JSX.Element => {
         </svg>
         <section className="container mx-auto text-center py-6 mb-12">
             <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
-            Call to Action
+            Listo para unirte?
             </h2>
             <div className="w-full mb-4">
             <div className="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
             <h3 className="my-4 text-3xl leading-tight">
-            Main Hero Message to sell yourself!
+            Regístrate hoy y comienza a usar CoinSpotter!
             </h3>
             <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            Action!
+                Iniciar Sesión
             </button>
         </section>
     </> 
