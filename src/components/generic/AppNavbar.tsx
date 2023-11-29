@@ -21,6 +21,15 @@ const AppNavBar = () => {
   const [color, setColor] = useState('transparent');
   const [textColor, settextColor] = useState('white');
 
+  const { data: sessionData } = useSession();
+  const handleSignButtonClick = () => {
+    if (sessionData){
+      signOut();
+    }else{
+      signIn();
+    }
+  };
+  
   const handleNav = () => {
     setNav(!nav);
   };
@@ -41,35 +50,11 @@ const AppNavBar = () => {
     */
   }, []);
   
-  const { data: sessionData } = useSession();
-  const LoginShowcase = () => {
-    
-    const handleSignButtonClick = () => {
-      if (sessionData){
-        signOut();
-      }else{
-        signIn();
-      }
-    
-    };
   
-    // function LoginShowcase() {
-    //   console.log("LoginShowcase")
-    //   const { data: sessionData } = useSession();
-    
-    //   const { data: getLoggedUser } = api.example.getLoggedUser.useQuery(
-    //     undefined, // no input
-    //     { enabled: sessionData?.user !== undefined }
-    //   );
+  const LoginButton = () => {
     
       return (
         <div className="flex flex-col items-center justify-center gap-4">
-          {/* <p className="text-center text-2xl">
-            {sessionData && <span>{sessionData.user?.name}</span>}
-            {getLoggedUser && <span> - {getLoggedUser}</span>}
-          </p> */}
-
-          
           <button
             className="bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
             onClick={handleSignButtonClick}
@@ -106,33 +91,23 @@ const AppNavBar = () => {
               </li>
               <li>
                 <Link href={`/app/places/${getRandomInt(1,3)}`}>     
-                    Random Place
+                    Lugar Aleatorio
                 </Link>
               </li>
               <li>
                 <Link href={`/app/places/favorites`}>     
-                    Favorites
+                    Favoritos
                 </Link>
               </li>
               <li>
                 <Link href={`/app/search`}>     
-                    Search
+                    Búsqueda
                 </Link>
               </li>
             </ul>
           </div>
         </div>
         <div className="navbar-center">
-
-        {sessionData ?(
-            <p className="text-center text-2xl">
-              Bienvenido, {sessionData.user?.name}!
-            </p>
-          ): ( <p className="text-center text-2xl">
-              Iniciar Sesión
-            </p>)}
-            
-          {/* <LoginShowcase /> */}
           <a className="btn btn-ghost normal-case text-xl">
             <Image src={csLogo} width={48} height={48} alt='CoinSpotter' />
           </a>
@@ -156,26 +131,25 @@ const AppNavBar = () => {
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             <li>
               <a href='javascript:void(0);' className="justify-between">
-                Profile
-                <span className="badge">Coming Soon</span>
+                Perfil
+                <span className="badge">WIP</span>
               </a>
             </li>
             <li>
               <a href='javascript:void(0);' className="justify-between">
-                Settings
-                <span className="badge">Coming Soon</span>
+                Configuración
+                <span className="badge">WIP</span>
               </a>
             </li>
             <li>
-              <Link href='/'>
                 {/* <button
           className="bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
           onClick={handleSignButtonClick}
          >
           {sessionData ? "Cerrar Sesión" : "Iniciar Sesión"}
         </button> */}
-        <LoginShowcase /> 
-        </Link>
+            <LoginButton /> 
+      
             </li>
           </ul>
         </div>
