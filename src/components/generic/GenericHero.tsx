@@ -21,7 +21,7 @@ const GenericHero: FC<GenericHeroProps> = ({ PageTitle, bgImg, bgOpacity }) => {
     };
 
   return (
-    <div style={containerStyle} className="box-content relative h-80 pt-24 h-screen bg-cover bg-center bg-no-repeat bg-image">
+    <div style={containerStyle} className="box-content relative h-80 pt-24 bg-cover bg-center bg-no-repeat bg-image">
       <div style={backdropStyle} className='absolute inset-0 flex flex-col items-center justify-center text-white'>
         <h1 className='text-6xl text-center text-secondary-focus mx-auto max-w-screen-lg'>
           {PageTitle}
