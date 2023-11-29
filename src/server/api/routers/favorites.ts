@@ -19,19 +19,50 @@ export const exampleRouter = createTRPCRouter({
   }),
 
   insertFavorite: protectedProcedure
-    .input(z.string())
-    .mutation(async ({ ctx, input }) => {
-      return ctx.prisma.favorite_places.create({
-        data: {
-          place_id: input,
-          user: {
-            connect: {
-              id: ctx.session.user.id,
-            },
-          },
+
+   .input(z.object({ placeId: z.string() }))
+   .mutation(async ({ ctx, input }) => {
+    const userId = ctx.session.user.id;
+
+    //ESTA CONDICIONAL HAY QUE REVISARLA DA ERROR EN PLACE_ID
+
+    const existingFavorite = await ctx.prisma.favorite_places.findUnique({
+      where: {        
+          place_id : input.placeId,
+          user_Id: userId,
+        
+      },
+    });
+
+    if (existingFavorite) {
+      return {
+        error: "el lugar ya esta en favoritos",
+      };
+    }
+   const newFavorite = await ctx.prisma.favorite_places.create({
+      data: {
+        place_id: input.placeId,
+        user_id: userId,
+      },
+   });
+
+   return newFavorite;
+
+  }),
+
+
+  getFavorites:protectedProcedure.query(async({ ctx }) => {
+    const userId = ctx.session.user.id;
+    return await ctx.prisma.favorite_places.findMany({
+      where: {
+        user: {
+          id: userId,
         },
-      });
-    }),
+      },
+    });
+  }),
+
+  
 
   toggleFavorite: protectedProcedure
     .input(
