@@ -24,7 +24,7 @@ export const exampleRouter = createTRPCRouter({
    .mutation(async ({ ctx, input }) => {
     const userId = ctx.session.user.id;
 
-    //ESTA CONDICIONAL HAY QUE REVISARLA DA ERROR EN PLACE_ID
+    //ToDo: ESTA CONDICIONAL HAY QUE REVISARLA DA ERROR EN PLACE_ID. De aqui al 35 es una condicional dañada.
 
     const existingFavorite = await ctx.prisma.favorite_places.findUnique({
       where: {        
