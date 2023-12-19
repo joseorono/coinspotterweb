@@ -43,9 +43,9 @@ export default function Dashboard(
       <div className="grid">
         <div className="m-4 rounded-3xl bg-slate-100">
           <ul className="m-6 flex flex-row justify-between text-center align-middle text-black md:justify-evenly">
-            <li className="cursor-pointer">Usuarios</li>
+            <li className="cursor-pointer">Explora</li>
+            <li className="cursor-pointer">Descubre</li>
             <li className="cursor-pointer">Lugares</li>
-            <li className="cursor-pointer">Estadísticas</li>
             <li className="cursor-pointer">Favoritos</li>
           </ul>
         </div>

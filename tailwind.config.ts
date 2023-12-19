@@ -180,6 +180,7 @@ export default {
           "neutral-content ": "#3D3D40",
           // Custom Semantic Colors
         },
+        /*
         coinSpotterLight: {
           // Base Colors for the Theme
           "primary": "#04BFAD",
@@ -195,6 +196,7 @@ export default {
 
           // Custom Semantic Colors
         },
+        */
       }
     ],
   }
