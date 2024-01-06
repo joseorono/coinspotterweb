@@ -29,7 +29,7 @@ export const exampleRouter = createTRPCRouter({
     const existingFavorite = await ctx.prisma.favorite_places.findUnique({
       where: {        
           place_id : input.placeId,
-          user_Id: userId,
+          user_id: userId,
         
       },
     });
