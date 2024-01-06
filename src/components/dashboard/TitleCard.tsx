@@ -8,11 +8,11 @@ interface ITitleCardProps {
 }
 
 function TitleCard({title, children, topMargin = "", TopSideButtons = null}: ITitleCardProps) {
-    const titleClasses: string = "text-xl font-semibold mb-1" + (TopSideButtons ? "inline-block" : "");
+    const titleClasses: string = "text-xl text-base-100 font-semibold mb-1" + (TopSideButtons ? "inline-block" : "");
     return (
       <div
         className={
-          "card w-full bg-base-100 p-6 shadow-xl " + (topMargin || "mt-6")
+          "card w-full bg-base-100 p-6 shadow-xl  " + (topMargin || "mt-6")
         }
       >
         {/* Title for Card */}
