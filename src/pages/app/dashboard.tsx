@@ -39,7 +39,7 @@ export default function Dashboard(
 
   return (
     <AppLayout pageTitle="CoinSpotter">
-        {sessionData?.user && 
+        {sessionData?.user ?
       <div className="grid">
         <div className="m-4 rounded-3xl bg-slate-100">
           <ul className="m-6 flex flex-row justify-between text-center align-middle text-black md:justify-evenly">
@@ -52,23 +52,25 @@ export default function Dashboard(
         <div className="dashboardContent">
         <div className="mt-2 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           <BsFillBagFill />
-          {statsData.map((d, k) => {
+          {
+          statsData.map((d, k) => {
             return <SmallStatsCard key={k} {...d} colorIndex={k} />;
-          })}
+          })
+          }
         </div>
 
         <div className="mb-10 grid place-content-center gap-4 space-y-4 md:flex md:flex-row">
           <div className="col-span-1 mt-6">
-            <TitleCard title="Welcome" topMargin="mt-4">
+            <TitleCard title="Bienvenido" topMargin="mt-4">
               <div className="text-lg font-semibold">
                 Hola, {session?.user?.name || "Invitado"}!
               </div>
             </TitleCard>
           </div>
           <div className="col-span-1 mt-10">
-            <TitleCard title="Number of Users">
+            <TitleCard title="Número de Usuarios">
               <div className="text-lg font-semibold">
-                Número de Usuarios: {100}
+                Número de Usuarios: {3}
               </div>
             </TitleCard>
           </div>
@@ -81,6 +83,19 @@ export default function Dashboard(
           </div>
         </div>
       </div>
+      </div>
+      :
+
+      <div>
+        <h1 className="my-10 text-center">
+          No has iniciado sesión.
+        </h1>
+        <button
+          className="block m-auto rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+          onClick={sessionData ? () => void signOut() : () => void signIn()}
+        >
+          {sessionData ? "Cerrar Sesión" : "Iniciar Sesión"}
+        </button>
       </div>
         }
     </AppLayout>

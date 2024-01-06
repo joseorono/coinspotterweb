@@ -58,9 +58,7 @@ export default function PlacesIndex() {
                     <strong>Dirección:</strong> {place.address}
                     <div>
                       <Link href={`/app/places/${place.id}`}>
-                        <a>
                           <button style={{ margin: '5px' }}>Ver más detalle</button>
-                        </a>
                       </Link>
                       <button style={{ margin: '5px' }} onClick={() => setSelectedPlace(place)}>
                         Ver mapa
