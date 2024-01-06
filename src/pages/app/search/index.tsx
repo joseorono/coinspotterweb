@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import AppLayout from "~/components/layout/AppLayout";
+import SearchBar from "~/components/SearchInput";
 
 interface SearchResult {
   id: number; // Actualiza con el tipo real para tus IDs
@@ -130,10 +131,13 @@ const SearchPage = () => {
         <div className="mb-4">
           <button
             onClick={handleBack}
-            className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600"
+            className="rounded block mx-auto mb-8  bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600"
           >
             Back to Main Page
           </button>
+
+          <SearchBar />
+          
         </div>
         <span className="mb-4 text-xl">
           Showing results for:{" "}
