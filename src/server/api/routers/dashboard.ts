@@ -26,10 +26,6 @@ export const dashboardRouter = createTRPCRouter({
     }),
 
 
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
-  }),
-
   getSecretMessage: protectedProcedure.query(() => {
     return "Ahora puedes ver este mensaje secreto";
   }),

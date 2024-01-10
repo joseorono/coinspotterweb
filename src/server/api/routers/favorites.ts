@@ -14,10 +14,6 @@ export const exampleRouter = createTRPCRouter({
       };
     }),
 
-  getAll: publicProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.example.findMany();
-  }),
-
   insertFavorite: protectedProcedure
 
    .input(z.object({ placeId: z.string() }))
