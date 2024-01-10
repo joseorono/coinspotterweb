@@ -352,10 +352,9 @@ async function seedPlacesTable(shouldCleanFirst: boolean = false) {
     address: "Calle 84 # 13-17",
     latitude: new Prisma.Decimal(4.667),
     longitude: new Prisma.Decimal(74.05),
-    phone_number: faker.phone.number(),
     google_places_id: "",
     on_google_maps: false,
-    profile_pic_url: faker.image.urlLoremFlickr({ category: "business" }),
+    profile_pic_url: "Bibas.png",
     user_id: "1",
   };
 
@@ -371,9 +370,8 @@ async function seedPlacesTable(shouldCleanFirst: boolean = false) {
     latitude: new Prisma.Decimal(10.722489),
     longitude: new Prisma.Decimal(71.622799),
     google_places_id: "",
-    phone_number: faker.phone.number(),
     on_google_maps: false,
-    profile_pic_url: faker.image.urlLoremFlickr({ category: "business" }),
+    profile_pic_url: "FreshMarket.png",
     user_id: "2",
   };
 
@@ -388,9 +386,8 @@ async function seedPlacesTable(shouldCleanFirst: boolean = false) {
     latitude: new Prisma.Decimal(10.721423),
     longitude: new Prisma.Decimal(-71.632106),
     google_places_id: "",
-    phone_number: faker.phone.number(),
     on_google_maps: false,
-    profile_pic_url: faker.image.urlLoremFlickr({ category: "business" }),
+    profile_pic_url: "DDB.png",
     user_id: "3",
   };
 
@@ -405,9 +402,8 @@ async function seedPlacesTable(shouldCleanFirst: boolean = false) {
     latitude: new Prisma.Decimal(10.641237),
     longitude: new Prisma.Decimal(-71.619386),
     google_places_id: "",
-    phone_number: faker.phone.number(),
     on_google_maps: false,
-    profile_pic_url: faker.image.urlLoremFlickr({ category: "business" }),
+    profile_pic_url: "GamaTech.jpg",
     user_id: "4",
   };
 
