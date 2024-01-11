@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { api } from "~/utils/api";
 import GoogleMapWideEmbed from '../../../components/gmaps/gmapWideEmbed';
 import Link from 'next/link';
+import VerifiedPlacesMap from "~/components/gmaps/VerifiedPlacesMap";
 
 type Place = {
   id: number;
@@ -72,7 +73,7 @@ export default function PlacesIndex() {
         )}
       </div>
 
-      {selectedPlace && selectedPlace.latitude && selectedPlace.longitude && (
+      {(selectedPlace && selectedPlace.latitude && selectedPlace.longitude) ?  (
         <div style={{ flex: 1 }}>
           <GoogleMapWideEmbed
             height={350}
@@ -80,7 +81,7 @@ export default function PlacesIndex() {
             longitude={selectedPlace.longitude}
           />
         </div>
-      )}
+      ) : < VerifiedPlacesMap /> }
     </div>
   );
 }

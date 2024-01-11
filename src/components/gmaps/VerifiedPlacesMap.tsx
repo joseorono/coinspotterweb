@@ -9,17 +9,13 @@ const VerifiedPlacesMap: FC<GoogleMapEmbedProps> = ({
   longitude,
   className = "",
 }) => {
-
-    if ((!locationQuery && (!latitude || !longitude)) || (locationQuery && (latitude || longitude))) {
-        throw new Error("You must provide either 'locationQuery' or both 'latitude' and 'longitude', but not both.");
-    }
-
+    
     const apiKey = process.env.CS_GMAPS_API_KEY;
 
     return (
-        <div className={"google-maps-embed " + className}>
-            {/* Replace this with your embed*/ }
+        <div className={"google-maps-embed " + className}>          
             <iframe
+                src="https://www.google.com/maps/d/u/0/embed?mid=19BZSDKCKctVKDPkf0n8-Z_RJ1gU&ehbc=2E312F"
                 width={width}
                 height={height}
                 style={{ border: 0 }}
