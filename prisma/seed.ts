@@ -5,6 +5,7 @@ import {
   User,
   payment_methods,
   currencies,
+  BlogPost,
 } from "@prisma/client";
 
 import { faker } from "@faker-js/faker";
@@ -13,7 +14,7 @@ import { id } from "ethers";
 const prisma = new PrismaClient();
 
 async function main() {
-  await seedBlogPostTable(8, true);
+  // await seedBlogPostTable(8, true);
   await seedPaymentMethodsAcceptedTable(8, true);
   // await seedTransactionsTable(8, true);
   // await seedAccountTable(8, true);
@@ -21,6 +22,7 @@ async function main() {
   await seedUsersTable(true);
   await seedPaymentMethodsTable(true);
   await seedCurrenciesTable(true);
+  await seedBlogPostTable(true);
 }
 
 // Make it all run
@@ -36,10 +38,34 @@ main()
 
 // BlogPost
 
-async function seedBlogPostTable(
-  rowCount: number = 8,
-  shouldCleanFirst: boolean = false
-) {
+// async function seedBlogPostTable(
+//   rowCount: number = 8,
+//   shouldCleanFirst: boolean = false
+// ) {
+//   // First, delete the existing blog posts
+//   if (shouldCleanFirst) {
+//     await prisma.blogPost.deleteMany({});
+//   }
+
+//   //let blogPostCounter = 0;
+
+//   for (let i = 0; i < rowCount; i++) {
+//     const blogPost = await prisma.blogPost.upsert({
+//       where: {
+//         id: i + 1,
+//       },
+//       update: {},
+//       create: {
+//         title: faker.lorem.sentence(),
+//         content: faker.lorem.paragraphs(5),
+//         published: true,
+//         author: faker.person.firstName() + " " + faker.person.lastName(),
+//       },
+//     });
+//   }
+// }
+
+async function seedBlogPostTable(shouldCleanFirst: boolean = false) {
   // First, delete the existing blog posts
   if (shouldCleanFirst) {
     await prisma.blogPost.deleteMany({});
@@ -47,20 +73,121 @@ async function seedBlogPostTable(
 
   //let blogPostCounter = 0;
 
-  for (let i = 0; i < rowCount; i++) {
-    const blogPost = await prisma.blogPost.upsert({
-      where: {
-        id: i + 1,
-      },
-      update: {},
-      create: {
-        title: faker.lorem.sentence(),
-        content: faker.lorem.paragraphs(5),
-        published: true,
-        author: faker.person.firstName() + " " + faker.person.lastName(),
-      },
-    });
-  }
+  const blogPostArr: BlogPost[] = [];
+  let newPost: BlogPost;
+
+  // Article #1
+  newPost = {
+    id: 1,
+    title: "Descubre la comodidad de los métodos de pago digital",
+    content:
+      "Los métodos de pago digital se han convertido en una opción cada vez más popular en el mundo actual. Con la creciente adopción de dispositivos móviles y la expansión de Internet, los pagos digitales ofrecen comodidad y eficiencia tanto para los consumidores como para los comerciantes. En este artículo, exploraremos diferentes métodos de pago digital, como billeteras electrónicas, tarjetas de crédito virtuales y transferencias bancarias en línea.",
+    published: true,
+    author: "Mauricio Garcia",
+    imageUrl: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  blogPostArr.push(newPost);
+
+  // Article #2
+  newPost = {
+    id: 2,
+    title: "Billeteras Electrónicas: La forma moderna de llevar dinero",
+    content:
+      "Las billeteras electrónicas, también conocidas como e-wallets, son una forma segura y conveniente de realizar pagos en línea. Estas aplicaciones móviles te permiten almacenar información de pago, como tarjetas de crédito o cuentas bancarias, en tu dispositivo. Al utilizar una billetera electrónica, puedes realizar compras en línea de manera rápida y sencilla, sin tener que introducir tus datos de pago en cada transacción.",
+    published: true,
+    author: "Jose Oroño",
+    imageUrl: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  blogPostArr.push(newPost);
+
+  // Article #3
+  newPost = {
+    id: 3,
+    title:
+      "Tarjetas de Crédito Virtuales: La protección que necesitas en línea",
+    content:
+      "Las tarjetas de crédito virtuales son una opción segura para realizar compras en línea. Estas tarjetas funcionan de manera similar a las tarjetas físicas, pero en lugar de tener una tarjeta física en tus manos, recibes una tarjeta con información de pago generada digitalmente. Al utilizar tarjetas de crédito virtuales, puedes proteger tus datos financieros personales y evitar posibles fraudes en línea.",
+    published: true,
+    author: "Jose Oroño",
+    imageUrl: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  blogPostArr.push(newPost);
+
+  // Article #4
+  newPost = {
+    id: 4,
+    title:
+      "Transferencias Bancarias en Línea: La forma más rápida de enviar dinero",
+    content:
+      "Las transferencias bancarias en línea te permiten enviar dinero de tu cuenta bancaria a otra cuenta de manera rápida y segura. Con este método de pago digital, puedes realizar pagos a empresas, amigos o familiares sin tener que lidiar con cheques o efectivo. Además, la mayoría de los bancos ofrecen servicios de transferencia en línea a través de sus plataformas bancarias, lo que facilita aún más el proceso.",
+    published: true,
+    author: "Mauricio Garcia",
+    imageUrl: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  blogPostArr.push(newPost);
+
+  // Article #5
+  newPost = {
+    id: 5,
+    title: "PayPal: La forma más confiable de pagar en línea",
+    content:
+      "PayPal es una de las plataformas de pago digital más populares y confiables en todo el mundo. Con una cuenta de PayPal, puedes realizar pagos en línea de manera segura utilizando tu saldo de PayPal o vinculando tu cuenta bancaria o tarjeta de crédito. Además, PayPal ofrece protección al comprador y vendedor, lo que brinda tranquilidad adicional al realizar transacciones en línea.",
+    published: true,
+    author: "Jose Oroño",
+    imageUrl: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  blogPostArr.push(newPost);
+
+  // Article #6
+  newPost = {
+    id: 6,
+    title: "Apple Pay: Paga con un toque en tu iPhone",
+    content:
+      "Apple Pay es una forma conveniente y segura de realizar pagos utilizando tu iPhone o cualquier otro dispositivo de Apple compatible. Con Apple Pay, puedes vincular tus tarjetas de crédito o débito y realizar pagos simplemente acercando tu dispositivo a un terminal compatible con NFC. Además, tu información de pago se almacena de manera segura en tu dispositivo, lo que aumenta la protección de tus datos financieros.",
+    published: true,
+    author: "Pedro Zavala",
+    imageUrl: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  blogPostArr.push(newPost);
+
+  // Article #7
+  newPost = {
+    id: 7,
+    title: "Google Pay: La forma inteligente de pagar con tu teléfono Android",
+    content:
+      "Google Pay es una solución de pago digital desarrollada por Google para dispositivos Android. Con Google Pay, puedes almacenar tus tarjetas de crédito, débito y de fidelidad en tu teléfono y realizar pagos en tiendas físicas o en línea de manera rápida y sencilla. Además, GooglePay utiliza medidas de seguridad avanzadas, como la tokenización, para proteger tus datos financieros durante las transacciones.",
+    published: true,
+    author: "Mauricio Garcia",
+    imageUrl: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  blogPostArr.push(newPost);
+
+  // Article #8
+  newPost = {
+    id: 8,
+    title: "Criptomonedas: El futuro del dinero digital",
+    content:
+      "Las criptomonedas, como Bitcoin y Ethereum, han ganado popularidad en los últimos años como una forma alternativa de pago digital. Estas monedas virtuales utilizan tecnología de criptografía para garantizar la seguridad y la integridad de las transacciones. A diferencia de las monedas tradicionales, las criptomonedas no están controladas por ningún gobierno o institución financiera central, lo que las hace descentralizadas y potencialmente más accesibles para las personas de todo el mundo.",
+    published: true,
+    author: "Pedro Zavala",
+    imageUrl: faker.image.urlLoremFlickr({ category: "business" }),
+  };
+
+  blogPostArr.push(newPost);
+
+  // Copia lo anterior y quita este comando
+
+  // Hacer insert en la tabla de todo los datos...
+  const addBlogPosts = async () =>
+    await prisma.blogPost.createMany({ data: blogPostArr });
+  await addBlogPosts();
 }
 
 /*/ Account
@@ -92,7 +219,6 @@ async function seedBlogPostTable(
 //   }
 // }
 */
-
 
 // User
 
@@ -356,6 +482,7 @@ async function seedPlacesTable(shouldCleanFirst: boolean = false) {
     on_google_maps: false,
     profile_pic_url: "Bibas.png",
     user_id: "1",
+    phone_number: faker.phone.imei(),
   };
 
   placesArr.push(newPlace);
@@ -373,6 +500,7 @@ async function seedPlacesTable(shouldCleanFirst: boolean = false) {
     on_google_maps: false,
     profile_pic_url: "FreshMarket.png",
     user_id: "2",
+    phone_number: faker.phone.imei(),
   };
 
   placesArr.push(newPlace);
@@ -389,6 +517,7 @@ async function seedPlacesTable(shouldCleanFirst: boolean = false) {
     on_google_maps: false,
     profile_pic_url: "DDB.png",
     user_id: "3",
+    phone_number: faker.phone.imei(),
   };
 
   placesArr.push(newPlace);
@@ -405,6 +534,7 @@ async function seedPlacesTable(shouldCleanFirst: boolean = false) {
     on_google_maps: false,
     profile_pic_url: "GamaTech.jpg",
     user_id: "4",
+    phone_number: faker.phone.imei(),
   };
 
   placesArr.push(newPlace);
