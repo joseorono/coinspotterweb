@@ -6,6 +6,7 @@ import SearchBar from '~/components/SearchInput';
 import Image from 'next/image';
 import csLogo from '@/logos/cs_white_outline.png';
 import placeholderPfp from '@/user_pfp/karamaloran.jpg';
+import placeholderLoggedOutPfp from '@/user_pfp/placeholder.png';
 import { api } from "~/utils/api";
 import LoginButton from "~/components/buttons/LoginButton";
 
@@ -137,7 +138,23 @@ const AppNavBar = () => {
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="avatar btn btn-circle btn-ghost">
             <div className="w-10 rounded-full">
-              <Image src={placeholderPfp} width={40} height={40} alt="User" />
+              {sessionData ? (
+                  <Image
+                    src={sessionData.user?.image ?? placeholderLoggedOutPfp}
+                    width={40}
+                    height={40}
+                    alt="User"
+                  />
+                ) : (
+                  <Image
+                    src={placeholderLoggedOutPfp}
+                    width={40}
+                    height={40}
+                    alt="User"
+                  />
+                )
+              }
+
             </div>
           </label>
           <ul
