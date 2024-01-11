@@ -49,10 +49,14 @@ const Footer = () => {
         </ul>
         <p className="my-2 p-2 text-center text-xs uppercase text-white">
           © {new Date().getFullYear()} por {" "}
-          <UnderlineLink href="/">
-            Jose Miguel Oroño, Mauricio Garcia y Pedro Zavala
-          </UnderlineLink>
+          <UnderlineLink href="https://github.com/joseorono/">
+            Jose Miguel Oroño
+          </UnderlineLink> ,Mauricio Garcia y Pedro Zavala
+          <small className="block text-bold text-center mt-2">
+            Illustrations by <Link prefetch={false} href="https://www.flaticon.com/free-icons/placeholder">FlatIcon icon_small</Link> and <Link prefetch={false} href="https://www.freepik.com/free-vector/boss-man-concept-illustration_40467501.htm">storyset on FreePik</Link>
+          </small>
         </p>
+        
       </div>
     </footer>
   );

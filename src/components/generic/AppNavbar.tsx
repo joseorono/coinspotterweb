@@ -5,7 +5,7 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import SearchBar from '~/components/SearchInput';
 import Image from 'next/image';
 import csLogo from '@/logos/cs_white_outline.png';
-import placeholderPfp from '@/placeholder/karamaloran.jpg';
+import placeholderPfp from '@/user_pfp/karamaloran.jpg';
 import { api } from "~/utils/api";
 import LoginButton from "~/components/buttons/LoginButton";
 

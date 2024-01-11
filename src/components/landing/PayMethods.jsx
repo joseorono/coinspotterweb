@@ -11,7 +11,7 @@ const HomePayMethods = () => {
         <p className='text-bold text-xl uppercase tracking-widest text-primary'>
           NUESTROS METODOS DE PAGO
         </p>
-        <h2 className='py-4'>MONEDAS Y APLICACIONES</h2>
+        <h2 className=' block pt-4 pb-8'>MONEDAS Y APLICACIONES</h2>
         <div className='grid grid-cols-2 gap-8 lg:grid-cols-4'>
           <div className='rounded-xl p-6 shadow-xl duration-300 ease-in hover:scale-105'>
             <div className='grid grid-cols-2 items-center justify-center gap-4'>

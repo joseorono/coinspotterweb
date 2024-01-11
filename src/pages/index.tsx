@@ -32,7 +32,7 @@ export default function Home() {
   const [productos, setProductos] = useState([]);
 
   // Api request example
-  const hello = api.example.hello.useQuery({ text: "desde nuestra la Web 3." });
+  const hello = api.example.hello.useQuery({ text: "desde la Web 3." });
 
   return (
     <PageLayout pageTitle="CoinSpotter" useHomePageHeader={true}>
