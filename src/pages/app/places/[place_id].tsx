@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import ImageGalleries from "~/components/imageGalleries/placeDetailsGallery";
 import GoogleMapEmbed from "~/components/gmaps/gmapEmbed";
 import { api } from "~/utils/api";
 import AppLayout from "~/components/layout/AppLayout";
+import { th } from "@faker-js/faker";
+
+
 
 const PlaceDetail = () => {
-  const router = useRouter();
-  const { place_id } = router.query;
+
+  const { query } = useRouter();
+  let place_id = '';
+  if (typeof query.place_id === 'string') {
+    place_id = query.place_id;
+  } else if (Array.isArray(query.place_id)) {
+    place_id = query.place_id[0] as string; // or some logic to decide which element of the array to use
+  }
+  const placeData = api.places.getPlaceById.useQuery({ placeId: place_id });
+
+
   //   const { place }: { place: number } = api.places.place.useQuery({ place_id });
 
   const gallerySlides:lightBoxSlide[] = [
@@ -17,7 +29,7 @@ const PlaceDetail = () => {
   ];
 
 
-  console.log(router.query);
+  console.log(query);
   //   console.log(place.id);
   return (
     <AppLayout pageTitle={"CoinSpotter - Place " + place_id}>
@@ -64,6 +76,10 @@ const PlaceDetail = () => {
             </div>
           </div>
         </div>
+
+        {
+          JSON.stringify(placeData.data)
+        }
 
         {/* Resto del contenido de la página */}
       </div>

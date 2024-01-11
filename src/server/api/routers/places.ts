@@ -14,6 +14,16 @@ export const placesRouter = createTRPCRouter({
     return "you can now see this secret message!";
   }),
 
+  getPlaceById: publicProcedure
+    .input(z.object({ placeId: z.string() }))
+    .query(({ ctx, input }) => {
+      
+        return ctx.prisma.places.findUnique({
+            where: { id: input.placeId },
+        });
+        
+  }),
+
   searchPlaces: publicProcedure
   .input(z.object({ query: z.string() }))
   .query(async ({ input }) => {
