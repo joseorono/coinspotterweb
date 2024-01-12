@@ -4,13 +4,17 @@ import React, { FC } from 'react';
 const GoogleMapEmbed: FC<GoogleMapEmbedProps> = ({
   width = "100%",
   height = "100%",
-  locationQuery,
-  latitude,
-  longitude,
+  locationQuery = null,
+  latitude = null,
+  longitude = null,
   className = "",
 }) => {
 
-    if ((!locationQuery && (!latitude || !longitude)) || (locationQuery && (latitude || longitude))) {
+    if ( !locationQuery && (!latitude || !longitude) ) {
+        throw new Error("Neither 'locationQuery' nor both 'latitude' and 'longitude' provided.");
+    }
+
+    if ((locationQuery && (latitude && longitude))) {
         throw new Error("You must provide either 'locationQuery' or both 'latitude' and 'longitude', but not both.");
     }
 

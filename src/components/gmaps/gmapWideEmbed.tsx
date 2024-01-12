@@ -3,13 +3,17 @@ import React, { FC } from 'react';
 // We don't require or use a fixed width because for this component we want full width
 const GoogleMapWideEmbed: FC<GoogleMapEmbedProps> = ({
   height = "350px",
-  locationQuery,
-  latitude,
-  longitude,
+  locationQuery = null,
+  latitude = null,
+  longitude = null,
   className = "",
 }) => {
 
-    if ((!locationQuery && (!latitude || !longitude)) || (locationQuery && (latitude || longitude))) {
+    if ( !locationQuery && (!latitude || !longitude) ) {
+        throw new Error("Neither 'locationQuery' nor both 'latitude' and 'longitude' provided.");
+    }
+
+    if ((locationQuery && (latitude && longitude))) {
         throw new Error("You must provide either 'locationQuery' or both 'latitude' and 'longitude', but not both.");
     }
 
