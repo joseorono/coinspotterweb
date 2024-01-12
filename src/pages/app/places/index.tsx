@@ -4,6 +4,7 @@ import GoogleMapWideEmbed from '../../../components/gmaps/gmapWideEmbed';
 import Link from 'next/link';
 import VerifiedPlacesMap from "~/components/gmaps/VerifiedPlacesMap";
 import AppLayout from "~/components/layout/AppLayout";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 type Place = {
   id: number;
@@ -119,7 +120,7 @@ export default function PlacesIndex() {
                       onClick={() => handlePlaceSelect(place)}
                     >
                       <div className="group relative mx-2 my-6 flex h-1/2 w-4/5 flex-col items-start justify-start gap-2 rounded-lg bg-gray-900 p-4 shadow-gray-800 duration-500 hover:-translate-y-2 hover:shadow-xl">
-                        <div className="absolute -bottom-7 -right-7 flex h-2/5 w-1/2 cursor-pointer justify-center rounded-lg bg-gray-800 shadow-md duration-700 hover:bg-gray-700 group-hover:-translate-x-1 group-hover:-translate-y-1 md:h-1/2">
+                        <div className="absolute -bottom-7 -right-7 flex h-2/5 w-1/2 cursor-pointer justify-center rounded-lg bg-gray-800 shadow-md duration-700 hover:bg-gray-700 group-hover:-translate-x-1 group-hover:-translate-y-1 md:h-[40%]">
                           <button
                             onClick={() => setSelectedPlace(place)}
                             className="text-gray-100"
@@ -128,10 +129,24 @@ export default function PlacesIndex() {
                           </button>
                         </div>
 
-                        <div>
-                          <h2 className="mb-2 text-2xl font-bold text-gray-100">
-                            {place.name}
-                          </h2>
+                        <div className="w-full">
+                          <div className="flex flex-row justify-between">
+                            <h2 className="mb-2 text-2xl font-bold text-gray-100">
+                              {place.name}
+                            </h2>
+                            <div>
+                              <AiFillStar
+                                size={40}
+                                color="gold"
+                                className="cursor-pointer"
+                              />
+
+                              <AiOutlineStar
+                                size={40}
+                                className="cursor-pointer"
+                              />
+                            </div>
+                          </div>
                           <p className="line-clamp-3 text-gray-200">
                             Dirección: {place.address}
                           </p>
