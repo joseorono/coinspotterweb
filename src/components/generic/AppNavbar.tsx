@@ -162,13 +162,13 @@ const AppNavBar = () => {
             className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
           >
             <li>
-              <a href="javascript:void(0);" className="justify-between">
+              <a className="justify-between">
                 Perfil
                 <span className="badge">WIP</span>
               </a>
             </li>
             <li>
-              <a href="javascript:void(0);" className="justify-between">
+              <a className="justify-between">
                 Configuración
                 <span className="badge">WIP</span>
               </a>
