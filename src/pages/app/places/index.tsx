@@ -34,15 +34,21 @@ export default function PlacesIndex() {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <div style={{ flex: 1, maxWidth: '600px' }}>
-        <h1>Página de lugares</h1>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button onClick={handleSearch}>Buscar</button>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+      <div style={{ flex: 1, maxWidth: '600px', marginRight: '20px' }}>
+        <h1 style={{ marginBottom: '10px', textAlign: 'center' }}>Explora Lugares</h1>
+        <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Buscar lugares..."
+            style={{ padding: '8px', fontSize: '16px', width: '80%' }}
+          />
+          <button onClick={handleSearch} style={{ marginLeft: '10px', padding: '8px', fontSize: '16px' }}>
+            Buscar
+          </button>
+        </div>
 
         {searchResults.isLoading ? (
           <div>Cargando...</div>
@@ -51,10 +57,10 @@ export default function PlacesIndex() {
         ) : (
           searchResults.data && (
             <div>
-              <h2>Resultados de la búsqueda:</h2>
+              <h2 style={{ marginBottom: '10px' }}>Resultados de la búsqueda:</h2>
               <ul>
                 {searchResults.data.places.map((place: Place) => (
-                  <li key={place.id} onClick={() => handlePlaceSelect(place)}>
+                  <li key={place.id} onClick={() => handlePlaceSelect(place)} style={{ cursor: 'pointer', marginBottom: '15px' }}>
                     <strong>Nombre:</strong> {place.name},{' '}
                     <strong>Dirección:</strong> {place.address}
                     <div>
@@ -73,15 +79,19 @@ export default function PlacesIndex() {
         )}
       </div>
 
-      {(selectedPlace && selectedPlace.latitude && selectedPlace.longitude) ?  (
-        <div style={{ flex: 1 }}>
+      <div style={{ flex: 1 }}>
+        {selectedPlace && selectedPlace.latitude && selectedPlace.longitude ? (
           <GoogleMapWideEmbed
             height={350}
             latitude={selectedPlace.latitude}
             longitude={selectedPlace.longitude}
           />
-        </div>
-      ) : < VerifiedPlacesMap /> }
+        ) : (
+          <VerifiedPlacesMap />
+        )}
+      </div>
     </div>
   );
 }
+
+
