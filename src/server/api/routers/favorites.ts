@@ -22,27 +22,31 @@ export const exampleRouter = createTRPCRouter({
 
     //ToDo: ESTA CONDICIONAL HAY QUE REVISARLA DA ERROR EN PLACE_ID. De aqui al 35 es una condicional dañada.
 
-    const existingFavorite = await ctx.prisma.favorite_places.findUnique({
-      where: {        
-          place_id : input.placeId,
-          user_id: userId,
-        
+    const existingRecord = await ctx.prisma.favorite_places.findFirst({
+      where: {
+        user_id: userId,
+        place_id: input.placeId,
       },
     });
 
-    if (existingFavorite) {
+    if (existingRecord) {
       return {
+        favorite: null,
         error: "el lugar ya esta en favoritos",
       };
     }
-   const newFavorite = await ctx.prisma.favorite_places.create({
-      data: {
-        place_id: input.placeId,
-        user_id: userId,
-      },
-   });
 
-   return newFavorite;
+    const newFavorite = await ctx.prisma.favorite_places.create({
+      data: {
+        user_id: userId,
+        place_id: input.placeId,
+      },
+    });
+
+    return {
+      favorite: newFavorite,
+      error: null,
+    };
 
   }),
 
