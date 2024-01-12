@@ -84,7 +84,7 @@ async function seedBlogPostTable(shouldCleanFirst: boolean = false) {
       "Los métodos de pago digital se han convertido en una opción cada vez más popular en el mundo actual. Con la creciente adopción de dispositivos móviles y la expansión de Internet, los pagos digitales ofrecen comodidad y eficiencia tanto para los consumidores como para los comerciantes. En este artículo, exploraremos diferentes métodos de pago digital, como billeteras electrónicas, tarjetas de crédito virtuales y transferencias bancarias en línea.",
     published: true,
     author: "Mauricio Garcia",
-    imageUrl: "business",
+    imageUrl: "/",
   };
 
   blogPostArr.push(newPost);
@@ -97,7 +97,7 @@ async function seedBlogPostTable(shouldCleanFirst: boolean = false) {
       "Las billeteras electrónicas, también conocidas como e-wallets, son una forma segura y conveniente de realizar pagos en línea. Estas aplicaciones móviles te permiten almacenar información de pago, como tarjetas de crédito o cuentas bancarias, en tu dispositivo. Al utilizar una billetera electrónica, puedes realizar compras en línea de manera rápida y sencilla, sin tener que introducir tus datos de pago en cada transacción.",
     published: true,
     author: "Jose Oroño",
-    imageUrl: "business",
+    imageUrl: "/",
   };
 
   blogPostArr.push(newPost);
@@ -111,7 +111,7 @@ async function seedBlogPostTable(shouldCleanFirst: boolean = false) {
       "Las tarjetas de crédito virtuales son una opción segura para realizar compras en línea. Estas tarjetas funcionan de manera similar a las tarjetas físicas, pero en lugar de tener una tarjeta física en tus manos, recibes una tarjeta con información de pago generada digitalmente. Al utilizar tarjetas de crédito virtuales, puedes proteger tus datos financieros personales y evitar posibles fraudes en línea.",
     published: true,
     author: "Jose Oroño",
-    imageUrl: "business",
+    imageUrl: "/",
   };
 
   blogPostArr.push(newPost);
@@ -125,7 +125,7 @@ async function seedBlogPostTable(shouldCleanFirst: boolean = false) {
       "Las transferencias bancarias en línea te permiten enviar dinero de tu cuenta bancaria a otra cuenta de manera rápida y segura. Con este método de pago digital, puedes realizar pagos a empresas, amigos o familiares sin tener que lidiar con cheques o efectivo. Además, la mayoría de los bancos ofrecen servicios de transferencia en línea a través de sus plataformas bancarias, lo que facilita aún más el proceso.",
     published: true,
     author: "Mauricio Garcia",
-    imageUrl: "business",
+    imageUrl: "/",
   };
 
   blogPostArr.push(newPost);
@@ -138,7 +138,7 @@ async function seedBlogPostTable(shouldCleanFirst: boolean = false) {
       "PayPal es una de las plataformas de pago digital más populares y confiables en todo el mundo. Con una cuenta de PayPal, puedes realizar pagos en línea de manera segura utilizando tu saldo de PayPal o vinculando tu cuenta bancaria o tarjeta de crédito. Además, PayPal ofrece protección al comprador y vendedor, lo que brinda tranquilidad adicional al realizar transacciones en línea.",
     published: true,
     author: "Jose Oroño",
-    imageUrl: "business",
+    imageUrl: "/",
   };
 
   blogPostArr.push(newPost);
@@ -151,7 +151,7 @@ async function seedBlogPostTable(shouldCleanFirst: boolean = false) {
       "Apple Pay es una forma conveniente y segura de realizar pagos utilizando tu iPhone o cualquier otro dispositivo de Apple compatible. Con Apple Pay, puedes vincular tus tarjetas de crédito o débito y realizar pagos simplemente acercando tu dispositivo a un terminal compatible con NFC. Además, tu información de pago se almacena de manera segura en tu dispositivo, lo que aumenta la protección de tus datos financieros.",
     published: true,
     author: "Pedro Zavala",
-    imageUrl: "business",
+    imageUrl: "/",
   };
 
   blogPostArr.push(newPost);
@@ -164,7 +164,7 @@ async function seedBlogPostTable(shouldCleanFirst: boolean = false) {
       "Google Pay es una solución de pago digital desarrollada por Google para dispositivos Android. Con Google Pay, puedes almacenar tus tarjetas de crédito, débito y de fidelidad en tu teléfono y realizar pagos en tiendas físicas o en línea de manera rápida y sencilla. Además, GooglePay utiliza medidas de seguridad avanzadas, como la tokenización, para proteger tus datos financieros durante las transacciones.",
     published: true,
     author: "Mauricio Garcia",
-    imageUrl: "business",
+    imageUrl: "/",
   };
 
   blogPostArr.push(newPost);
@@ -177,7 +177,7 @@ async function seedBlogPostTable(shouldCleanFirst: boolean = false) {
       "Las criptomonedas, como Bitcoin y Ethereum, han ganado popularidad en los últimos años como una forma alternativa de pago digital. Estas monedas virtuales utilizan tecnología de criptografía para garantizar la seguridad y la integridad de las transacciones. A diferencia de las monedas tradicionales, las criptomonedas no están controladas por ningún gobierno o institución financiera central, lo que las hace descentralizadas y potencialmente más accesibles para las personas de todo el mundo.",
     published: true,
     author: "Pedro Zavala",
-    imageUrl: "business",
+    imageUrl: "/",
   };
 
   blogPostArr.push(newPost);
@@ -239,7 +239,7 @@ async function seedUsersTable(shouldCleanFirst: boolean = false) {
     name: "Mauricio Garcia",
     email: "maggnoone@gmail.com",
     emailVerified: faker.date.anytime(),
-    image: "business",
+    image: "/",
   };
 
   userArr.push(newUser);
@@ -250,7 +250,7 @@ async function seedUsersTable(shouldCleanFirst: boolean = false) {
     name: "Pedro Zavala",
     email: "pedrozav@gmail.com",
     emailVerified: faker.date.anytime(),
-    image: "business",
+    image: "/",
   };
 
   userArr.push(newUser);
@@ -261,7 +261,7 @@ async function seedUsersTable(shouldCleanFirst: boolean = false) {
     name: "Jose Oroño",
     email: "joseomaker@gmail.com",
     emailVerified: faker.date.anytime(),
-    image: "business",
+    image: "/",
   };
 
   userArr.push(newUser);
