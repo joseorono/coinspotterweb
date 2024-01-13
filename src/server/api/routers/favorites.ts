@@ -51,7 +51,7 @@ export const favoritesRouter = createTRPCRouter({
   }),
 
 
-  getFavorites:protectedProcedure.query(async({ ctx }) => {
+  getFavorites: protectedProcedure.query(async ({ ctx }) => {
     const userId = ctx.session.user.id;
     return await ctx.prisma.favorite_places.findMany({
       where: {
@@ -65,20 +65,20 @@ export const favoritesRouter = createTRPCRouter({
   
 
   toggleFavorite: protectedProcedure
-    .input(
-      z.object({
-        id: z.string(),
-        user_id: z.string(),
-      })
-    )
-    .mutation(async ({ ctx, input: { id, user_id } }) => {
-      return ctx.prisma.favorite_places.update({
-        where: {
-          id,
-        },
-        data: {
-          user_id,
-        },
-      });
-    }),
+  .input(
+    z.object({
+      id: z.string(),
+      user_id: z.string(),
+    })
+  )
+  .mutation(async ({ ctx, input: { id, user_id } }) => {
+    return ctx.prisma.favorite_places.update({
+      where: {
+        id,
+      },
+      data: {
+        user_id,
+      },
+    });
+  }),
 });
