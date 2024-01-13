@@ -176,7 +176,7 @@ model favorite_places {
 model BlogPost {
   id        Int     @id @default(autoincrement())
   title     String
-  content   String?
+  content   String? @db.Text
   published Boolean @default(false)
   //author    Account? @relation(fields: [authorId], references: [id])
   author    String
