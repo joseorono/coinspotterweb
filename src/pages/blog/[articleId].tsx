@@ -38,7 +38,9 @@ function Article({ articleData }: any) {
   const { data } = api.blog.getPostById.useQuery({
     postId: Number(articleId),
   });
+  console.log("Article Data:");
   console.log(data);
+  console.log(data?.imageUrl);
 
   // Fetch the article content based on the `articleId` here
 
@@ -48,9 +50,12 @@ function Article({ articleData }: any) {
         <BsCenteredContainer extraClasses="mt-8">
           <div className="mx-auto p-5 sm:p-10 md:p-16">
             <div className="mx-auto flex max-w-3xl flex-col overflow-hidden rounded">
-              <img 
+              
+              <Image 
                 src={"/blog_pics/" + data?.imageUrl}
                 alt={data?.title}
+                width={100}
+                height={100}
                 className="h-60 w-full dark:bg-gray-500 sm:h-96"
               />
               <div className="m-4 mx-auto -mt-16 space-y-6 bg-base-200 p-6 pb-12 sm:mx-12 sm:px-10 lg:max-w-2xl lg:rounded-md">
