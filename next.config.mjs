@@ -7,6 +7,9 @@ await import("./src/env.mjs");
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  env: {
+    CS_GMAPS_API_KEY: process.env.CS_GMAPS_API_KEY,
+  },
   // Fix Rainbow-kit error in nextjs - Can'f find module 'fs'
   // Done as per the docs https://github.com/rainbow-me/rainbowkit/blob/main/examples/with-next/next.config.js
   webpack: config => {
