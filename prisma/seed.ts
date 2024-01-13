@@ -6,6 +6,7 @@ import {
   payment_methods,
   currencies,
   BlogPost,
+  picture_places
 } from "@prisma/client";
 
 import { faker } from "@faker-js/faker";
@@ -19,6 +20,7 @@ async function main() {
   // await seedTransactionsTable(8, true);
   // await seedAccountTable(8, true);
   await seedPlacesTable(true);
+  await seedPicturesPlacesTable(true);
   await seedUsersTable(true);
   await seedPaymentMethodsTable(true);
   await seedCurrenciesTable(true);
@@ -457,6 +459,117 @@ async function seedCurrenciesTable(shouldCleanFirst: boolean = false) {
 // }
 */
 
+// Places
+
+async function seedPicturesPlacesTable(shouldCleanFirst: boolean = false) {
+  // First, delete the existing blog posts
+  if (shouldCleanFirst) {
+    await prisma.picture_places.deleteMany({});
+  }
+
+  //let blogPostCounter = 0;
+
+  const picturePlacesArr: picture_places[] = [];
+  let newPicturePlace: picture_places;
+
+  // DDB
+  newPicturePlace = {
+    id: "1",
+    place_id: "1",
+    url: "ddb1.png",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+
+  newPicturePlace = {
+    id: "2",
+    place_id: "1",
+    url: "ddb2.jpg",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+
+  newPicturePlace = {
+    id: "3",
+    place_id: "1",
+    url: "ddb3.jpg",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+
+  // Fresh Market
+
+  newPicturePlace = {
+    id: "4",
+    place_id: "2",
+    url: "freshmarket1.jpg",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+  newPicturePlace = {
+    id: "5",
+    place_id: "2",
+    url: "freshmarket2.jpg",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+  newPicturePlace = {
+    id: "6",
+    place_id: "2",
+    url: "freshmarket3.jpg",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+  newPicturePlace = {
+    id: "7",
+    place_id: "2",
+    url: "freshmarket4.jpg",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+
+  // Gamatech Mcbo
+
+  newPicturePlace = {
+    id: "8",
+    place_id: "4",
+    url: "gamatech1.jpeg",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+
+  newPicturePlace = {
+    id: "9",
+    place_id: "4",
+    url: "gamatech2.jpeg",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+
+  newPicturePlace = {
+    id: "10",
+    place_id: "4",
+    url: "gamatech3.jpeg",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+
+  newPicturePlace = {
+    id: "11",
+    place_id: "4",
+    url: "gamatech4.jpeg",
+  };
+
+  picturePlacesArr.push(newPicturePlace);
+
+
+  // Copia lo anterior y quita este comando
+
+  // Hacer insert en la tabla de todo los datos...
+  const addPicturePlaces = async () =>
+    await prisma.picture_places.createMany({ data: picturePlacesArr });
+  await addPicturePlaces();
+}
 // Places
 
 async function seedPlacesTable(shouldCleanFirst: boolean = false) {
