@@ -57,6 +57,9 @@ const NavBar = () => {
             <Link href='/blog'>Blog</Link>
           </li>
           <li className='cursor-pointer p-4'>
+            <Link href='/verified'>Lugares Verificados</Link>
+          </li>
+          <li className='cursor-pointer p-4'>
             <Link href='/app/dashboard'>
               <button className="btn btn-secondary btn-outline btn-sm px-6 rounded-[2rem]">Entrar a App</button>
             </Link>
