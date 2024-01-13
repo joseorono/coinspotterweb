@@ -20,7 +20,7 @@ function VerifiedPlaces() {
         <PageLayout pageTitle={"Lugares Verificados"}>
         <BsCenteredContainer extraClasses='mt-8'>
             <div className="p-5 mx-auto sm:p-10 md:p-16">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. At maxime minus nulla nostrum fuga suscipit molestias, asperiores nam nisi laborum voluptas eveniet quod, quisquam fugit magni eius a quia hic.
+            Descubre con confianza los establecimientos que aceptan criptomonedas y métodos digitales en tiempo real. El mapa a continuación muestra lugares verificados, garantizando una experiencia segura y precisa. Explora con certeza los comercios adaptados a tus preferencias de pago.
             </div>
         </BsCenteredContainer>
         <VerifiedPlacesMap />
