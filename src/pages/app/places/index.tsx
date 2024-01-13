@@ -126,26 +126,15 @@ export default function PlacesIndex() {
                             className="text-gray-100"
                           >
                             Ver Mapa
-                          </button>
-                        </div>
+                          </button>                         
+
+                        </div>                       
 
                         <div className="w-full">
                           <div className="flex flex-row justify-between">
                             <h2 className="mb-2 text-2xl font-bold text-gray-100">
                               {place.name}
-                            </h2>
-                            <div>
-                              <AiFillStar
-                                size={40}
-                                color="gold"
-                                className="cursor-pointer"
-                              />
-
-                              <AiOutlineStar
-                                size={40}
-                                className="cursor-pointer"
-                              />
-                            </div>
+                            </h2>                            
                           </div>
                           <p className="line-clamp-3 text-gray-200">
                             Dirección: {place.address}
