@@ -41,7 +41,7 @@ const NavBar = () => {
         </Link>
         <ul className='hidden sm:flex'>
           <li className='cursor-pointer p-4'>
-            <Link href='/'>Home</Link>
+            <Link href='/'>Inicio</Link>
           </li>
           {
           /*
@@ -51,14 +51,14 @@ const NavBar = () => {
           */
           }
           <li className='cursor-pointer p-4'>
-            <Link href='/support'>Support</Link>
+            <Link href='/support'>Soporte</Link>
           </li>
           <li className='cursor-pointer p-4'>
             <Link href='/blog'>Blog</Link>
           </li>
           <li className='cursor-pointer p-4'>
             <Link href='/app/dashboard'>
-              <button className="btn btn-secondary btn-outline btn-sm px-6 rounded-[2rem]">Go to App</button>
+              <button className="btn btn-secondary btn-outline btn-sm px-6 rounded-[2rem]">Entrar a App</button>
             </Link>
           </li>
         </ul>
@@ -80,16 +80,16 @@ const NavBar = () => {
         >
           <ul>
             <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
-              <Link href='/'>Home</Link>
+              <Link href='/'>Inicio</Link>
             </li>
             <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
-              <Link href='/support'>Support</Link>
+              <Link href='/support'>Soporte</Link>
             </li>
             <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
               <Link href='/blog'>Blog</Link>
             </li>
             <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
-              <Link href='/app/dashboard'>Go to App</Link>
+              <Link href='/app/dashboard'>Ir a App</Link>
             </li>
             <li className='cursor-pointer p-4 text-4xl hover:text-gray-500'>
               <small className="block text-center">
