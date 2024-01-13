@@ -18,14 +18,14 @@ const GoogleMapEmbed: FC<GoogleMapEmbedProps> = ({
         throw new Error("You must provide either 'locationQuery' or both 'latitude' and 'longitude', but not both.");
     }
 
-    const apiKey = process.env.CS_GMAPS_API_KEY;
+    const apiKey = process.env.CS_GMAPS_API_KEY as string;
     let src = "";
     if (locationQuery) {
-        src = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(
+        src = `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(apiKey)}&q=${encodeURIComponent(
             locationQuery
         )}`;
     } else if (latitude && longitude) {
-        src = `https://www.google.com/maps/embed/v1/view?key=${apiKey}&center=${latitude},${longitude}&zoom=14`;
+        src = `https://www.google.com/maps/embed/v1/view?key=${encodeURIComponent(apiKey)}&center=${latitude},${longitude}&zoom=14`;
     } else {
         throw new Error("Neither 'locationQuery' nor both 'latitude' and 'longitude' provided.");
     }
