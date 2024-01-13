@@ -1,7 +1,9 @@
 import BsCenteredContainer from "../layout/BsCenteredContainer";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const PreFooterAction = (): JSX.Element => {
-
+    const { data: session, status } = useSession();
+    const { data: sessionData } = useSession();
     // This is the SVG used for the wave
     //  Change the colour #f8fafc to match the previous section 
     // #04bfad is the colour used in the logo
@@ -39,9 +41,14 @@ const PreFooterAction = (): JSX.Element => {
             <h3 className="my-4 text-3xl leading-tight">
             Regístrate hoy y comienza a usar CoinSpotter!
             </h3>
-            <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                Iniciar Sesión
+            <div>          
+            <button
+                className="m-auto block rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+                onClick={sessionData ? () => void signOut() : () => void signIn()}
+            >
+                {sessionData ? "Cerrar Sesión" : "Iniciar Sesión"}
             </button>
+            </div>
         </section>
     </> 
   );
