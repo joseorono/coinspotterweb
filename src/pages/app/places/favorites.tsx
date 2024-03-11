@@ -6,71 +6,57 @@ import { boolean, object } from "zod";
 import AppLayout from "~/components/layout/AppLayout";
 import BsCenteredContainer from "~/components/layout/BsCenteredContainer";
 
-// Datos de ejemplo de las cards favoritas
-const favoriteCards = [
-  {
-    name: "name 1",
-    description: "description 1",
-    address: "address 1",
-    latitude: 59,
-    longitude: 55,
-    google_places_id: "google_places_id 1",
-    on_google_maps: false,
-    profile_pic_url: "profile_pic_url 1",
-    is_favorite: false,
-    id: "1",
-  },
-  {
-    name: "name 2",
-    description: "description 2",
-    address: "address 2",
-    latitude: 6,
-    longitude: 95,
-    google_places_id: "google_places_id 2",
-    on_google_maps: false,
-    profile_pic_url: "profile_pic_url 2",
-    is_favorite: false,
-    id: "2",
-  },
-  {
-    name: "name 3",
-    description: "description 3",
-    address: "address 3",
-    latitude: 8,
-    longitude: 84,
-    google_places_id: "google_places_id 3",
-    on_google_maps: false,
-    profile_pic_url: "profile_pic_url 3",
-    is_favorite: false,
-    id: "3",
-  },
-  {
-    name: "name 4",
-    description: "description 4",
-    address: "address 4",
-    latitude: 93,
-    longitude: 74,
-    google_places_id: "google_places_id 4",
-    on_google_maps: false,
-    profile_pic_url: "profile_pic_url 4",
-    is_favorite: false,
-    id: "4",
-  },
-  {
-    name: "name 5",
-    description: "description 5",
-    address: "address 5",
-    latitude: 85,
-    longitude: 25,
-    google_places_id: "google_places_id 5",
-    on_google_maps: false,
-    profile_pic_url: "profile_pic_url 5",
-    is_favorite: false,
-    id: "5",
-  },
-];
+import { api } from "~/utils/api";
 
-const FavoritesPage = () => {
+import { getServerAuthSession } from "~/server/auth";
+
+
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+import { Places, favorite_places } from "@prisma/client";
+import { prisma } from "~/server/db";
+
+ 
+export const getServerSideProps: GetServerSideProps = (async (ctx) => {
+  // Fetch data from external API
+
+  let favPlaces: Places[]|null = null;
+  const session = await getServerAuthSession(ctx);
+
+  if (session) {
+    const userId = session.user.id;
+
+    const favorites = await prisma.favorite_places.findMany({
+      where: {
+        user: {
+          id: userId,
+        },
+      },
+    });
+
+    const fav_ids = favorites.map((fav) => fav.place_id);
+
+    favPlaces = await prisma.places.findMany({
+      where: {
+        id: { in: fav_ids },
+      },
+    });
+
+  }
+
+  return { props: { favPlaces } }
+})
+
+
+
+
+const FavoritesPage  = (
+  
+) => {
+
+  // ToDo: Grab Places data from props
+  let favoriteCards = props.favPlaces;
+  //let favoriteCards = []; 
+  
   const [items, setItems] = useState(favoriteCards);
   const [selectedCard, setSelectedCard] = useState(null);
   const modalOpen = useRef(false);
@@ -93,6 +79,7 @@ const FavoritesPage = () => {
   const handleRemoveFavorite = (res: any) => {
     console.log(res);
   };
+
 
   return (
     <AppLayout pageTitle="CoinSpotter">
