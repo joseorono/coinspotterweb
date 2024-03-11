@@ -49,17 +49,18 @@ export const getServerSideProps: GetServerSideProps = (async (ctx) => {
 
 
 
-const FavoritesPage  = (
-  
-) => {
-
+const FavoritesPage = ({
+  favPlaces,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   // ToDo: Grab Places data from props
-  let favoriteCards = props.favPlaces;
-  //let favoriteCards = []; 
-  
+  let favoriteCards = favPlaces;
+  //let favoriteCards = [];
+
   const [items, setItems] = useState(favoriteCards);
   const [selectedCard, setSelectedCard] = useState(null);
   const modalOpen = useRef(false);
+
+  console.log(favPlaces);
 
   const handleOpenModal = (card: any) => {
     console.log(card);
@@ -80,29 +81,26 @@ const FavoritesPage  = (
     console.log(res);
   };
 
-
   return (
     <AppLayout pageTitle="CoinSpotter">
-    
-    <BsCenteredContainer>
-      <div className="my-16">
-        <h2>Mis Favoritos</h2>
-      </div>
-      <div className="card-container grid gap-4 md:gap-16 lg:gap-8 p-4 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((card) => (
-          <FavPlaceCard
-            key={card.id}
-            card={card}
-            modal={modalOpen.current}
-            cardSelected={selectedCard}
-            handleOpenModal={handleOpenModal}
-            handleAddFavorite={handleToggleFavorite}
-          />
-        ))}
-      </div>
-      {/* {modal && <Modal closeModal={handleModal} cardData={items} />} */}
-    </BsCenteredContainer>
-
+      <BsCenteredContainer>
+        <div className="my-16">
+          <h2>Mis Favoritos</h2>
+        </div>
+        <div className="card-container grid gap-4 p-4 sm:grid-cols-2 md:gap-16 lg:grid-cols-3 lg:gap-8">
+          {items?.map((card) => (
+            <FavPlaceCard
+              key={card.id}
+              card={card}
+              modal={modalOpen.current}
+              cardSelected={selectedCard}
+              handleOpenModal={handleOpenModal}
+              handleAddFavorite={handleToggleFavorite}
+            />
+          ))}
+        </div>
+        {/* {modal && <Modal closeModal={handleModal} cardData={items} />} */}
+      </BsCenteredContainer>
     </AppLayout>
   );
 };
